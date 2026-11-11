@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Panduan Rumah</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#0E7A69">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Panduan Rumah">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow phone column — sticky header with search + category chips, then cards grouped by household area. */
+:root{
+  --bg:#EEF3F1; --surface:#FFFFFF; --sunk:#E3EBE8; --ink:#14302A; --muted:#566C66; --line:#D2DDD9;
+  --accent:#0E7A69; --accent-ink:#FFFFFF; --ok:#1C8A4C; --ok-bg:#E3F4EA; --no:#C1352A; --no-bg:#FBE7E4;
+  --f-day:#1C8A4C; --f-2x:#0E7A69; --f-week:#B7791F; --f-month:#7A4FB5;
+  --c-blue:#2F6FD6; --c-green:#2E9E5B; --c-yellow:#E5B417; --c-red:#D63A30; --c-grey:#8C9592; --c-white:#F7F7F3;
+  --board-edge:rgba(0,0,0,.18);
+  --display:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --zh:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1917; --surface:#162421; --sunk:#1D2E2A; --ink:#E3EEEA; --muted:#9AB0A9; --line:#2A3D38;
+  --accent:#3FC0AA; --accent-ink:#06201B; --ok:#55C886; --ok-bg:#16332A; --no:#F07063; --no-bg:#3A1F1C;
+  --f-day:#55C886; --f-2x:#3FC0AA; --f-week:#E0A848; --f-month:#B08BE8; --board-edge:rgba(255,255,255,.25);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1917; --surface:#162421; --sunk:#1D2E2A; --ink:#E3EEEA; --muted:#9AB0A9; --line:#2A3D38;
+  --accent:#3FC0AA; --accent-ink:#06201B; --ok:#55C886; --ok-bg:#16332A; --no:#F07063; --no-bg:#3A1F1C;
+  --f-day:#55C886; --f-2x:#3FC0AA; --f-week:#E0A848; --f-month:#B08BE8; --board-edge:rgba(255,255,255,.25);
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.zh{font-family:var(--zh)}
+body.no-zh .zh{display:none!important}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-block:12px 10px;display:grid;gap:10px}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand h1{margin:0;font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.01em;line-height:1.15}
+.brand h1 .zh{font-weight:500;font-size:.85rem;color:var(--muted);margin-left:6px;letter-spacing:0}
+.progress{font-size:.78rem;color:var(--muted);white-space:nowrap;text-align:right}
+.progress b{color:var(--accent);font-variant-numeric:tabular-nums}
+.bar{height:4px;background:var(--sunk);border-radius:4px;overflow:hidden;margin-top:4px;width:96px;margin-left:auto}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.searchrow{display:flex;gap:8px}
+.search{flex:1;min-width:0;position:relative}
+.search input{width:100%;font:inherit;font-size:1rem;padding:10px 12px 10px 38px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.search input:focus{outline:none;border-color:var(--accent)}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.toggle{font:inherit;font-size:.85rem;font-weight:600;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:0 12px;cursor:pointer;white-space:nowrap}
+.toggle[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+nav.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-inline:-4px;padding-inline:4px}
+nav.chips::-webkit-scrollbar{display:none}
+nav.chips a{flex:none;text-decoration:none;color:var(--ink);font-weight:600;font-size:.86rem;padding:6px 12px;border-radius:999px;background:var(--sunk);white-space:nowrap}
+nav.chips a .zh{font-weight:400;color:var(--muted);margin-left:4px;font-size:.8rem}
+nav.chips a.on{background:var(--ink);color:var(--surface)}
+nav.chips a.on .zh{color:var(--surface);opacity:.75}
+
+main .wrap{padding-block:8px 48px;display:grid;gap:8px}
+section.cat{display:grid;gap:14px;padding-top:22px;scroll-margin-top:200px}
+.cat-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cat-head h2{margin:0;font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:-.015em;text-wrap:balance}
+.cat-head h2 .zh{display:block;font-size:.9rem;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:2px}
+.cat-sub{margin:0;color:var(--muted);font-size:.92rem}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;scroll-margin-top:200px}
+.card.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 4px var(--accent)}100%{box-shadow:0 0 0 0 transparent}}
+.art{background:var(--sunk);display:flex;justify-content:center;padding:14px 10px}
+.art svg{width:100%;max-width:520px;height:auto;display:block}
+.art text{font-family:var(--body);fill:var(--ink)}
+.art .lbl-zh{font-family:var(--zh);fill:var(--muted)}
+.body{padding:16px 16px 14px;display:grid;gap:12px}
+.card h3{margin:0;font-family:var(--display);font-size:1.18rem;font-weight:700;line-height:1.3;text-wrap:balance}
+.card h3 .zh{display:block;font-size:.88rem;font-weight:500;color:var(--muted);margin-top:2px}
+.intro{margin:0}
+.intro .zh, li .zh, .why .zh{display:block;font-size:.85rem;color:var(--muted);margin-top:1px}
+.dd{display:grid;gap:10px}
+.dd > div{border-radius:12px;padding:10px 12px}
+.dd .do{background:var(--ok-bg)}
+.dd .dont{background:var(--no-bg)}
+.dd h4{margin:0 0 6px;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.dd .do h4{color:var(--ok)} .dd .dont h4{color:var(--no)}
+.dd h4 .zh{letter-spacing:0;font-weight:500;text-transform:none}
+.dd ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}
+.dd li{padding-left:22px;position:relative}
+.dd li::before{position:absolute;left:0;top:0;font-weight:800}
+.dd .do li::before{content:"✓";color:var(--ok)}
+.dd .dont li::before{content:"✕";color:var(--no)}
+.steps{margin:0;padding:0;list-style:none;display:grid;gap:8px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(s);width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.steps li > span{min-width:0}
+.steps .zh{display:block;font-size:.85rem;color:var(--muted)}
+.why{margin:0;font-size:.93rem;border-left:3px solid var(--line);padding:2px 0 2px 12px;color:var(--ink)}
+.why b{color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;padding-top:2px}
+.btn{font:inherit;font-size:.88rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 12px;cursor:pointer;text-decoration:none;line-height:1.2}
+.btn:hover{border-color:var(--accent)}
+.btn:focus-visible,.toggle:focus-visible,nav.chips a:focus-visible,.fchip:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn.speaking{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.got{margin-left:auto}
+.btn.got[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.btn svg{flex:none}
+
+/* color legend table */
+.legend{display:grid;gap:8px}
+.legend .row{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;padding:8px 10px;border-radius:12px;background:var(--bg)}
+.legend .sw{width:44px;height:34px;border-radius:7px;border:1.5px solid var(--board-edge);position:relative}
+.legend .sw::after{content:"";position:absolute;left:0;right:0;top:55%;border-top:1.5px dashed rgba(255,255,255,.55)}
+.legend .row b{display:block;font-size:.98rem}
+.legend .row span{font-size:.9rem;color:var(--muted)}
+.legend .row .zh{display:inline;margin-left:4px}
+
+/* schedule */
+.fbar{display:flex;flex-wrap:wrap;gap:6px}
+.fchip{font:inherit;font-size:.84rem;font-weight:600;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.fchip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.area{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.area h3{margin:0;padding:12px 16px;font-family:var(--display);font-size:1.08rem;font-weight:700;background:var(--sunk);display:flex;align-items:baseline;gap:8px}
+.area h3 .zh{font-size:.85rem;font-weight:500;color:var(--muted)}
+.task{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:11px 16px;border-top:1px solid var(--line);align-items:center}
+.task:first-of-type{border-top:0}
+.task .t{min-width:0}
+.task .t .zh{display:block;font-size:.84rem;color:var(--muted)}
+.task .meta{text-align:right;display:grid;gap:3px;justify-items:end}
+.badge{font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+.b-day{background:var(--f-day)} .b-2x{background:var(--f-2x)} .b-week{background:var(--f-week)} .b-month{background:var(--f-month)}
+:root[data-theme="dark"] .badge{color:#0B1513}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge{color:#0B1513}}
+.days{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.task.today{background:var(--ok-bg)}
+.week{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:6px 0}
+.week .d{display:grid;grid-template-columns:82px 1fr;gap:10px;padding:9px 16px;border-top:1px solid var(--line)}
+.week .d:first-child{border-top:0}
+.week .d b{font-size:.92rem}
+.week .d.now{background:var(--ok-bg)}
+.week .d.now b{color:var(--ok)}
+.week .d ul{margin:0;padding:0;list-style:none;display:grid;gap:3px;font-size:.92rem;min-width:0}
+.week .d .zh{color:var(--muted);font-size:.82rem;margin-left:4px}
+
+/* routine timeline */
+.timeline{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px 0;position:relative}
+.slot{display:grid;grid-template-columns:62px 18px 1fr;gap:8px;padding:9px 16px 9px 12px;align-items:start}
+.slot time{font-variant-numeric:tabular-nums;font-weight:700;font-size:.95rem;color:var(--accent);text-align:right;padding-top:1px}
+.slot .dot{width:12px;height:12px;border-radius:50%;border:3px solid var(--accent);background:var(--surface);margin-top:6px;position:relative}
+.slot .dot::after{content:"";position:absolute;left:50%;top:12px;width:2px;height:46px;background:var(--line);transform:translateX(-50%)}
+.slot:last-child .dot::after{display:none}
+.slot .what{min-width:0}
+.slot .what b{display:block;font-weight:600}
+.slot .what .zh{display:block;font-size:.84rem;color:var(--muted)}
+.slot .what small{display:block;color:var(--muted);font-size:.84rem;margin-top:2px}
+.slot .what a{color:var(--accent);font-weight:600}
+.slot.now{background:var(--ok-bg)}
+.slot.now .dot{background:var(--accent)}
+
+.empty{padding:28px 16px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:16px}
+footer{color:var(--muted);font-size:.82rem;padding-block:8px 32px}
+footer p{margin:6px 0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--surface);padding:10px 16px;border-radius:12px;font-size:.9rem;opacity:0;pointer-events:none;transition:all .25s;max-width:calc(100% - 32px);z-index:20}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* view switch */
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--sunk);border-radius:12px;padding:3px;gap:3px}
+.seg button{font:inherit;font-weight:700;font-size:.95rem;border:0;background:transparent;color:var(--muted);border-radius:9px;padding:8px 6px;cursor:pointer}
+.seg button .zh{font-weight:400;font-size:.8rem;margin-left:5px}
+.seg button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.findbar{display:grid;gap:10px}
+body[data-view="learn"] footer{display:none}
+
+/* learn home */
+#learnHome{padding-block:18px 48px;display:grid;gap:14px}
+.lh-head h2{margin:0;font-family:var(--display);font-size:1.45rem;font-weight:800;letter-spacing:-.015em;text-wrap:balance}
+.lh-head p{margin:4px 0 0;color:var(--muted)}
+.tiles{display:grid;gap:12px}
+.tile{display:grid;grid-template-columns:96px 1fr auto;gap:14px;align-items:center;text-align:left;font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:10px 14px 10px 10px;cursor:pointer;width:100%}
+.tile:hover{border-color:var(--accent)}
+.tile:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tile .ti{background:var(--sunk);border-radius:12px;aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden;max-width:100%}
+.tile .ti svg{width:100%;height:auto}
+.tile .ti text{font-family:var(--body);fill:var(--ink)}
+.tile .tt{min-width:0}
+.tile .tt b{display:block;font-size:1.08rem;font-family:var(--display)}
+.tile .tt .zh{display:block;font-size:.85rem;color:var(--muted)}
+.tile .tt small{display:block;color:var(--muted);font-size:.82rem;margin-top:3px}
+.tile .st{font-size:.75rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.tile .st.ok{background:var(--ok-bg);color:var(--ok)}
+
+/* lesson player */
+.lesson{position:fixed;inset:0;z-index:30;background:var(--bg);display:flex;flex-direction:column;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.l-top{display:grid;grid-template-columns:44px 1fr 44px;gap:8px;align-items:center;padding:10px max(12px,env(safe-area-inset-right,0px)) 6px max(12px,env(safe-area-inset-left,0px))}
+.l-title{text-align:center;min-width:0}
+.l-title b{display:block;font-family:var(--display);font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dots{display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.dots i.q{border-radius:2px}
+.dots i.on{background:var(--accent);width:18px;border-radius:4px}
+.dots i.past{background:var(--accent);opacity:.45}
+.iconbtn{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;font:inherit;font-size:1.1rem}
+.iconbtn[aria-pressed="false"]{opacity:.45}
+.iconbtn:focus-visible,.navbtn:focus-visible,.opt:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.l-stage{flex:1;min-height:0;overflow-y:auto;touch-action:pan-y;padding:6px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+.slide{max-width:560px;margin:0 auto;display:grid;gap:16px;align-content:start}
+.slide.in-next{animation:inNext .28s ease-out}
+.slide.in-prev{animation:inPrev .28s ease-out}
+@keyframes inNext{from{transform:translateX(40px);opacity:.2}to{transform:none;opacity:1}}
+@keyframes inPrev{from{transform:translateX(-40px);opacity:.2}to{transform:none;opacity:1}}
+.s-art{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px;display:grid;place-items:center}
+.s-art svg{width:100%;height:auto;max-height:38vh}
+.s-art text,.opt text{font-family:var(--body);fill:var(--ink)}
+.s-art .lbl-zh{font-family:var(--zh);fill:var(--muted)}
+.s-id{margin:0;font-size:1.35rem;line-height:1.4;font-weight:600;text-wrap:pretty}
+.s-id .line{display:block;padding:6px 0;border-top:1px solid var(--line)}
+.s-id .line:first-child{border-top:0}
+.s-id .line time{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:800;margin-right:8px}
+.s-zh{margin:-8px 0 0;color:var(--muted);font-size:1rem;white-space:pre-line}
+.qtag{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--f-week);color:#fff;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{font:inherit;color:var(--ink);background:var(--surface);border:2.5px solid var(--line);border-radius:16px;padding:10px;cursor:pointer;display:grid;gap:6px;justify-items:center;text-align:center;position:relative}
+.opt svg{width:100%;height:auto}
+.opt .ol{font-weight:700;font-size:1.05rem}
+.opt .ol .zh{display:block;font-weight:400;font-size:.82rem;color:var(--muted)}
+.opt.txt{min-height:110px;align-content:center}
+.opt.txt .ol{font-size:1.3rem}
+.opt.ok{border-color:var(--ok);background:var(--ok-bg)}
+.opt.no{border-color:var(--no);background:var(--no-bg);animation:shake .35s}
+.opt.ok::after,.opt.no::after{position:absolute;top:-10px;right:-8px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800}
+.opt.ok::after{content:"✓";background:var(--ok)} .opt.no::after{content:"✕";background:var(--no)}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.s-fb{min-height:1.5em;font-weight:600;font-size:1.05rem;margin:0}
+.s-fb.ok{color:var(--ok)} .s-fb.no{color:var(--no)}
+.s-fb .zh{display:block;font-weight:400;font-size:.9rem;color:var(--muted)}
+.end{text-align:center;justify-items:center;padding-top:24px}
+.end .big{width:96px;height:96px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:3rem;font-weight:800}
+.end h2{margin:0;font-family:var(--display);font-size:1.8rem}
+.end .score{font-size:1.15rem}
+.end .score b{color:var(--accent);font-variant-numeric:tabular-nums}
+.end .col{display:grid;gap:10px;width:100%;max-width:340px}
+.l-nav{display:grid;grid-template-columns:1fr 52px 1.4fr;gap:10px;padding:10px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px));border-top:1px solid var(--line);background:var(--surface)}
+.navbtn{font:inherit;font-weight:700;font-size:1.05rem;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:14px 10px;cursor:pointer}
+.navbtn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.navbtn:disabled{opacity:.4;cursor:default}
+.l-nav .iconbtn{width:52px;height:auto}
+body.locked{overflow:hidden}
+@media (min-width:640px){ .dd{grid-template-columns:1fr 1fr} .tiles{grid-template-columns:1fr 1fr} }
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Panduan Rumah<span class="zh">家务手册</span></h1>
+      <button class="toggle" id="zhToggle" aria-pressed="true" title="Tampilkan bahasa Mandarin" style="padding-block:7px">中文</button>
+    </div>
+    <div class="seg" role="tablist" aria-label="Mode">
+      <button role="tab" data-view="learn" aria-selected="true">Belajar<span class="zh">学习</span></button>
+      <button role="tab" data-view="find" aria-selected="false">Cari<span class="zh">查找</span></button>
+    </div>
+    <div class="findbar" id="findBar" hidden>
+      <div class="searchrow">
+        <label class="search" for="q">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <input id="q" type="search" placeholder="Cari: pisau, lap, hujan… / 搜索" autocomplete="off">
+        </label>
+      </div>
+      <nav class="chips" id="chips" aria-label="Kategori"></nav>
+    </div>
+  </div>
+</header>
+
+<main><div class="wrap" id="learnHome"></div><div class="wrap" id="content" hidden></div></main>
+
+<div class="lesson" id="lesson" hidden role="dialog" aria-modal="true" aria-labelledby="lTitle">
+  <div class="l-top">
+    <button class="iconbtn" id="lClose" aria-label="Tutup">✕</button>
+    <div class="l-title"><b id="lTitle"></b><div class="dots" id="lDots"></div></div>
+    <button class="iconbtn" id="lVoice" aria-pressed="true" aria-label="Suara otomatis"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+  </div>
+  <div class="l-stage" id="lStage"></div>
+  <div class="l-nav">
+    <button class="navbtn" id="lPrev">‹ Kembali</button>
+    <button class="iconbtn" id="lReplay" aria-label="Dengarkan lagi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
+    <button class="navbtn primary" id="lNext">Lanjut ›</button>
+  </div>
+</div>
+<footer><div class="wrap">
+  <p>Ada yang belum jelas? Tanya majikan. Lebih baik bertanya daripada salah.</p>
+  <p class="zh">雇主备注：抹布颜色、晾衣位置、清洁日程和作息时间目前是初稿，请按家里实际情况调整。</p>
+</div></footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ===================== CONTENT ===================== */
+const CLOTHS = [
+  {key:"blue",  id:"Biru",   zh:"蓝色", where:"Meja makan, meja, lemari, rak, gagang pintu", wzh:"餐桌、桌面、柜子、门把手"},
+  {key:"green", id:"Hijau",  zh:"绿色", where:"Dapur: meja dapur, kompor, rak piring", wzh:"厨房台面、灶台、碗架"},
+  {key:"yellow",id:"Kuning", zh:"黄色", where:"Wastafel, keran, dinding kamar mandi", wzh:"洗手台、水龙头、浴室墙面"},
+  {key:"red",   id:"Merah",  zh:"红色", where:"Hanya untuk kloset / toilet", wzh:"只擦马桶"},
+  {key:"grey",  id:"Abu-abu (pel)", zh:"灰色拖把", where:"Lantai rumah", wzh:"室内地面"},
+  {key:"white", id:"Putih (mikrofiber)", zh:"白色超细纤维", where:"Kaca, cermin, layar TV — kering saja", wzh:"玻璃、镜子、电视屏，只能干擦"},
+];
+const BOARDS = [
+  {board:"red",   knife:"meat",  food:"meat", short:"Daging mentah", id:"Merah · Pisau daging", zh:"红板 · 肉刀", what:"Daging, ayam, ikan, udang MENTAH", wzh:"生肉、生鸡、生鱼、生虾"},
+  {board:"green", knife:"veg",   food:"veg", short:"Sayur", id:"Hijau · Pisau sayur",  zh:"绿板 · 菜刀", what:"Sayur, bawang, cabai, bumbu", wzh:"蔬菜、葱姜蒜、辣椒"},
+  {board:"yellow",knife:"cooked",food:"cooked", short:"Makanan matang", id:"Kuning · Pisau matang",zh:"黄板 · 熟食刀", what:"Makanan MATANG: daging masak, roti, tahu", wzh:"熟食：熟肉、面包、豆腐"},
+  {board:"white", knife:"fruit", food:"fruit", short:"Buah", id:"Putih · Pisau buah",   zh:"白板 · 水果刀", what:"Buah", wzh:"水果"},
+];
+
+const CATS = [
+  {id:"lap", t:"Lap & Pel", zh:"抹布", sub:"Satu warna, satu tempat. Jangan dicampur.", subzh:"一种颜色，一个地方，绝不混用。"},
+  {id:"pisau", t:"Pisau & Talenan", zh:"刀与砧板", sub:"Pisau dan talenan sesuai jenis makanan.", subzh:"不同食物，用对应的刀和砧板。"},
+  {id:"jemur", t:"Mencuci & Menjemur", zh:"洗衣与晾晒", sub:"Lihat cuaca dulu, baru jemur.", subzh:"先看天气，再决定晾在哪里。"},
+  {id:"jadwal", t:"Jadwal Bersih", zh:"清洁频率", sub:"Apa yang dibersihkan setiap hari, setiap minggu, setiap bulan.", subzh:"每天、每周、每月分别打扫什么。"},
+  {id:"rutin", t:"Rutinitas Harian", zh:"每日作息", sub:"Urutan kerja dari pagi sampai malam.", subzh:"从早到晚的工作顺序。"},
+];
+
+const CARDS = [
+  /* ---------- LAP ---------- */
+  {id:"lap-warna", cat:"lap", art:"clothLegend",
+   t:"Warna lap dan tempatnya", zh:"抹布颜色与用途",
+   intro:["Setiap warna lap hanya untuk satu tempat. Hafalkan tabel ini.","每种颜色只用在一个地方，请记住这张表。"],
+   legend:true,
+   why:["Kalau lap toilet dipakai di meja makan, kuman dari toilet pindah ke tempat makan keluarga.","马桶的细菌会被带到全家吃饭的桌子上。"]},
+  {id:"lap-jangan-campur", cat:"lap", art:"clothWrong",
+   t:"Jangan tukar lap antar tempat", zh:"抹布不能换着用",
+   intro:["Lap yang salah tempat lebih kotor daripada tidak dilap.","用错地方的抹布，比不擦还脏。"],
+   do:[["Ambil lap sesuai warna sebelum mulai membersihkan","开始打扫前，先拿对应颜色的抹布"],["Lap merah hanya masuk kamar mandi, dan keluar hanya untuk dicuci","红色抹布只在卫生间用，拿出来只为了洗"],["Pel kamar mandi terpisah dari pel lantai rumah","卫生间拖把和家里拖把分开"]],
+   dont:[["Lap merah atau kuning untuk meja, dapur, atau piring","用红色或黄色抹布擦桌子、厨房或碗盘"],["Lap hijau (dapur) untuk lantai atau kamar mandi","用绿色厨房抹布擦地或擦卫生间"],["Satu lap untuk semua tempat \"supaya cepat\"","图快，一块抹布擦所有地方"]]},
+  {id:"lap-urutan", cat:"lap", art:"cleanOrder",
+   t:"Urutan membersihkan: dari atas ke bawah", zh:"打扫顺序：从上到下，从干净到脏",
+   steps:[["Debu di atas dulu: rak, lemari, meja (lap biru)","先擦高处的灰：架子、柜子、桌子（蓝色）"],["Kaca dan layar: lap putih kering","玻璃和屏幕：白色干布"],["Terakhir lantai: sapu, lalu pel (abu-abu)","最后地面：先扫，再拖（灰色拖把）"],["Kamar mandi paling akhir: kuning untuk wastafel, merah untuk kloset","卫生间放最后：黄色擦洗手台，红色擦马桶"]],
+   why:["Debu dari atas jatuh ke bawah. Kalau lantai dipel dulu, nanti kotor lagi.","灰尘会往下掉，先拖地就白拖了。"]},
+  {id:"lap-cuci", cat:"lap", art:"clothWash",
+   t:"Mencuci dan menyimpan lap", zh:"抹布的清洗和存放",
+   do:[["Cuci semua lap setiap sore, setelah pekerjaan selesai","每天傍晚干完活后，把抹布全部洗干净"],["Lap merah dan kuning dicuci terpisah, rendam dengan cairan disinfektan 10 menit","红色和黄色单独洗，用消毒液泡10分钟"],["Lap dapur berminyak: sabun cuci piring dan air panas","厨房油抹布：用洗洁精和热水洗"],["Jemur sampai kering, gantung sesuai warna","晾到全干，按颜色挂好"]],
+   dont:[["Mencuci lap bersama baju, handuk, atau sprei","抹布和衣服、毛巾、床单一起洗"],["Menyimpan lap dalam keadaan basah (bau dan berjamur)","抹布湿着收起来（会臭、会发霉）"],["Lap bau atau robek tetap dipakai — minta lap baru","抹布臭了或破了还继续用，请要新的"]]},
+
+  /* ---------- PISAU ---------- */
+  {id:"pisau-pasangan", cat:"pisau", art:"boardLegend",
+   t:"Pasangan talenan dan pisau", zh:"砧板和刀的搭配",
+   intro:["Ada 4 talenan dan 4 pisau. Selalu pakai berpasangan.","家里有4块砧板、4把刀，必须成对使用。"],
+   boards:true},
+  {id:"pisau-buah", cat:"pisau", art:"fruitPair",
+   t:"Buah hanya dengan pisau buah", zh:"水果只用水果刀",
+   do:[["Pisau buah dan talenan putih","水果刀 + 白色砧板"],["Cuci buah dulu, baru dipotong","水果先洗，再切"]],
+   dont:[["Memotong buah dengan pisau daging atau pisau sayur","用切肉刀或菜刀切水果"],["Memotong buah di talenan merah atau hijau","在红色或绿色砧板上切水果"]],
+   why:["Buah dimakan langsung, tidak dimasak. Kuman dari daging mentah dan bau bawang akan pindah ke buah.","水果不加热直接吃，生肉的细菌和葱蒜味会沾到水果上。"]},
+  {id:"pisau-mentah-matang", cat:"pisau", art:"rawCooked",
+   t:"Mentah dan matang harus dipisah", zh:"生熟分开",
+   do:[["Makanan matang hanya di talenan kuning dengan pisau matang","熟食只在黄色砧板上用熟食刀切"],["Piring untuk daging mentah berbeda dengan piring makanan matang","装生肉的盘子和装熟食的盘子分开"],["Cuci tangan dengan sabun setelah pegang daging mentah","摸完生肉用肥皂洗手"]],
+   dont:[["Daging masak dipotong di talenan merah","熟肉放在红色砧板上切"],["Makanan matang diletakkan di piring bekas daging mentah","熟食放进装过生肉的盘子"]],
+   why:["Makanan matang tidak dimasak lagi. Kuman dari yang mentah langsung masuk ke perut.","熟食不会再加热，生食的细菌会直接吃进肚子。"]},
+  {id:"pisau-urutan", cat:"pisau", art:"prepOrder",
+   t:"Kalau memasak banyak: urutan memotong", zh:"备菜多时的切菜顺序",
+   steps:[["Buah","水果"],["Makanan matang","熟食"],["Sayur","蔬菜"],["Daging, ayam, ikan mentah — paling terakhir","生肉、生鸡、生鱼放最后"]],
+   why:["Dari yang paling bersih ke yang paling kotor. Meja dan tangan tetap bersih lebih lama.","从最干净到最脏，台面和手能保持干净更久。"]},
+  {id:"pisau-tulang", cat:"pisau", art:"boneKnife",
+   t:"Tulang dan daging beku: pakai golok", zh:"骨头和冻肉：用砍骨刀",
+   do:[["Tulang, iga, ayam utuh: golok (pisau tulang) di talenan merah","骨头、排骨、整鸡：在红色砧板上用砍骨刀"],["Daging beku dicairkan dulu di kulkas bawah","冻肉先放冷藏室解冻"]],
+   dont:[["Memotong tulang dengan pisau sayur atau pisau buah (pisau rusak)","用菜刀或水果刀剁骨头（刀会崩口）"],["Mencairkan daging di luar kulkas berjam-jam","冻肉放在常温下解冻几个小时"]]},
+  {id:"pisau-cuci", cat:"pisau", art:"boardWash",
+   t:"Mencuci dan menyimpan pisau & talenan", zh:"刀和砧板的清洗存放",
+   do:[["Talenan merah langsung dicuci setelah dipakai: sabun dan air panas","红色砧板用完马上洗：洗洁精加热水"],["Talenan dikeringkan berdiri, tidak ditumpuk","砧板竖着晾干，不要叠放"],["Pisau dicuci, dilap kering, simpan di tempat pisau","刀洗完擦干，放回刀架"]],
+   dont:[["Pisau direndam di bak cuci (bahaya untuk tangan, pisau berkarat)","刀泡在水槽里（容易割手、生锈）"],["Pisau dan talenan kayu masuk mesin cuci piring","刀和木砧板放进洗碗机"]]},
+
+  /* ---------- JEMUR ---------- */
+  {id:"jemur-pisah", cat:"jemur", art:"sortLaundry",
+   t:"Sebelum mencuci: pisahkan dulu", zh:"洗衣前先分类",
+   steps:[["Pakaian putih","白色衣物"],["Pakaian berwarna dan gelap","彩色和深色衣物"],["Pakaian dalam dan kaus kaki — dicuci terpisah","内衣和袜子单独洗"],["Handuk dan sprei","毛巾和床单"],["Pakaian anak — terpisah dari pakaian dewasa","孩子衣服和大人衣服分开"]],
+   why:["Warna bisa luntur ke baju putih. Pakaian dalam dicuci terpisah supaya lebih bersih.","深色会染到白衣服上，内衣单独洗更卫生。"]},
+  {id:"jemur-cerah", cat:"jemur", art:"sunny",
+   t:"Cuaca cerah: jemur di luar", zh:"晴天：晾在室外",
+   intro:["Tempat: jemuran di halaman belakang.","位置：后院晾衣架。"],
+   do:[["Handuk, sprei, dan pakaian putih kena matahari langsung","毛巾、床单、白衣服直接晒太阳"],["Pakaian gelap dan berwarna dibalik (bagian dalam di luar)","深色、彩色衣服翻面晾，里朝外"],["Angkat semua jemuran paling lambat jam 15.30","最晚下午3点半把衣服全部收回"]],
+   dont:[["Pakaian sutra, wol, rajutan dijemur di bawah matahari (rusak, melar)","真丝、羊毛、针织衣服暴晒（会坏、会变形）"],["Membiarkan jemuran di luar sampai sore atau malam","衣服在外面一直晾到傍晚或晚上"]]},
+  {id:"jemur-hujan", cat:"jemur", art:"rainy",
+   t:"Hujan atau mendung: jemur di dalam", zh:"雨天或阴天：晾在室内",
+   intro:["Tempat: ruang jemur di dalam rumah, dekat jendela. Nyalakan kipas angin.","位置：室内晾衣间靠窗处，打开电风扇。"],
+   do:[["Kalau pagi sudah mendung, langsung jemur di dalam","早上已经阴天，就直接晾在室内"],["Beri jarak antar pakaian supaya cepat kering","衣服之间留空隙，干得快"],["Kalau tiba-tiba hujan: segera angkat semua jemuran di luar","突然下雨：马上把外面的衣服全部收进来"]],
+   dont:[["Menunggu hujan berhenti dulu baru mengangkat jemuran","等雨停了才去收衣服"],["Melipat pakaian yang masih lembap (bau apek)","衣服还潮就叠起来（会有霉味）"]]},
+  {id:"jemur-dalam", cat:"jemur", art:"underwear",
+   t:"Pakaian dalam dijemur terpisah", zh:"内衣单独晾",
+   do:[["Pakaian dalam dan kaus kaki di jemuran kecil tersendiri, di dalam rumah","内衣袜子用单独的小晾衣架，晾在室内"],["Pakaian sutra dan rajutan dijemur mendatar di tempat teduh","真丝和针织衣服平铺在阴凉处"]],
+   dont:[["Pakaian dalam dijemur di samping handuk atau baju luar","内衣挨着毛巾或外衣晾"],["Pakaian dalam dijemur di halaman depan yang terlihat orang","内衣晾在前院，外人能看到"]]},
+
+];
+
+/* frequency: d=daily, 2x, w=weekly, m=monthly; days in Indonesian */
+const AREAS = [
+  {id:"Ruang tamu", zh:"客厅", tasks:[
+    ["Sapu dan pel lantai (pel abu-abu)","扫地、拖地（灰色拖把）","d"],
+    ["Lap debu meja dan sofa (lap biru)","擦桌子和沙发上的灰（蓝色）","d"],
+    ["Sedot debu sofa dan karpet","沙发和地毯吸尘","2x",["Selasa","Jumat"]],
+    ["Lap kaca jendela (lap putih)","擦窗户玻璃（白色）","w",["Rabu"]],
+    ["Bersihkan lampu, kipas, filter AC","清洁灯具、风扇、空调滤网","m"],
+  ]},
+  {id:"Ruang keluarga", zh:"起居室", tasks:[
+    ["Rapikan mainan dan barang","整理玩具和杂物","d"],
+    ["Sapu dan pel lantai","扫地、拖地","d"],
+    ["Lap layar TV (putih, kering) dan rak (biru)","擦电视屏（白色干擦）和柜子（蓝色）","2x",["Senin","Kamis"]],
+    ["Sedot debu karpet","地毯吸尘","2x",["Selasa","Jumat"]],
+    ["Cuci gorden","洗窗帘","m"],
+  ]},
+  {id:"Kamar tidur", zh:"卧室", tasks:[
+    ["Rapikan tempat tidur, buka jendela 30 menit","整理床铺，开窗通风30分钟","d"],
+    ["Sapu dan pel lantai","扫地、拖地","d"],
+    ["Lap lemari dan meja (lap biru)","擦衣柜和桌子（蓝色）","2x",["Senin","Kamis"]],
+    ["Ganti sprei dan sarung bantal","换床单和枕套","w",["Senin"]],
+    ["Sedot debu bawah tempat tidur","床底吸尘","w",["Jumat"]],
+    ["Jemur bantal, balik kasur","晒枕头，床垫翻面","m"],
+  ]},
+  {id:"Lorong", zh:"过道", tasks:[
+    ["Sapu dan pel lantai","扫地、拖地","d"],
+    ["Rapikan sepatu","摆好鞋子","d"],
+    ["Lap gagang pintu dan saklar lampu (lap biru)","擦门把手和电灯开关（蓝色）","2x",["Senin","Kamis"]],
+    ["Lap rak sepatu, cuci keset","擦鞋柜，洗地垫","w",["Sabtu"]],
+    ["Lap dinding bawah dan plint","擦墙脚和踢脚线","m"],
+  ]},
+];
+const FREQ = {d:["Setiap hari","每天","b-day"], "2x":["2× seminggu","每周2次","b-2x"], w:["Seminggu sekali","每周1次","b-week"], m:["Sebulan sekali","每月1次","b-month"]};
+const DAYS = ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
+const DAYS_ZH = {Senin:"周一",Selasa:"周二",Rabu:"周三",Kamis:"周四",Jumat:"周五",Sabtu:"周六",Minggu:"周日"};
+
+const ROUTINE = [
+  ["06:00","Bangun, rebus air minum","起床，烧开水"],
+  ["06:30","Siapkan sarapan","准备早餐"],
+  ["07:30","Cuci piring, lap meja makan (biru) dan dapur (hijau)","洗碗，擦餐桌（蓝色）和厨房（绿色）"],
+  ["08:00","Pisahkan cucian, nyalakan mesin cuci. Buka jendela kamar","衣服分类，开洗衣机，打开卧室窗户"],
+  ["08:30","Kamar tidur: rapikan tempat tidur, sapu, pel","卧室：整理床铺，扫地拖地"],
+  ["09:30","Ruang tamu, ruang keluarga, lorong: lap debu, sapu, pel","客厅、起居室、过道：擦灰、扫地、拖地"],
+  ["10:30","Jemur cucian — lihat cuaca dulu","晾衣服，先看天气","jemur-cerah"],
+  ["11:00","Masak makan siang","做午饭"],
+  ["12:00","Makan siang, cuci piring","吃午饭，洗碗"],
+  ["13:00","Istirahat","休息"],
+  ["14:30","Tugas mingguan hari ini","今天的每周任务","jadwal"],
+  ["15:30","Angkat jemuran, lipat, setrika","收衣服、叠衣服、熨衣服"],
+  ["16:30","Masak makan malam","做晚饭"],
+  ["18:00","Makan malam, cuci piring, bersihkan dapur, buang sampah","吃晚饭，洗碗，收拾厨房，倒垃圾"],
+  ["19:30","Cuci semua lap, jemur. Pekerjaan selesai","洗所有抹布并晾好，下班","lap-cuci"],
+];
+
+/* ===================== ILLUSTRATIONS ===================== */
+const COL = k => `var(--c-${k})`;
+const svg = (w,h,inner,label) => `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${label||""}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+function cloth(x,y,k,s=1){
+  const w=56*s,h=44*s;
+  return `<g transform="translate(${x},${y})"><rect width="${w}" height="${h}" rx="${7*s}" fill="${COL(k)}" stroke="var(--board-edge)" stroke-width="1.5"/>
+  <path d="M${6*s} ${h*.58} H${w-6*s}" stroke="${k==='white'?'rgba(0,0,0,.18)':'rgba(255,255,255,.55)'}" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M${w-14*s} 0 L${w} ${14*s} L${w} ${7*s} Q${w} 0 ${w-7*s} 0Z" fill="rgba(0,0,0,.14)"/></g>`;
+}
+function badge(x,y,ok){
+  return ok ? `<g transform="translate(${x},${y})"><circle r="15" fill="var(--ok)"/><path d="M-7 0l5 5 9-10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`
+            : `<g transform="translate(${x},${y})"><circle r="15" fill="var(--no)"/><path d="M-6 -6l12 12M6 -6l-12 12" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></g>`;
+}
+function board(x,y,k,w=150,h=92){
+  return `<g transform="translate(${x},${y})"><rect width="${w}" height="${h}" rx="12" fill="${COL(k)}" stroke="var(--board-edge)" stroke-width="2"/><circle cx="${w-16}" cy="16" r="6" fill="var(--sunk)" stroke="var(--board-edge)"/></g>`;
+}
+function knife(x,y,type,rot=0){
+  const shapes = {
+    meat:  `<path d="M0 0 H74 V30 H6 Q0 30 0 24Z" fill="#C9D1D6" stroke="#6E7A80" stroke-width="1.5"/><rect x="74" y="10" width="44" height="12" rx="5" fill="#3B2A22"/>`,
+    veg:   `<path d="M0 6 Q2 0 10 0 H70 V22 H4 Q0 22 0 16Z" fill="#D7DDE1" stroke="#6E7A80" stroke-width="1.5"/><rect x="70" y="6" width="42" height="11" rx="5" fill="#2F5D3A"/>`,
+    cooked:`<path d="M0 12 Q30 0 66 2 V18 H6 Q0 18 0 12Z" fill="#D7DDE1" stroke="#6E7A80" stroke-width="1.5"/><rect x="66" y="4" width="40" height="11" rx="5" fill="#B7891A"/>`,
+    fruit: `<path d="M0 8 Q22 0 46 2 V12 H4 Q0 12 0 8Z" fill="#DDE3E6" stroke="#6E7A80" stroke-width="1.5"/><rect x="46" y="2" width="30" height="10" rx="4" fill="#E9E5DA" stroke="#9A958A"/>`,
+    bone:  `<path d="M0 0 H70 V40 H4 Q0 40 0 34Z" fill="#B9C2C8" stroke="#5E6A70" stroke-width="1.5"/><circle cx="12" cy="10" r="4" fill="var(--sunk)"/><rect x="70" y="14" width="42" height="13" rx="5" fill="#3B2A22"/>`,
+  };
+  return `<g transform="translate(${x},${y}) rotate(${rot})">${shapes[type]}</g>`;
+}
+function food(x,y,type,s=1){
+  const f = {
+    fruit: `<circle cx="0" cy="4" r="17" fill="#E0453A"/><path d="M0 -12 q2 -6 6 -8" stroke="#5B3A1E" stroke-width="2.5" fill="none"/><ellipse cx="9" cy="-14" rx="7" ry="3.5" fill="#3E9B4F" transform="rotate(-25 9 -14)"/><ellipse cx="-6" cy="-2" rx="4" ry="6" fill="rgba(255,255,255,.35)"/>`,
+    meat:  `<path d="M-22 4 Q-24 -14 -4 -16 Q18 -18 22 0 Q24 16 2 17 Q-20 18 -22 4Z" fill="#D9636B"/><path d="M-12 -4 Q0 -10 12 -2 M-10 6 Q2 2 12 8" stroke="#F3C1C3" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+    veg:   `<path d="M0 18 Q-16 4 -10 -14 Q0 -22 10 -14 Q16 4 0 18Z" fill="#4DAA57"/><path d="M0 16 V-14" stroke="#D8F0D0" stroke-width="3" stroke-linecap="round"/><path d="M-14 18 Q-24 0 -18 -8" stroke="#2E7D3A" stroke-width="4" fill="none" stroke-linecap="round"/>`,
+    cooked:`<path d="M-22 0 H22 Q20 18 0 18 Q-20 18 -22 0Z" fill="#F2EFE8" stroke="#A9A49A" stroke-width="1.5"/><path d="M-16 0 Q-10 -9 0 -8 Q10 -9 16 0Z" fill="#B0703A"/><path d="M-6 -14 q-3 -5 0 -9 M4 -14 q-3 -5 0 -9" stroke="var(--muted)" stroke-width="2" fill="none" stroke-linecap="round"/>`,
+    fish:  `<path d="M-22 0 Q-6 -14 14 0 Q-6 14 -22 0Z" fill="#7FA7C9"/><path d="M14 0 L26 -10 V10Z" fill="#7FA7C9"/><circle cx="-12" cy="-2" r="2.2" fill="#1d2b36"/>`,
+    bone:  `<rect x="-18" y="-4" width="36" height="8" rx="4" fill="#F1E6D2" stroke="#BCA98A"/><circle cx="-18" cy="-5" r="5" fill="#F1E6D2" stroke="#BCA98A"/><circle cx="-18" cy="5" r="5" fill="#F1E6D2" stroke="#BCA98A"/><circle cx="18" cy="-5" r="5" fill="#F1E6D2" stroke="#BCA98A"/><circle cx="18" cy="5" r="5" fill="#F1E6D2" stroke="#BCA98A"/>`,
+  };
+  return `<g transform="translate(${x},${y}) scale(${s})">${f[type]}</g>`;
+}
+function txt(x,y,s,o={}){
+  return `<text x="${x}" y="${y}" font-size="${o.size||13}" font-weight="${o.w||600}" text-anchor="${o.a||'middle'}" ${o.zh?'class="lbl-zh"':''}>${s}</text>`;
+}
+function scene(k,x,y){ // small place icons for cloth legend
+  const s={
+    table:`<rect x="-20" y="-4" width="40" height="6" rx="2" fill="var(--muted)"/><rect x="-16" y="2" width="4" height="14" fill="var(--muted)"/><rect x="12" y="2" width="4" height="14" fill="var(--muted)"/>`,
+    stove:`<rect x="-20" y="-10" width="40" height="24" rx="4" fill="none" stroke="var(--muted)" stroke-width="2.5"/><circle cx="-8" cy="2" r="5" fill="none" stroke="var(--muted)" stroke-width="2.5"/><circle cx="8" cy="2" r="5" fill="none" stroke="var(--muted)" stroke-width="2.5"/>`,
+    sink:`<path d="M-20 -2 H20 Q18 14 0 14 Q-18 14 -20 -2Z" fill="none" stroke="var(--muted)" stroke-width="2.5"/><path d="M0 -2 V-12 H8" stroke="var(--muted)" stroke-width="2.5" fill="none"/>`,
+    toilet:`<path d="M-14 -14 H6 V0 H16 Q16 12 0 14 L2 18 H-8 L-6 14 Q-14 10 -14 0Z" fill="none" stroke="var(--muted)" stroke-width="2.5" stroke-linejoin="round"/>`,
+    floor:`<path d="M-22 12 L-10 -6 H22 L10 12Z" fill="none" stroke="var(--muted)" stroke-width="2.5"/><path d="M-4 12 L6 -6" stroke="var(--muted)" stroke-width="1.5"/>`,
+    glass:`<rect x="-14" y="-14" width="28" height="28" rx="2" fill="none" stroke="var(--muted)" stroke-width="2.5"/><path d="M-6 6 L6 -6 M0 8 L8 0" stroke="var(--muted)" stroke-width="2"/>`,
+  };
+  return `<g transform="translate(${x},${y})">${s[k]}</g>`;
+}
+const ART = {
+  clothLegend(){
+    const places=["table","stove","sink","toilet","floor","glass"];
+    let g=""; CLOTHS.forEach((c,i)=>{const col=i%3,row=Math.floor(i/3);const x=20+col*170,y=14+row*104;
+      g+=cloth(x,y,c.key)+`<path d="M${x+64} ${y+22} h22" stroke="var(--muted)" stroke-width="2" marker-end="url(#ar)"/>`+scene(places[i],x+120,y+22)+txt(x+75,y+72,c.id.split(" ")[0],{size:13})+txt(x+75,y+88,c.wzh.split("、")[0],{size:11,w:400,zh:1});});
+    return svg(520,222,`<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`+g,"Warna lap dan tempatnya");
+  },
+  clothWrong(){
+    return svg(520,170, `<rect x="10" y="10" width="240" height="150" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="150" rx="14" fill="var(--surface)"/>`
+      + scene("table",130,64)+cloth(60,92,"blue",.9)+txt(130,150,"Biru → meja",{size:13})+badge(34,34,true)
+      + scene("table",390,64)+cloth(320,92,"red",.9)+txt(390,150,"Merah → meja",{size:13})+badge(294,34,false)
+      ,"Lap biru untuk meja benar, lap merah untuk meja salah");
+  },
+  cleanOrder(){
+    let g=`<rect x="10" y="10" width="500" height="200" rx="14" fill="var(--surface)"/>`;
+    const lv=[["1","Rak & meja","blue",40],["2","Kaca","white",88],["3","Lantai","grey",136],["4","Kamar mandi","red",168]];
+    g+=`<path d="M60 30 V196" stroke="var(--accent)" stroke-width="3" marker-end="url(#ar2)"/>`;
+    lv.forEach(([n,l,k,y])=>{g+=`<circle cx="60" cy="${y}" r="13" fill="var(--accent)"/><text x="60" y="${y+5}" font-size="13" font-weight="800" text-anchor="middle" style="fill:var(--accent-ink)">${n}</text>`+cloth(96,y-15,k,.65)+txt(146,y+5,l,{a:"start",size:14});});
+    g+=`<g opacity=".5">${scene("table",420,60)}${scene("glass",420,104)}${scene("floor",420,146)}${scene("toilet",470,176)}</g>`;
+    return svg(520,220,`<defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>`+g,"Urutan membersihkan dari atas ke bawah");
+  },
+  clothWash(){
+    let g=`<rect x="10" y="10" width="500" height="150" rx="14" fill="var(--surface)"/>`;
+    g+=`<path d="M40 40 H480" stroke="var(--muted)" stroke-width="3" stroke-linecap="round"/>`;
+    CLOTHS.forEach((c,i)=>{const x=52+i*72; g+=`<path d="M${x+20} 40 v8" stroke="var(--muted)" stroke-width="2"/>`+cloth(x,48,c.key,.8)+txt(x+22,108,c.id.split(" ")[0],{size:11});});
+    g+=txt(260,140,"Gantung sesuai warna, sampai kering",{size:13,w:600});
+    return svg(520,170,g,"Lap dijemur sesuai warna");
+  },
+  boardLegend(){
+    let g=""; BOARDS.forEach((b,i)=>{const col=i%2,row=Math.floor(i/2);const x=14+col*254,y=10+row*132;
+      g+=`<rect x="${x}" y="${y}" width="240" height="122" rx="14" fill="var(--surface)"/>`+board(x+12,y+12,b.board,140,80)+food(x+82,y+52,b.food)+knife(x+156,y+30,b.knife,90)
+        +txt(x+82,y+112,b.short,{size:13});});
+    return svg(520,276,g,"Pasangan talenan dan pisau");
+  },
+  fruitPair(){
+    return svg(520,190, `<rect x="10" y="10" width="240" height="170" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="170" rx="14" fill="var(--surface)"/>`
+      + board(40,48,"white",170,96)+food(115,96,"fruit",1.2)+knife(150,70,"fruit",20)+badge(34,34,true)+txt(130,170,"Pisau buah + talenan putih",{size:12})
+      + board(300,48,"red",170,96)+food(375,96,"fruit",1.2)+knife(410,64,"meat",20)+badge(294,34,false)+txt(390,170,"Pisau daging + talenan merah",{size:12})
+      ,"Buah dengan pisau buah benar, dengan pisau daging salah");
+  },
+  rawCooked(){
+    return svg(520,190, `<rect x="10" y="10" width="240" height="170" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="170" rx="14" fill="var(--surface)"/>`
+      + board(30,52,"red",96,72)+food(78,88,"meat",.9)+board(138,52,"yellow",96,72)+food(186,90,"cooked",.9)+`<path d="M130 40 V140" stroke="var(--line)" stroke-width="3" stroke-dasharray="5 4"/>`+badge(34,34,true)+txt(130,165,"Mentah | Matang",{size:13})
+      + board(310,48,"red",160,96)+food(360,96,"meat",.9)+food(420,98,"cooked",.9)+badge(294,34,false)+txt(390,165,"Dicampur di satu talenan",{size:13})
+      ,"Mentah dan matang dipisah benar, dicampur salah");
+  },
+  prepOrder(){
+    const seq=[["fruit","white","Buah"],["cooked","yellow","Matang"],["veg","green","Sayur"],["meat","red","Mentah"]];
+    let g=`<rect x="10" y="10" width="500" height="150" rx="14" fill="var(--surface)"/>`;
+    seq.forEach(([f,b,l],i)=>{const x=24+i*124; g+=board(x,34,b,96,68)+food(x+48,68,f,.85)+txt(x+48,124,`${i+1}. ${l}`,{size:13});
+      if(i<3) g+=`<path d="M${x+100} 68 h18" stroke="var(--muted)" stroke-width="2.5" marker-end="url(#ar3)"/>`;});
+    g+=txt(260,150,"bersih → kotor",{size:12,w:500});
+    return svg(520,170,`<defs><marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`+g,"Urutan memotong");
+  },
+  boneKnife(){
+    return svg(520,180, `<rect x="10" y="10" width="240" height="160" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="160" rx="14" fill="var(--surface)"/>`
+      + board(36,50,"red",170,90)+food(100,98,"bone",1)+knife(150,60,"bone",25)+badge(34,34,true)+txt(130,160,"Golok untuk tulang",{size:13})
+      + board(296,50,"red",170,90)+food(360,98,"bone",1)+knife(410,66,"veg",25)+`<path d="M412 72 l6 4 -4 4 6 4" stroke="var(--no)" stroke-width="2" fill="none"/>`+badge(294,34,false)+txt(390,160,"Pisau sayur rusak",{size:13})
+      ,"Tulang dengan golok benar, dengan pisau sayur salah");
+  },
+  boardWash(){
+    let g=`<rect x="10" y="10" width="500" height="160" rx="14" fill="var(--surface)"/>`;
+    g+=`<rect x="60" y="140" width="200" height="8" rx="3" fill="var(--muted)"/>`;
+    ["red","green","yellow","white"].forEach((k,i)=>{g+=`<rect x="${78+i*44}" y="44" width="26" height="96" rx="6" fill="${COL(k)}" stroke="var(--board-edge)" stroke-width="1.5"/>`;});
+    g+=txt(160,32,"Berdiri, tidak ditumpuk",{size:12});
+    g+=`<rect x="320" y="70" width="140" height="70" rx="8" fill="#6B4A36"/>`;
+    [0,1,2,3].forEach(i=>{g+=`<rect x="${338+i*30}" y="40" width="10" height="34" rx="2" fill="#2b2b2b"/>`;});
+    g+=txt(390,160,"Pisau di tempat pisau",{size:12});
+    return svg(520,180,g,"Talenan dikeringkan berdiri, pisau di tempat pisau");
+  },
+  sortLaundry(){
+    const piles=[["#F4F4F0","Putih"],["#3E5C8A","Warna"],["#E7A0B4","Dalam"],["#9FD3C7","Handuk"],["#F2C14E","Anak"]];
+    let g=`<rect x="10" y="10" width="500" height="160" rx="14" fill="var(--surface)"/>`;
+    piles.forEach(([c,l],i)=>{const x=40+i*92; g+=`<path d="M${x} 110 Q${x+4} 60 ${x+36} 58 Q${x+68} 60 ${x+72} 110Z" fill="${c}" stroke="var(--board-edge)" stroke-width="1.5"/><path d="M${x+6} 110 h60" stroke="var(--board-edge)"/>`+`<rect x="${x-4}" y="110" width="80" height="22" rx="6" fill="var(--sunk)"/>`+txt(x+36,150,l,{size:13});});
+    return svg(520,180,g,"Pisahkan cucian menjadi lima");
+  },
+  sunny(){
+    let g=`<rect x="10" y="10" width="500" height="170" rx="14" fill="var(--surface)"/>`;
+    g+=`<g transform="translate(80,62)"><circle r="22" fill="#F5B82E"/>${[0,45,90,135,180,225,270,315].map(a=>`<path d="M0 -30 V-40" stroke="#F5B82E" stroke-width="4" stroke-linecap="round" transform="rotate(${a})"/>`).join("")}</g>`;
+    g+=`<path d="M160 60 H480" stroke="var(--muted)" stroke-width="3"/><path d="M170 60 V160 M470 60 V160" stroke="var(--muted)" stroke-width="4"/>`;
+    const items=[["#F4F4F0","towel"],["#F4F4F0","shirt"],["#3E5C8A","shirt"],["#9FD3C7","towel"]];
+    items.forEach(([c,t],i)=>{const x=190+i*70; g+= t==="towel"?`<rect x="${x}" y="60" width="50" height="70" rx="4" fill="${c}" stroke="var(--board-edge)"/>`:`<path d="M${x} 66 l14 -6 h22 l14 6 -6 14 -6 -3 V128 H${x+12} V77 l-6 3Z" fill="${c}" stroke="var(--board-edge)"/>`;});
+    g+=txt(80,120,"Cerah",{size:14,w:700})+txt(80,140,"晴天",{size:12,w:400,zh:1})+txt(320,160,"Halaman belakang · angkat jam 15.30",{size:12});
+    return svg(520,190,g,"Cuaca cerah, jemur di halaman belakang");
+  },
+  rainy(){
+    let g=`<rect x="10" y="10" width="500" height="170" rx="14" fill="var(--surface)"/>`;
+    g+=`<g transform="translate(80,56)"><path d="M-30 10 Q-34 -8 -16 -10 Q-10 -26 8 -20 Q26 -24 28 -4 Q40 0 34 12Z" fill="var(--c-grey)"/>${[-18,-4,10,24].map(x=>`<path d="M${x} 22 l-5 12" stroke="var(--c-blue)" stroke-width="3" stroke-linecap="round"/>`).join("")}</g>`;
+    g+=`<path d="M170 80 L320 30 L470 80" fill="none" stroke="var(--muted)" stroke-width="4" stroke-linejoin="round"/><rect x="190" y="80" width="260" height="88" fill="none" stroke="var(--muted)" stroke-width="3"/>`;
+    g+=`<path d="M210 100 H360" stroke="var(--muted)" stroke-width="2.5"/>`;
+    [0,1,2].forEach(i=>{g+=`<rect x="${222+i*44}" y="100" width="32" height="46" rx="3" fill="${["#F4F4F0","#3E5C8A","#9FD3C7"][i]}" stroke="var(--board-edge)"/>`;});
+    g+=`<g transform="translate(410,130)"><circle r="20" fill="none" stroke="var(--muted)" stroke-width="2.5"/>${[0,120,240].map(a=>`<ellipse cx="0" cy="-10" rx="5" ry="10" fill="var(--muted)" transform="rotate(${a})"/>`).join("")}</g>`;
+    g+=txt(80,120,"Hujan",{size:14,w:700})+txt(80,140,"雨天",{size:12,w:400,zh:1});
+    return svg(520,190,g,"Hujan, jemur di dalam rumah dengan kipas");
+  },
+  underwear(){
+    return svg(520,170, `<rect x="10" y="10" width="240" height="150" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="150" rx="14" fill="var(--surface)"/>`
+      + `<path d="M60 50 H200" stroke="var(--muted)" stroke-width="3"/>`+[0,1,2].map(i=>`<path d="M${74+i*42} 54 h28 l-4 22 h-20Z" fill="#E7A0B4" stroke="var(--board-edge)"/>`).join("")+badge(34,34,true)+txt(130,130,"Jemuran kecil sendiri",{size:13})
+      + `<path d="M300 50 H480" stroke="var(--muted)" stroke-width="3"/><rect x="310" y="50" width="56" height="70" rx="4" fill="#9FD3C7" stroke="var(--board-edge)"/><path d="M376 54 h28 l-4 22 h-20Z" fill="#E7A0B4" stroke="var(--board-edge)"/><rect x="414" y="50" width="56" height="70" rx="4" fill="#F4F4F0" stroke="var(--board-edge)"/>`+badge(294,34,false)+txt(390,140,"Dicampur dengan handuk",{size:13})
+      ,"Pakaian dalam dijemur terpisah benar, dicampur salah");
+  },
+};
+
+/* ===================== RENDER ===================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const bi = (id,zh,tag="span") => `<${tag}>${esc(id)}<span class="zh">${esc(zh)}</span></${tag}>`;
+const store = { get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}} };
+let done = new Set(store.get("pr-done",[]));
+
+function speakText(c){
+  const parts=[c.t+"."];
+  if(c.intro) parts.push(c.intro[0]);
+  if(c.legend) CLOTHS.forEach(x=>parts.push(`Lap ${x.id}: ${x.where}.`));
+  if(c.boards) BOARDS.forEach(x=>parts.push(`Talenan ${x.id}: ${x.what}.`));
+  if(c.steps) c.steps.forEach((s,i)=>parts.push(`${i+1}. ${s[0]}.`));
+  if(c.do) parts.push("Boleh: "+c.do.map(x=>x[0]).join(". ")+".");
+  if(c.dont) parts.push("Jangan: "+c.dont.map(x=>x[0]).join(". ")+".");
+  if(c.why) parts.push("Kenapa? "+c.why[0]);
+  return parts.join(" ");
+}
+function waText(c){
+  const L=[`*${c.t}*`, c.zh];
+  if(c.intro) L.push(c.intro[0]);
+  if(c.legend) CLOTHS.forEach(x=>L.push(`• ${x.id}: ${x.where}`));
+  if(c.boards) BOARDS.forEach(x=>L.push(`• ${x.id}: ${x.what}`));
+  if(c.steps) c.steps.forEach((s,i)=>L.push(`${i+1}. ${s[0]}`));
+  if(c.do){L.push("","✅ BOLEH:"); c.do.forEach(x=>L.push("• "+x[0]));}
+  if(c.dont){L.push("","❌ JANGAN:"); c.dont.forEach(x=>L.push("• "+x[0]));}
+  if(c.why){L.push("","Kenapa? "+c.why[0]);}
+  return L.join("\n");
+}
+const ICON = {
+  speak:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>`,
+  wa:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg>`,
+  check:`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>`,
+};
+function cardHTML(c){
+  const search=[c.t,c.zh,c.intro,c.steps,c.do,c.dont,c.why, c.legend?CLOTHS.map(x=>[x.id,x.zh,x.where,x.wzh]):"", c.boards?BOARDS.map(x=>[x.id,x.zh,x.what,x.wzh]):""].flat(3).join(" ").toLowerCase();
+  let h=`<article class="card" id="${c.id}" data-search="${esc(search)}">`;
+  if(c.art && ART[c.art]) h+=`<div class="art">${ART[c.art]()}</div>`;
+  h+=`<div class="body"><h3>${esc(c.t)}<span class="zh">${esc(c.zh)}</span></h3>`;
+  if(c.intro) h+=`<p class="intro">${bi(c.intro[0],c.intro[1])}</p>`;
+  if(c.legend) h+=`<div class="legend">${CLOTHS.map(x=>`<div class="row"><div class="sw" style="background:${COL(x.key)}"></div><div><b>${esc(x.id)}<span class="zh"> ${esc(x.zh)}</span></b><span>${esc(x.where)}</span><span class="zh" style="display:block">${esc(x.wzh)}</span></div></div>`).join("")}</div>`;
+  if(c.boards) h+=`<div class="legend">${BOARDS.map(x=>`<div class="row"><div class="sw" style="background:${COL(x.board)}"></div><div><b>${esc(x.id)}<span class="zh"> ${esc(x.zh)}</span></b><span>${esc(x.what)}</span><span class="zh" style="display:block">${esc(x.wzh)}</span></div></div>`).join("")}</div>`;
+  if(c.steps) h+=`<ol class="steps">${c.steps.map(s=>`<li>${bi(s[0],s[1])}</li>`).join("")}</ol>`;
+  if(c.do||c.dont){h+=`<div class="dd">`;
+    if(c.do) h+=`<div class="do"><h4>Boleh <span class="zh">正确</span></h4><ul>${c.do.map(x=>`<li>${bi(x[0],x[1])}</li>`).join("")}</ul></div>`;
+    if(c.dont) h+=`<div class="dont"><h4>Jangan <span class="zh">错误</span></h4><ul>${c.dont.map(x=>`<li>${bi(x[0],x[1])}</li>`).join("")}</ul></div>`;
+    h+=`</div>`;}
+  if(c.why) h+=`<p class="why"><b>Kenapa?</b> ${esc(c.why[0])}<span class="zh">${esc(c.why[1])}</span></p>`;
+  h+=`<div class="actions">
+    <button class="btn" data-speak="${c.id}">${ICON.speak}<span>Dengarkan</span></button>
+    <a class="btn" href="https://wa.me/?text=${encodeURIComponent(waText(c))}" target="_blank" rel="noopener">${ICON.wa}Kirim WA</a>
+  </div></div></article>`;
+  return h;
+}
+
+function todayName(){
+  try{ return new Date().toLocaleDateString("id-ID",{weekday:"long",timeZone:"Asia/Jakarta"}); }catch(e){ return DAYS[(new Date().getDay()+6)%7]; }
+}
+function isFirstSaturday(){ try{ const d=+new Date().toLocaleDateString("en-US",{day:"numeric",timeZone:"Asia/Jakarta"}); return todayName()==="Sabtu" && d<=7; }catch(e){return false} }
+function taskToday(t){ const [, , f, days]=t; const td=todayName(); return f==="d" || (days&&days.includes(td)) || (f==="m"&&isFirstSaturday()); }
+
+function weekPlan(){
+  const byDay={}; DAYS.forEach(d=>byDay[d]=[]);
+  AREAS.forEach(a=>a.tasks.forEach(t=>{ if(t[3]) t[3].forEach(d=>byDay[d].push([t[0].replace(/ \(.*\)/,"")+" — "+a.id, t[1].replace(/（.*）/,"")+"·"+a.zh])); }));
+  byDay["Sabtu"].push(["Sabtu pertama tiap bulan: semua tugas bulanan","每月第一个周六：所有每月任务"]);
+  byDay["Minggu"].push(["Libur / tugas ringan sesuai kesepakatan","休息或按约定做轻活"]);
+  return byDay;
+}
+function scheduleHTML(){
+  const td=todayName();
+  let h=`<div class="fbar" role="group" aria-label="Filter">
+    <button class="fchip" data-f="all" aria-pressed="true">Semua <span class="zh">全部</span></button>
+    <button class="fchip" data-f="today" aria-pressed="false">Hari ini (${esc(td)}) <span class="zh">今天</span></button>
+    ${Object.entries(FREQ).map(([k,v])=>`<button class="fchip" data-f="${k}" aria-pressed="false">${v[0]} <span class="zh">${v[1]}</span></button>`).join("")}
+  </div>`;
+  AREAS.forEach(a=>{
+    h+=`<div class="area" data-search="${esc((a.id+" "+a.zh+" "+a.tasks.flat(2).join(" ")).toLowerCase())}"><h3>${esc(a.id)}<span class="zh">${esc(a.zh)}</span></h3>`;
+    a.tasks.forEach(t=>{const f=FREQ[t[2]]; const days=t[3]?t[3].join(" & "):(t[2]==="m"?"Sabtu pertama":"");
+      const daysZh=t[3]?t[3].map(d=>DAYS_ZH[d]).join("、"):(t[2]==="m"?"每月第一个周六":"");
+      h+=`<div class="task${taskToday(t)?" today":""}" data-freq="${t[2]}" data-today="${taskToday(t)}" data-search="${esc((t[0]+" "+t[1]+" "+a.id+" "+a.zh).toLowerCase())}">
+        <div class="t">${esc(t[0])}<span class="zh">${esc(t[1])}</span></div>
+        <div class="meta"><span class="badge ${f[2]}">${f[0]}</span>${days?`<span class="days">${esc(days)}<span class="zh"> ${esc(daysZh)}</span></span>`:""}</div></div>`;});
+    h+=`</div>`;
+  });
+  const byDay=weekPlan();
+  h+=`<div class="cat-head" style="margin-top:6px"><h2 style="font-size:1.15rem">Rencana mingguan<span class="zh">每周安排</span></h2></div>`;
+  h+=`<div class="week" data-search="${esc(Object.values(byDay).flat(2).join(" ").toLowerCase()+" mingguan senin selasa rabu kamis jumat sabtu minggu")}">${DAYS.map(d=>`<div class="d${d===td?" now":""}"><b>${d}<span class="zh"> ${DAYS_ZH[d]}</span></b><ul>${byDay[d].map(x=>`<li>${esc(x[0])}<span class="zh">${esc(x[1])}</span></li>`).join("")}</ul></div>`).join("")}</div>`;
+  h+=`<div class="actions"><button class="btn" data-speak="__today">${ICON.speak}<span>Dengarkan tugas hari ini</span></button></div>`;
+  return h;
+}
+function routineHTML(){
+  let h=`<div class="timeline">`;
+  ROUTINE.forEach((r,i)=>{ h+=`<div class="slot" data-i="${i}" data-search="${esc((r.join(" ")).toLowerCase())}"><time>${r[0]}</time><span class="dot"></span><div class="what"><b>${esc(r[1])}</b><span class="zh">${esc(r[2])}</span>${r[3]?`<small><a href="#${r[3]}">Lihat panduan →</a></small>`:""}</div></div>`; });
+  h+=`</div><div class="actions"><button class="btn" data-speak="__routine">${ICON.speak}<span>Dengarkan rutinitas</span></button>
+    <a class="btn" href="https://wa.me/?text=${encodeURIComponent("*Rutinitas Harian* 每日作息\n"+ROUTINE.map(r=>`${r[0]}  ${r[1]}`).join("\n"))}" target="_blank" rel="noopener">${ICON.wa}Kirim WA</a></div>`;
+  return h;
+}
+
+function render(){
+  $("#chips").innerHTML = CATS.map(c=>`<a href="#${c.id}" data-cat="${c.id}">${esc(c.t)}<span class="zh">${esc(c.zh)}</span></a>`).join("");
+  $("#content").innerHTML = CATS.map(c=>{
+    let inner;
+    if(c.id==="jadwal") inner=scheduleHTML();
+    else if(c.id==="rutin") inner=routineHTML();
+    else inner=CARDS.filter(x=>x.cat===c.id).map(cardHTML).join("");
+    return `<section class="cat" id="${c.id}"><div class="cat-head"><h2>${esc(c.t)}<span class="zh">${esc(c.zh)}</span></h2><p class="cat-sub">${esc(c.sub)}<span class="zh" style="display:block">${esc(c.subzh)}</span></p></div>${inner}</section>`;
+  }).join("") + `<div class="empty" id="empty" hidden>Tidak ditemukan. Coba kata lain, misalnya "lap", "pisau", "hujan".<span class="zh" style="display:block">没有找到，换个词试试。</span></div>`;
+  markNow(); renderLearnHome();
+}
+function markNow(){
+  let mins; try{ const p=new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",hour12:false,timeZone:"Asia/Jakarta"}).split(":"); mins=+p[0]*60+ +p[1]; }catch(e){ const d=new Date(); mins=d.getHours()*60+d.getMinutes(); }
+  let cur=-1; ROUTINE.forEach((r,i)=>{const [h,m]=r[0].split(":").map(Number); if(h*60+m<=mins) cur=i;});
+  document.querySelectorAll(".slot").forEach(s=>s.classList.toggle("now", +s.dataset.i===cur));
+}
+function updateProgress(){}
+
+/* ---------- speech ---------- */
+let speakingBtn=null;
+function pickVoice(){ const vs=speechSynthesis.getVoices(); return vs.find(v=>/^id[-_]/i.test(v.lang)) || vs.find(v=>/indonesia/i.test(v.name)); }
+function speak(text,btn){
+  if(!("speechSynthesis" in window)){ toast("HP ini tidak mendukung suara. · 此设备不支持朗读"); return; }
+  if(speakingBtn===btn){ speechSynthesis.cancel(); stopSpeak(); return; }
+  speechSynthesis.cancel(); stopSpeak();
+  const u=new SpeechSynthesisUtterance(text); u.lang="id-ID"; u.rate=.92;
+  const v=pickVoice(); if(v) u.voice=v; else toast("Suara Bahasa Indonesia belum terpasang. Pasang di Pengaturan HP.");
+  u.onend=u.onerror=stopSpeak;
+  speakingBtn=btn; btn.classList.add("speaking"); btn.querySelector("span").dataset.old=btn.querySelector("span").textContent; btn.querySelector("span").textContent="Berhenti";
+  speechSynthesis.speak(u);
+}
+function stopSpeak(){ if(speakingBtn){ const s=speakingBtn.querySelector("span"); s.textContent=s.dataset.old||s.textContent; speakingBtn.classList.remove("speaking"); speakingBtn=null; } }
+if("speechSynthesis" in window) speechSynthesis.onvoiceschanged=()=>{};
+
+let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2600); }
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const sp=e.target.closest("[data-speak]");
+  if(sp){ const id=sp.dataset.speak; let text;
+    if(id==="__routine") text="Rutinitas harian. "+ROUTINE.map(r=>`Jam ${r[0].replace(":"," ")}. ${r[1]}.`).join(" ");
+    else if(id==="__today"){ const items=[]; AREAS.forEach(a=>a.tasks.forEach(t=>{ if(taskToday(t)) items.push(`${a.id}: ${t[0].replace(/ \(.*\)/,"")}`); })); text=`Tugas hari ini, hari ${todayName()}. `+items.join(". ")+"."; }
+    else text=speakText(CARDS.find(c=>c.id===id));
+    speak(text,sp); return; }
+  const g=e.target.closest("[data-got]");
+  if(g){ const id=g.dataset.got; if(done.has(id)) done.delete(id); else { done.add(id); toast("Bagus! Ditandai sudah paham."); }
+    store.set("pr-done",[...done]); g.setAttribute("aria-pressed",done.has(id)); g.querySelector("span").textContent=done.has(id)?"Sudah paham":"Saya paham"; updateProgress(); return; }
+  const f=e.target.closest("[data-f]");
+  if(f){ document.querySelectorAll("[data-f]").forEach(b=>b.setAttribute("aria-pressed",b===f)); applyFreq(f.dataset.f); return; }
+});
+function applyFreq(k){
+  document.querySelectorAll(".task").forEach(t=>{ t.dataset.fhide = (k==="all"||(k==="today"?t.dataset.today==="true":t.dataset.freq===k)) ? "" : "1"; });
+  applyVisibility();
+}
+function applyVisibility(){
+  const q=$("#q").value.trim().toLowerCase();
+  const terms=q.split(/\s+/).filter(Boolean);
+  const match=el=>!terms.length || terms.every(w=>el.dataset.search.includes(w));
+  let any=false;
+  document.querySelectorAll("section.cat").forEach(sec=>{
+    let vis=0;
+    sec.querySelectorAll(".card").forEach(c=>{const m=match(c); c.hidden=!m; if(m) vis++;});
+    sec.querySelectorAll(".area").forEach(a=>{ let av=0; a.querySelectorAll(".task").forEach(t=>{ const m=match(t)&&!t.dataset.fhide; t.hidden=!m; if(m) av++; }); a.hidden=!av; vis+=av; });
+    const wk=sec.querySelector(".week"); if(wk){ const m=match(wk); wk.hidden=!m; if(m) vis++; }
+    sec.querySelectorAll(".slot").forEach(s=>{const m=match(s); s.hidden=!m; if(m) vis++;});
+    sec.querySelectorAll(".timeline").forEach(t=>t.hidden=!t.querySelector(".slot:not([hidden])"));
+    sec.querySelectorAll(":scope > .cat-head ~ .cat-head, :scope > .cat-head ~ .actions").forEach(x=>x.hidden=!!terms.length);
+    sec.hidden=!vis; if(vis) any=true;
+  });
+  $("#empty").hidden=any;
+}
+$("#q").addEventListener("input",applyVisibility);
+
+const zhBtn=$("#zhToggle");
+function setZh(on){ document.body.classList.toggle("no-zh",!on); zhBtn.setAttribute("aria-pressed",on); store.set("pr-zh",on); }
+zhBtn.addEventListener("click",()=>setZh(zhBtn.getAttribute("aria-pressed")!=="true"));
+
+function goHash(id){
+  const el=document.getElementById(id); if(!el) return;
+  if($("#q").value){ $("#q").value=""; applyVisibility(); }
+  el.scrollIntoView({behavior:"smooth",block:"start"});
+  if(el.classList.contains("card")){ el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
+}
+
+/* ===================== LEARNING MODE ===================== */
+const PLACES=["table","stove","sink","toilet","floor","glass"];
+const AR=`<defs><marker id="arL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`;
+const A = {
+  clothTo:(k,place)=>svg(320,160, AR+cloth(24,44,k,1.6)+`<path d="M130 80 h52" stroke="var(--muted)" stroke-width="3" marker-end="url(#arL)"/><g transform="translate(250,80) scale(2.4)">${scene(place,0,0)}</g>`,"Lap dan tempatnya"),
+  kit:b=>svg(320,170, board(24,24,b.board,200,124)+food(124,88,b.food,1.6)+knife(290,20,b.knife,90),"Talenan, pisau, dan makanan"),
+  cal:(big,sub)=>svg(320,170,`<rect x="90" y="16" width="140" height="138" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/><path d="M90 30 Q90 16 104 16 H216 Q230 16 230 30 V52 H90Z" fill="var(--accent)"/><rect x="118" y="8" width="8" height="20" rx="4" fill="var(--muted)"/><rect x="194" y="8" width="8" height="20" rx="4" fill="var(--muted)"/>`+txt(160,108,big,{size:big.length>8?20:26,w:800})+txt(160,134,sub,{size:14,w:400,zh:1}),big),
+  clock:t=>{const [h,m]=t.split(":").map(Number);const ha=((h%12)+m/60)*30, ma=m*6;
+    return svg(320,170,`<circle cx="160" cy="78" r="64" fill="var(--surface)" stroke="var(--ink)" stroke-width="4"/>${[...Array(12)].map((_,i)=>`<path d="M160 20 v${i%3?6:12}" stroke="var(--muted)" stroke-width="${i%3?2:3.5}" transform="rotate(${i*30} 160 78)"/>`).join("")}<path d="M160 78 V42" stroke="var(--ink)" stroke-width="6" stroke-linecap="round" transform="rotate(${ha} 160 78)"/><path d="M160 78 V26" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" transform="rotate(${ma} 160 78)"/><circle cx="160" cy="78" r="5" fill="var(--ink)"/>`+txt(160,165,t,{size:18,w:800}),"Jam "+t);},
+};
+const O = {
+  cloth:k=>svg(160,110,cloth(35,20,k,1.6),"Lap"),
+  kit:(b,k,f)=>svg(160,120,board(10,18,b,108,84)+food(62,60,f,1)+`<g transform="translate(152,10) scale(.78)">${knife(0,0,k,90)}</g>`,"Talenan dan pisau"),
+  out:()=>svg(160,120,`<g transform="translate(36,32)"><circle r="16" fill="#F5B82E"/>${[0,60,120,180,240,300].map(a=>`<path d="M0 -22 V-29" stroke="#F5B82E" stroke-width="3.5" stroke-linecap="round" transform="rotate(${a})"/>`).join("")}</g><path d="M60 50 H150" stroke="var(--muted)" stroke-width="3"/><rect x="72" y="50" width="28" height="44" rx="3" fill="#F4F4F0" stroke="var(--board-edge)"/><rect x="110" y="50" width="28" height="44" rx="3" fill="#3E5C8A" stroke="var(--board-edge)"/>`,"Di luar"),
+  inside:()=>svg(160,120,`<path d="M16 50 L80 12 L144 50" fill="none" stroke="var(--muted)" stroke-width="4" stroke-linejoin="round"/><rect x="28" y="50" width="104" height="62" fill="none" stroke="var(--muted)" stroke-width="3"/><path d="M38 64 H122" stroke="var(--muted)" stroke-width="2.5"/><rect x="48" y="64" width="24" height="36" rx="3" fill="#F4F4F0" stroke="var(--board-edge)"/><rect x="88" y="64" width="24" height="36" rx="3" fill="#3E5C8A" stroke="var(--board-edge)"/>`,"Di dalam rumah"),
+  underSep:()=>svg(160,110,`<path d="M20 30 H140" stroke="var(--muted)" stroke-width="3"/>${[0,1,2].map(i=>`<path d="M${32+i*40} 34 h28 l-4 22 h-20Z" fill="#E7A0B4" stroke="var(--board-edge)"/>`).join("")}`,"Pakaian dalam terpisah"),
+  underMix:()=>svg(160,110,`<path d="M10 30 H150" stroke="var(--muted)" stroke-width="3"/><rect x="16" y="30" width="44" height="64" rx="3" fill="#9FD3C7" stroke="var(--board-edge)"/><path d="M66 34 h28 l-4 22 h-20Z" fill="#E7A0B4" stroke="var(--board-edge)"/><rect x="100" y="30" width="44" height="64" rx="3" fill="#F4F4F0" stroke="var(--board-edge)"/>`,"Pakaian dalam dicampur handuk"),
+};
+const cn=k=>CLOTHS.find(c=>c.key===k);
+const S=(art,id,zh)=>({art,t:[id,zh]});
+const Q=(q,opts,ex)=>({quiz:true,q,opts,ex});
+
+function buildLessons(){
+  const week=weekPlan();
+  const daily=[]; AREAS.forEach(a=>a.tasks.forEach(t=>{ if(t[2]==="d") daily.push(t); }));
+  const uniq=(arr,i)=>[...new Set(arr.map(t=>t[i].replace(/ \(.*\)/,"").replace(/（.*）/,"")))];
+  const monthly=[]; AREAS.forEach(a=>a.tasks.forEach(t=>{ if(t[2]==="m") monthly.push(t); }));
+  const R=(a,b)=>ROUTINE.slice(a,b+1);
+  const rl=rows=>[rows.map(r=>`${r[0]}|${r[1]}`).join("\n"), rows.map(r=>`${r[0]} ${r[2]}`).join("\n")];
+  return [
+  {id:"lap", t:"Lap & Pel", zh:"抹布", icon:()=>O.cloth("blue"), slides:[
+    S(()=>ART.clothLegend(),"Di rumah ini ada 6 warna lap. Setiap warna punya tempat sendiri.","家里有6种颜色的抹布，每种颜色有固定用途。"),
+    ...CLOTHS.map((c,i)=>S(()=>A.clothTo(c.key,PLACES[i]),`Lap ${c.id.split(" ")[0].toUpperCase()}: ${c.where}.`,`${c.zh}：${c.wzh}`)),
+    S(()=>ART.clothWrong(),"Jangan pernah tukar lap. Lap merah TIDAK BOLEH untuk meja.","绝不换用。红色抹布绝对不能擦桌子。"),
+    S(()=>ART.cleanOrder(),"Bersihkan dari atas ke bawah. Lantai dan kamar mandi paling akhir.","从上往下擦，地面和卫生间放最后。"),
+    S(()=>ART.clothWash(),"Setiap sore cuci semua lap. Merah dan kuning dicuci terpisah. Jemur sesuai warna.","每天傍晚洗所有抹布，红黄单独洗，按颜色晾。"),
+    Q(["Mau lap meja makan. Pakai lap yang mana?","要擦餐桌，用哪块抹布？"],[{art:()=>O.cloth("blue"),l:["Biru","蓝色"],ok:1},{art:()=>O.cloth("red"),l:["Merah","红色"]}],["Lap biru untuk meja. Lap merah hanya untuk toilet.","蓝色擦桌子，红色只擦马桶。"]),
+    Q(["Mau membersihkan kloset. Pakai lap yang mana?","要擦马桶，用哪块？"],[{art:()=>O.cloth("green"),l:["Hijau","绿色"]},{art:()=>O.cloth("red"),l:["Merah","红色"],ok:1}],["Kloset hanya dengan lap merah.","马桶只用红色。"]),
+    Q(["Mau lap kompor di dapur. Pakai yang mana?","要擦灶台，用哪块？"],[{art:()=>O.cloth("green"),l:["Hijau","绿色"],ok:1},{art:()=>O.cloth("yellow"),l:["Kuning","黄色"]}],["Dapur pakai lap hijau. Kuning untuk wastafel kamar mandi.","厨房用绿色，黄色是卫生间洗手台用的。"]),
+    Q(["Mau lap cermin dan layar TV. Pakai yang mana?","擦镜子和电视屏用哪块？"],[{art:()=>O.cloth("blue"),l:["Biru","蓝色"]},{art:()=>O.cloth("white"),l:["Putih","白色"],ok:1}],["Kaca, cermin, dan layar TV: lap putih, kering.","玻璃、镜子、电视屏：白色干布。"]),
+  ]},
+  {id:"pisau", t:"Pisau & Talenan", zh:"刀与砧板", icon:()=>O.kit("white","fruit","fruit"), slides:[
+    S(()=>ART.boardLegend(),"Ada 4 talenan dan 4 pisau. Selalu pakai berpasangan.","4块砧板配4把刀，必须成对使用。"),
+    ...BOARDS.map(b=>S(()=>A.kit(b),`Talenan ${b.id.replace(" · "," + ")}: ${b.what}.`,`${b.zh}：${b.wzh}`)),
+    S(()=>ART.fruitPair(),"Buah hanya dengan pisau buah dan talenan putih. Jangan pakai pisau daging.","水果只用水果刀和白色砧板，不能用切肉刀。"),
+    S(()=>ART.rawCooked(),"Mentah dan matang dipisah. Makanan matang tidak boleh di talenan merah.","生熟分开，熟食绝不能放在红色砧板上。"),
+    S(()=>ART.prepOrder(),"Kalau banyak yang dipotong: buah dulu, lalu matang, sayur, dan daging mentah paling akhir.","切很多东西时：先水果，再熟食、蔬菜，生肉最后。"),
+    S(()=>ART.boneKnife(),"Tulang dipotong dengan golok. Pisau sayur bisa rusak.","骨头用砍骨刀，菜刀会崩口。"),
+    S(()=>ART.boardWash(),"Talenan merah langsung dicuci dengan air panas. Talenan dikeringkan berdiri.","红色砧板用完马上用热水洗，砧板竖着晾干。"),
+    Q(["Mau potong apel. Yang mana benar?","要切苹果，哪个对？"],[{art:()=>O.kit("white","fruit","fruit"),l:["Putih + pisau buah","白板 + 水果刀"],ok:1},{art:()=>O.kit("red","meat","fruit"),l:["Merah + pisau daging","红板 + 肉刀"]}],["Buah: talenan putih dan pisau buah.","水果：白板加水果刀。"]),
+    Q(["Mau potong ayam mentah. Yang mana benar?","要切生鸡肉，哪个对？"],[{art:()=>O.kit("green","veg","meat"),l:["Hijau + pisau sayur","绿板 + 菜刀"]},{art:()=>O.kit("red","meat","meat"),l:["Merah + pisau daging","红板 + 肉刀"],ok:1}],["Daging dan ayam mentah: talenan merah dan pisau daging.","生肉生鸡：红板加肉刀。"]),
+    Q(["Ayam goreng sudah matang. Dipotong di mana?","炸鸡已经熟了，在哪切？"],[{art:()=>O.kit("yellow","cooked","cooked"),l:["Kuning","黄板"],ok:1},{art:()=>O.kit("red","meat","cooked"),l:["Merah","红板"]}],["Makanan matang di talenan kuning. Talenan merah untuk yang mentah saja.","熟食用黄板，红板只切生的。"]),
+  ]},
+  {id:"jemur", t:"Mencuci & Menjemur", zh:"洗衣与晾晒", icon:()=>O.out(), slides:[
+    S(()=>ART.sortLaundry(),"Sebelum mencuci, pisahkan: putih, warna, pakaian dalam, handuk, pakaian anak.","洗之前先分：白色、彩色、内衣、毛巾、孩子衣服。"),
+    S(()=>ART.sunny(),"Cerah: jemur di halaman belakang. Pakaian gelap dibalik.","晴天：晾在后院，深色衣服翻面晾。"),
+    S(()=>ART.rainy(),"Hujan atau mendung: jemur di dalam rumah, dekat jendela, nyalakan kipas.","雨天或阴天：晾在室内靠窗，开风扇。"),
+    S(()=>O.inside(),"Tiba-tiba hujan? Langsung angkat semua jemuran. Jangan tunggu hujan berhenti.","突然下雨：马上把衣服全部收进来，不要等雨停。"),
+    S(()=>ART.underwear(),"Pakaian dalam dan kaus kaki dijemur di jemuran kecil sendiri, di dalam.","内衣袜子用单独的小架子，晾在室内。"),
+    S(()=>A.clock("15:30"),"Angkat semua jemuran paling lambat jam 15.30.","最晚下午3点半把衣服全部收回。"),
+    Q(["Pagi ini mendung. Jemur di mana?","今天早上阴天，晾在哪？"],[{art:()=>O.out(),l:["Di luar","室外"]},{art:()=>O.inside(),l:["Di dalam","室内"],ok:1}],["Mendung atau hujan: jemur di dalam rumah.","阴天或下雨：晾在室内。"]),
+    Q(["Pakaian dalam dijemur bagaimana?","内衣怎么晾？"],[{art:()=>O.underSep(),l:["Jemuran sendiri","单独晾"],ok:1},{art:()=>O.underMix(),l:["Campur handuk","和毛巾混晾"]}],["Pakaian dalam selalu dijemur terpisah.","内衣一定要单独晾。"]),
+    Q(["Jemuran harus diangkat paling lambat jam berapa?","衣服最晚几点收？"],[{l:["15.30","下午3点半"],ok:1},{l:["18.00","晚上6点"]}],["Paling lambat jam 15.30.","最晚下午3点半。"]),
+  ]},
+  {id:"jadwal", t:"Jadwal Bersih", zh:"清洁频率", icon:()=>A.cal("Senin","周一"), slides:[
+    S(()=>A.cal("Setiap hari","每天"),"Setiap hari: "+uniq(daily,0).join(", ").toLowerCase()+".","每天："+uniq(daily,1).join("、")+"。"),
+    ...DAYS.filter(d=>week[d].length).map(d=>S(()=>A.cal(d,DAYS_ZH[d]),`${d}: `+week[d].map(x=>x[0]).join("; ")+".", `${DAYS_ZH[d]}：`+week[d].map(x=>x[1]).join("；"))),
+    S(()=>A.cal("Sabtu ke-1","每月第一个周六"),"Sebulan sekali: "+monthly.map(t=>t[0].replace(/ \(.*\)/,"")).join(", ").toLowerCase()+".","每月一次："+monthly.map(t=>t[1]).join("、")),
+    Q(["Ganti sprei hari apa?","哪天换床单？"],[{l:["Senin","周一"],ok:1},{l:["Jumat","周五"]}],["Sprei diganti setiap Senin.","每周一换床单。"]),
+    Q(["Sapu dan pel lantai berapa kali?","扫地拖地多久一次？"],[{l:["Seminggu sekali","每周一次"]},{l:["Setiap hari","每天"],ok:1}],["Lantai disapu dan dipel setiap hari.","地面每天扫、每天拖。"]),
+    Q(["Lap kaca jendela hari apa?","哪天擦窗户？"],[{l:["Rabu","周三"],ok:1},{l:["Minggu","周日"]}],["Kaca jendela setiap Rabu, pakai lap putih.","每周三擦窗户，用白色布。"]),
+  ]},
+  {id:"rutin", t:"Rutinitas Harian", zh:"每日作息", icon:()=>A.clock("06:00"), slides:[
+    {art:()=>A.clock("06:00"),t:rl(R(0,3)),lines:true},
+    {art:()=>A.clock("08:30"),t:rl(R(4,6)),lines:true},
+    {art:()=>A.clock("11:00"),t:rl(R(7,10)),lines:true},
+    {art:()=>A.clock("15:30"),t:rl(R(11,12)),lines:true},
+    {art:()=>A.clock("18:00"),t:rl(R(13,14)),lines:true},
+    Q(["Jam berapa angkat jemuran?","几点收衣服？"],[{l:["15.30","下午3点半"],ok:1},{l:["18.00","晚上6点"]}],["Jam 15.30 angkat jemuran, lalu lipat dan setrika.","3点半收衣服，然后叠好熨好。"]),
+    Q(["Kapan mencuci semua lap?","什么时候洗抹布？"],[{l:["Besok pagi","第二天早上"]},{l:["Sore, setelah kerja","傍晚干完活后"],ok:1}],["Setiap sore jam 19.30, setelah semua pekerjaan selesai.","每天傍晚7点半，干完活后洗。"]),
+  ]},
+  ];
+}
+let LESSONS=[];
+let lprog=store.get("pr-lessons",{});
+let voiceOn=store.get("pr-voice",true);
+
+function renderLearnHome(){
+  LESSONS=buildLessons();
+  $("#learnHome").innerHTML=`<div class="lh-head"><h2>Belajar langkah demi langkah</h2><p>Pilih topik. Geser untuk pindah halaman. Ada suara dan kuis di akhir.<span class="zh" style="display:block">选择主题，左右滑动翻页，每页自动朗读，最后有小测验。</span></p></div>
+  <div class="tiles">${LESSONS.map(l=>{const p=lprog[l.id];const n=l.slides.filter(s=>!s.quiz).length,q=l.slides.filter(s=>s.quiz).length;
+    return `<button class="tile" data-lesson="${l.id}"><span class="ti">${l.icon()}</span><span class="tt"><b>${esc(l.t)}</b><span class="zh">${esc(l.zh)}</span><small>${n} halaman · ${q} kuis</small></span><span class="st${p?" ok":""}">${p?`✓ ${p.best}/${p.total}`:"Mulai"}</span></button>`;}).join("")}</div>`;
+}
+
+let L=null;
+const lessonEl=$("#lesson");
+function openLesson(id){
+  const lesson=LESSONS.find(l=>l.id===id); if(!lesson) return false;
+  L={lesson,i:0,first:{},solved:{}};
+  lessonEl.hidden=false; document.body.classList.add("locked");
+  $("#lTitle").textContent=lesson.t;
+  $("#lVoice").setAttribute("aria-pressed",voiceOn);
+  showSlide(0,0); $("#lNext").focus({preventScroll:true});
+  return true;
+}
+function closeLesson(){ if(!L) return; L=null; lessonEl.hidden=true; document.body.classList.remove("locked"); try{speechSynthesis.cancel()}catch(e){} renderLearnHome(); }
+const slidesOf=()=>[...L.lesson.slides,{end:true}];
+function slideSpeech(s){
+  if(s.quiz) return "Kuis. "+s.q[0];
+  if(s.lines) return s.t[0].split("\n").map(x=>{const [t,w]=x.split("|");return `Jam ${t.replace(":"," ")}. ${w}.`}).join(" ");
+  if(s.end) return "Selesai! Bagus sekali.";
+  return s.t[0];
+}
+function showSlide(i,dir){
+  const all=slidesOf(); L.i=i; const s=all[i];
+  let h="";
+  if(s.end){
+    const qs=L.lesson.slides.filter(x=>x.quiz).length;
+    const score=L.lesson.slides.map((x,k)=>x.quiz&&L.first[k]===true?1:0).reduce((a,b)=>a+b,0);
+    const prev=lprog[L.lesson.id]; lprog[L.lesson.id]={best:Math.max(score,prev?prev.best:0),total:qs,at:Date.now()}; store.set("pr-lessons",lprog);
+    const idx=LESSONS.indexOf(L.lesson), nxt=LESSONS[idx+1];
+    h=`<div class="slide end"><div class="big">✓</div><h2>Selesai!</h2><p class="score">Benar pada percobaan pertama: <b>${score}/${qs}</b><span class="zh" style="display:block;color:var(--muted)">第一次就答对：${score}/${qs}</span></p>
+      <div class="col">${nxt?`<button class="navbtn primary" data-lesson="${nxt.id}">Lanjut: ${esc(nxt.t)} ›</button>`:""}<button class="navbtn" data-restart="1">Ulangi topik ini</button><button class="navbtn" data-close="1">Kembali ke menu</button></div></div>`;
+  } else if(s.quiz){
+    h=`<div class="slide"><div><span class="qtag">Kuis</span><p class="s-id">${esc(s.q[0])}</p><p class="zh s-zh" style="margin-top:4px">${esc(s.q[1])}</p></div>
+      <div class="opts">${s.opts.map((o,k)=>`<button class="opt${o.art?"":" txt"}" data-opt="${k}">${o.art?o.art():""}<span class="ol">${esc(o.l[0])}<span class="zh">${esc(o.l[1])}</span></span></button>`).join("")}</div>
+      <p class="s-fb" id="fb" aria-live="polite"></p></div>`;
+  } else {
+    const idT = s.lines ? s.t[0].split("\n").map(x=>{const [t,w]=x.split("|");return `<span class="line"><time>${t}</time>${esc(w)}</span>`}).join("") : esc(s.t[0]);
+    h=`<div class="slide"><div class="s-art">${s.art()}</div><div><p class="s-id">${idT}</p>${s.lines?"":`<p class="zh s-zh" style="margin-top:8px">${esc(s.t[1])}</p>`}${s.lines?`<p class="zh s-zh" style="margin-top:8px">${esc(s.t[1])}</p>`:""}</div></div>`;
+  }
+  const st=$("#lStage"); st.innerHTML=h; st.scrollTop=0;
+  const sl=st.firstElementChild; if(dir) sl.classList.add(dir>0?"in-next":"in-prev");
+  if(s.quiz && L.solved[i]) markSolved(i);
+  $("#lDots").innerHTML=all.slice(0,-1).map((x,k)=>`<i class="${x.quiz?"q ":""}${k===i?"on":k<i?"past":""}"></i>`).join("");
+  $("#lPrev").disabled=i===0;
+  const nx=$("#lNext"); nx.hidden=!!s.end;
+  nx.disabled=!!(s.quiz&&!L.solved[i]); nx.textContent=s.quiz&&!L.solved[i]?"Jawab dulu":"Lanjut ›";
+  if(voiceOn) say(slideSpeech(s));
+}
+function markSolved(i){
+  const s=slidesOf()[i]; const k=s.opts.findIndex(o=>o.ok);
+  const b=document.querySelector(`[data-opt="${k}"]`); if(b) b.classList.add("ok");
+  const fb=$("#fb"); if(fb){ fb.className="s-fb ok"; fb.innerHTML=`Benar! ${esc(s.ex[0])}<span class="zh">${esc(s.ex[1])}</span>`; }
+}
+function answer(k){
+  const i=L.i, s=slidesOf()[i]; if(L.solved[i]) return;
+  const o=s.opts[k], b=document.querySelector(`[data-opt="${k}"]`);
+  if(L.first[i]===undefined) L.first[i]=!!o.ok;
+  if(o.ok){ L.solved[i]=true; markSolved(i); const nx=$("#lNext"); nx.disabled=false; nx.textContent="Lanjut ›"; if(voiceOn) say("Benar! "+s.ex[0]); }
+  else { b.classList.remove("no"); void b.offsetWidth; b.classList.add("no"); const fb=$("#fb"); fb.className="s-fb no"; fb.innerHTML=`Belum benar. Coba lagi.<span class="zh">不对，再试一次。</span>`; if(voiceOn) say("Belum benar. Coba lagi."); }
+}
+function step(d){
+  if(!L) return; const all=slidesOf(), s=all[L.i];
+  if(d>0){ if(s.end) return; if(s.quiz&&!L.solved[L.i]){ toast("Jawab kuis dulu · 先回答问题"); return; } }
+  const j=L.i+d; if(j<0||j>=all.length) return; showSlide(j,d);
+}
+function say(text){
+  if(!("speechSynthesis" in window)) return;
+  try{ speechSynthesis.cancel(); stopSpeak(); const u=new SpeechSynthesisUtterance(text); u.lang="id-ID"; u.rate=.9; const v=pickVoice(); if(v) u.voice=v; speechSynthesis.speak(u);}catch(e){}
+}
+$("#lPrev").addEventListener("click",()=>step(-1));
+$("#lNext").addEventListener("click",()=>step(1));
+$("#lReplay").addEventListener("click",()=>{ if(L){ if(!("speechSynthesis" in window)){toast("HP ini tidak mendukung suara. · 此设备不支持朗读");return;} say(slideSpeech(slidesOf()[L.i])); }});
+$("#lVoice").addEventListener("click",e=>{ voiceOn=!voiceOn; store.set("pr-voice",voiceOn); e.currentTarget.setAttribute("aria-pressed",voiceOn); if(!voiceOn) try{speechSynthesis.cancel()}catch(_){} toast(voiceOn?"Suara otomatis: nyala · 自动朗读：开":"Suara otomatis: mati · 自动朗读：关"); });
+$("#lClose").addEventListener("click",()=>{ location.hash="#belajar"; });
+lessonEl.addEventListener("click",e=>{
+  const o=e.target.closest("[data-opt]"); if(o){ answer(+o.dataset.opt); return; }
+  if(e.target.closest("[data-restart]")){ openLesson(L.lesson.id); return; }
+  if(e.target.closest("[data-close]")){ location.hash="#belajar"; return; }
+});
+let sx=null,sy=0;
+$("#lStage").addEventListener("pointerdown",e=>{ if(e.target.closest("button")) return; sx=e.clientX; sy=e.clientY; });
+$("#lStage").addEventListener("pointerup",e=>{ if(sx===null) return; const dx=e.clientX-sx, dy=e.clientY-sy; sx=null; if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3) step(dx<0?1:-1); });
+$("#lStage").addEventListener("pointercancel",()=>{sx=null});
+document.addEventListener("keydown",e=>{ if(!L) return; if(e.key==="ArrowRight") step(1); else if(e.key==="ArrowLeft") step(-1); else if(e.key==="Escape") location.hash="#belajar"; });
+document.addEventListener("click",e=>{ const t=e.target.closest(".tile[data-lesson], .end [data-lesson]"); if(t){ location.hash="#belajar-"+t.dataset.lesson; } });
+
+/* ===================== VIEWS & ROUTING ===================== */
+function setView(v){
+  document.body.dataset.view=v; store.set("pr-view",v);
+  $("#findBar").hidden=v!=="find"; $("#learnHome").hidden=v!=="learn"; $("#content").hidden=v!=="find";
+  document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===v));
+}
+document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{ const h=b.dataset.view==="learn"?"#belajar":"#cari"; if(location.hash===h) route(); else location.hash=h; window.scrollTo(0,0); }));
+function route(){
+  const h=decodeURIComponent(location.hash.slice(1));
+  if(h.startsWith("belajar-")){ setView("learn"); if(!L||L.lesson.id!==h.slice(8)) openLesson(h.slice(8)); return; }
+  closeLesson();
+  if(h==="belajar"){ setView("learn"); return; }
+  if(h==="cari"){ setView("find"); spy(); return; }
+  if(h && document.getElementById(h) && $("#content").contains(document.getElementById(h))){ setView("find"); setTimeout(()=>goHash(h),30); return; }
+  setView(store.get("pr-view","learn"));
+}
+window.addEventListener("hashchange",route);
+
+/* chip highlight on scroll */
+function spy(){
+  if(document.body.dataset.view!=="find") return;
+  let cur=CATS[0].id; const off=170;
+  CATS.forEach(c=>{const s=document.getElementById(c.id); if(s&&!s.hidden&&s.getBoundingClientRect().top-off<=0) cur=c.id;});
+  document.querySelectorAll("#chips a").forEach(a=>{ const on=a.dataset.cat===cur; if(on&&!a.classList.contains("on")) a.scrollIntoView({inline:"center",block:"nearest"}); a.classList.toggle("on",on); });
+}
+window.addEventListener("scroll",spy,{passive:true});
+
+render();
+setZh(store.get("pr-zh",true));
+route();
+spy();
+setInterval(markNow,60000);
+
+/* offline support (works on the GitHub Pages copy; skipped where service workers are unavailable) */
+if("serviceWorker" in navigator && location.protocol==="https:" && !/claude\.ai|claudeusercontent/.test(location.hostname)){
+  navigator.serviceWorker.register("sw.js").catch(()=>{});
+}
+</script>
+
+</body>
+</html>
