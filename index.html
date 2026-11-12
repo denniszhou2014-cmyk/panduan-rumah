@@ -4,9 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="description" content="抹布、刀和砧板、晾衣、打扫频率、每日流程——印尼语图文教程，保姆手机上一页页学。Panduan kerja rumah tangga bergambar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://denniszhou2014-cmyk.github.io/panduan-rumah/">
+<meta property="og:title" content="周鹏推荐的家务规范 · Panduan Rumah">
+<meta property="og:description" content="抹布、刀和砧板、晾衣、打扫频率、每日流程——印尼语图文教程，保姆手机上一页页学。Panduan kerja rumah tangga bergambar.">
+<meta property="og:image" content="https://denniszhou2014-cmyk.github.io/panduan-rumah/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<title>Panduan Rumah</title>
+<title>周鹏推荐的家务规范 · Panduan Rumah</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="theme-color" content="#0E7A69">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -42,7 +51,17 @@
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
 .zh{font-family:var(--zh)}
-body.no-zh .zh{display:none!important}
+body.no-zh .zh,body.no-zh .lbl-zh{display:none!important}
+.lang{display:flex;background:var(--sunk);border-radius:12px;padding:3px;gap:3px;flex:none}
+.lang button{font:inherit;font-size:.82rem;font-weight:700;border:0;background:transparent;color:var(--muted);border-radius:9px;padding:7px 10px;cursor:pointer;white-space:nowrap}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.lang button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn .zh,.navbtn .zh,.qtag .zh,.tile .st .zh,.slot small .zh{font-family:var(--zh);font-weight:500;margin-left:5px;font-size:.88em;letter-spacing:0;text-transform:none}
+.badge .zh{margin-left:4px;font-weight:500}
+.tile .tt small .zh{display:block;font-size:inherit;margin-top:1px}
+.lh-head h2 .zh{display:block;font-size:.9rem;font-weight:500;color:var(--muted);margin-top:2px}
+.slide.end h2 .zh{display:block;font-size:1rem;font-weight:500;color:var(--muted)}
+#lTitle .zh{font-weight:500;color:var(--muted);margin-left:6px;font-size:.85em}
 .wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
 /* header */
@@ -50,7 +69,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background
 header.top .wrap{padding-block:12px 10px;display:grid;gap:10px}
 .brand{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand h1{margin:0;font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.01em;line-height:1.15}
-.brand h1 .zh{font-weight:500;font-size:.85rem;color:var(--muted);margin-left:6px;letter-spacing:0}
+.brand h1 .zh{display:block;font-weight:500;font-size:.8rem;color:var(--muted);letter-spacing:0}
 .progress{font-size:.78rem;color:var(--muted);white-space:nowrap;text-align:right}
 .progress b{color:var(--accent);font-variant-numeric:tabular-nums}
 .bar{height:4px;background:var(--sunk);border-radius:4px;overflow:hidden;margin-top:4px;width:96px;margin-left:auto}
@@ -264,7 +283,7 @@ body.locked{overflow:hidden}
   <div class="wrap">
     <div class="brand">
       <h1>Panduan Rumah<span class="zh">家务手册</span></h1>
-      <button class="toggle" id="zhToggle" aria-pressed="true" title="Tampilkan bahasa Mandarin" style="padding-block:7px">中文</button>
+      <div class="lang" role="group" aria-label="Bahasa · 语言"><button type="button" data-lang="zh" aria-pressed="true">中印双语</button><button type="button" data-lang="id" aria-pressed="false">Indonesia</button></div>
     </div>
     <div class="seg" role="tablist" aria-label="Mode">
       <button role="tab" data-view="learn" aria-selected="true">Belajar<span class="zh">学习</span></button>
@@ -292,13 +311,13 @@ body.locked{overflow:hidden}
   </div>
   <div class="l-stage" id="lStage"></div>
   <div class="l-nav">
-    <button class="navbtn" id="lPrev">‹ Kembali</button>
+    <button class="navbtn" id="lPrev">‹ Kembali<span class="zh">返回</span></button>
     <button class="iconbtn" id="lReplay" aria-label="Dengarkan lagi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
-    <button class="navbtn primary" id="lNext">Lanjut ›</button>
+    <button class="navbtn primary" id="lNext">Lanjut<span class="zh">下一页</span> ›</button>
   </div>
 </div>
 <footer><div class="wrap">
-  <p>Ada yang belum jelas? Tanya majikan. Lebih baik bertanya daripada salah.</p>
+  <p>Ada yang belum jelas? Tanya majikan. Lebih baik bertanya daripada salah.<span class="zh" style="display:block">有不清楚的地方就问主人，问清楚比做错好。</span></p>
   <p class="zh">雇主备注：抹布颜色、晾衣位置、清洁日程和作息时间目前是初稿，请按家里实际情况调整。</p>
 </div></footer>
 <div class="toast" id="toast" role="status"></div>
@@ -326,6 +345,7 @@ const CATS = [
   {id:"jemur", t:"Mencuci & Menjemur", zh:"洗衣与晾晒", sub:"Lihat cuaca dulu, baru jemur.", subzh:"先看天气，再决定晾在哪里。"},
   {id:"jadwal", t:"Jadwal Bersih", zh:"清洁频率", sub:"Apa yang dibersihkan setiap hari, setiap minggu, setiap bulan.", subzh:"每天、每周、每月分别打扫什么。"},
   {id:"rutin", t:"Rutinitas Harian", zh:"每日作息", sub:"Urutan kerja dari pagi sampai malam.", subzh:"从早到晚的工作顺序。"},
+  {id:"belanja", t:"Belanja & Uang", zh:"买菜与钱", sub:"Belanja Segari dan uang kas Rp 1.000.000. Semua tercatat di grup WhatsApp.", subzh:"Segari买菜和100万现金备用金，所有记录都在WhatsApp群里。"},
 ];
 
 const CARDS = [
@@ -396,6 +416,35 @@ const CARDS = [
    t:"Pakaian dalam dijemur terpisah", zh:"内衣单独晾",
    do:[["Pakaian dalam dan kaus kaki di jemuran kecil tersendiri, di dalam rumah","内衣袜子用单独的小晾衣架，晾在室内"],["Pakaian sutra dan rajutan dijemur mendatar di tempat teduh","真丝和针织衣服平铺在阴凉处"]],
    dont:[["Pakaian dalam dijemur di samping handuk atau baju luar","内衣挨着毛巾或外衣晾"],["Pakaian dalam dijemur di halaman depan yang terlihat orang","内衣晾在前院，外人能看到"]]},
+
+  /* ---------- BELANJA ---------- */
+  {id:"belanja-alur", cat:"belanja", art:"orderFlow",
+   t:"Belanja di Segari: 4 langkah", zh:"Segari买菜：4个步骤",
+   intro:["Belanja pakai akun Segari kamu. Uangnya diganti majikan lewat transfer ke rekening kamu.","用保姆自己的Segari账号下单，主人转账到她的银行卡报销。"],
+   steps:[["Cek kulkas, lalu isi keranjang di Segari","先看冰箱，再在Segari里加购物车"],["Total lebih dari Rp 200.000? Kirim foto keranjang ke grup, tunggu OK dulu","总额超过20万？先把购物车截图发群里，等主人回复OK"],["Setelah bayar, kirim 2 foto ke grup: rincian pesanan dan bukti bayar","付款后发两张截图到群里：订单明细和付款凭证"],["Majikan transfer penggantian. Kamu balas: \"Sudah terima\"","主人转账报销，保姆回复「已收到」"]],
+   why:["Semua foto ada di satu grup, jadi mudah dicek dan tidak ada salah paham soal uang.","所有截图都在一个群里，好查账，也不会因为钱产生误会。"]},
+  {id:"belanja-200", cat:"belanja", art:"limit200",
+   t:"Lebih dari Rp 200.000: tanya dulu", zh:"单笔超过20万：先问主人",
+   do:[["Total sampai Rp 200.000: boleh langsung pesan","20万以内：可以直接下单"],["Lebih dari Rp 200.000: kirim foto keranjang, tunggu OK","超过20万：发购物车截图，等主人OK"],["Barang di luar kebiasaan (mahal, banyak, baru): tanya dulu walau murah","不常买的东西（贵、量大、新品）：便宜也先问"]],
+   dont:[["Memecah satu belanja jadi beberapa pesanan supaya di bawah Rp 200.000","把一次采购拆成几单，故意压在20万以下"],["Menggabung belanja pribadi dengan belanja rumah","个人买的东西和家里的订单混在一起"]]},
+  {id:"belanja-terima", cat:"belanja", art:"receive",
+   t:"Waktu barang datang: cek dulu", zh:"收货时先检查",
+   steps:[["Cocokkan barang dengan rincian pesanan","对照订单明细清点"],["Cek kesegaran: sayur tidak layu, daging tidak bau, telur tidak pecah","看新鲜度：菜不蔫、肉不臭、鸡蛋不破"],["Ada yang kurang atau rusak? Foto, lalu lapor di aplikasi Segari hari itu juga","少了或坏了：拍照，当天在Segari App里申请退款"],["Kabari majikan di grup. Uang refund nanti dipotong dari transfer berikutnya","在群里告诉主人，退款从下次报销里扣掉"],["Langsung simpan: daging dan ikan ke freezer, sayur ke kulkas","马上收好：肉和鱼进冷冻，蔬菜进冷藏"]],
+   why:["Refund hanya bisa diminta di hari yang sama. Uang refund milik rumah, karena belanjanya sudah diganti majikan.","退款要当天申请。主人已经报销过，所以退款归家里。"]},
+  {id:"belanja-kas", cat:"belanja", art:"cashFloat",
+   t:"Uang kas Rp 1.000.000", zh:"100万现金备用金",
+   intro:["Uang kas untuk belanja tunai: tukang sayur, pasar, warung, galon, gas. Bukan untuk Segari.","现金只用于线下买：菜贩、菜市场、小卖部、桶装水、煤气。不用来付Segari。"],
+   do:[["Setiap belanja tunai: simpan nota","每次现金消费：留好小票"],["Tidak ada nota? Kirim foto barang + harga ke grup hari itu juga","没有小票：当天把东西的照片和价格发到群里"],["Simpan uang kas dan nota di satu dompet khusus","现金和小票放在一个专用钱包里"]],
+   dont:[["Memakai uang kas untuk keperluan pribadi, walau hanya pinjam","现金用于个人用途，哪怕只是借用"],["Membayar Segari dengan uang kas","用备用金付Segari"]],
+   why:["Aturannya satu: uang di dompet + nota = Rp 1.000.000. Selalu.","只有一条规则：钱包里的现金加小票，永远等于100万。"]},
+  {id:"belanja-minggu", cat:"belanja", art:"weekCheck",
+   t:"Setiap Minggu: hitung bersama", zh:"每周日一起对账",
+   steps:[["Keluarkan uang kas dan semua nota minggu ini","把备用金和本周所有小票拿出来"],["Hitung bersama majikan: uang + nota = Rp 1.000.000","和主人一起点：现金 + 小票 = 100万"],["Majikan mengisi kembali sebesar total nota","主人按小票总额补足现金"],["Majikan cek semua transfer Segari minggu ini sudah lunas","主人确认本周Segari的报销都已转完"]],
+   why:["Hitung setiap minggu supaya selisih kecil cepat ketahuan dan tidak menumpuk.","每周对一次，小差额马上能发现，不会越积越多。"]},
+  {id:"belanja-format", cat:"belanja", art:"waFormat",
+   t:"Cara menulis di grup WhatsApp", zh:"群里怎么写",
+   intro:["Grup \"Belanja Rumah\": hanya kamu dan majikan. Tulis seperti contoh supaya mudah dicari.","「Belanja Rumah」群只有保姆和主人，按格式写，方便以后搜索。"],
+   steps:[["Segari · 12/11 · Rp 185.000 + 2 foto (pesanan dan bukti bayar)","Segari · 日期 · 金额 + 两张截图"],["Tunai · 12/11 · Rp 40.000 · tukang sayur + foto nota","现金 · 日期 · 金额 · 在哪买 + 小票照片"],["Refund · 12/11 · Rp 15.000 · telur pecah","退款 · 日期 · 金额 · 原因"],["Majikan: foto bukti transfer. Kamu: \"Sudah terima\"","主人发转账截图，保姆回复「已收到」"]]},
 
 ];
 
@@ -504,7 +553,78 @@ function scene(k,x,y){ // small place icons for cloth legend
   };
   return `<g transform="translate(${x},${y})">${s[k]}</g>`;
 }
+function phone(cx,cy,inner,w=64,h=104){
+  return `<g transform="translate(${cx},${cy})"><rect x="${-w/2}" y="${-h/2}" width="${w}" height="${h}" rx="10" fill="var(--surface)" stroke="var(--ink)" stroke-width="3"/><rect x="-8" y="${-h/2+6}" width="16" height="3" rx="1.5" fill="var(--muted)"/>${inner}</g>`;
+}
+function cart(x,y,s=1,c="var(--accent)"){
+  return `<g transform="translate(${x},${y}) scale(${s})"><path d="M-20 -14 h7 l6 22 h22 l6 -16 h-31" fill="none" stroke="${c}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="-4" cy="15" r="3.5" fill="${c}"/><circle cx="13" cy="15" r="3.5" fill="${c}"/></g>`;
+}
+function bubble(x,y,w,h,label){
+  return `<g transform="translate(${x},${y})"><rect x="0" y="0" width="${w}" height="${h}" rx="9" fill="#DCF8C6" stroke="var(--board-edge)"/><path d="M12 ${h} l-4 10 l14 -10" fill="#DCF8C6" stroke="var(--board-edge)"/>${label?`<text x="${w/2}" y="${h/2+5}" font-size="13" font-weight="700" text-anchor="middle" style="fill:#14302A">${label}</text>`:""}</g>`;
+}
+function note(x,y,s=1){
+  return `<g transform="translate(${x},${y}) scale(${s})"><rect x="-30" y="-16" width="60" height="32" rx="4" fill="#C9E4C5" stroke="#6E9F6A" stroke-width="1.5"/><circle cx="0" cy="0" r="9" fill="none" stroke="#6E9F6A" stroke-width="1.5"/><text x="0" y="4" font-size="10" font-weight="800" text-anchor="middle" style="fill:#3C6B39">Rp</text></g>`;
+}
+function receipt(x,y,s=1){
+  return `<g transform="translate(${x},${y}) scale(${s})"><path d="M-18 -26 H18 V22 l-6 4 -6 -4 -6 4 -6 -4 -6 4 -6 -4Z" fill="#FBFAF6" stroke="var(--board-edge)" stroke-width="1.5"/>${[-16,-8,0,8].map(y=>`<path d="M-11 ${y} H${y===8?4:11}" stroke="#A9A49A" stroke-width="2.5" stroke-linecap="round"/>`).join("")}</g>`;
+}
 const ART = {
+  orderFlow(){
+    let g=`<rect x="10" y="10" width="500" height="190" rx="14" fill="var(--surface)"/>`;
+    g+=phone(70,84,cart(0,4,1));
+    g+=phone(190,84,`<rect x="-18" y="-22" width="36" height="30" rx="3" fill="none" stroke="var(--muted)" stroke-width="2.5"/><path d="M-14 4 l9 -10 7 6 6 -8 8 12" fill="none" stroke="var(--muted)" stroke-width="2"/>`+bubble(-24,14,48,22,""));
+    g+=`<g transform="translate(310,84)">${note(0,-8,1.2)}<path d="M-24 26 H18" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/><path d="M12 19 l9 7 -9 7" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+    g+=bubble(392,58,96,34,"Sudah terima")+badge(440,124,true);
+    [["1","Pesan","下单",70],["2","Kirim foto","发截图",190],["3","Majikan transfer","主人转账",310],["4","Balas","回复已收到",440]].forEach(([n,a,b,x])=>{g+=txt(x,166,n+". "+a,{size:13,w:700})+txt(x,184,b,{size:11,w:400,zh:1});});
+    g+=[130,250,375].map(x=>`<path d="M${x} 84 h12" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>`).join("");
+    return svg(520,210,g,"Pesan, kirim foto, majikan transfer, balas sudah terima");
+  },
+  limit200(){
+    let g=`<rect x="10" y="10" width="240" height="170" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="170" rx="14" fill="var(--surface)"/>`;
+    g+=phone(100,86,cart(0,-14,.9)+txt(0,24,"Rp 150.000",{size:12,w:800}),76)+badge(178,58,true);
+    g+=txt(130,156,"Langsung pesan",{size:12})+txt(130,172,"直接下单",{size:11,w:400,zh:1});
+    g+=phone(340,86,cart(0,-14,.9,"var(--no)")+txt(0,24,"Rp 350.000",{size:12,w:800}),76)+bubble(392,46,100,32,"Boleh?");
+    g+=txt(390,156,"Tanya dulu",{size:12})+txt(390,172,"先问主人",{size:11,w:400,zh:1});
+    return svg(520,190,g,"Sampai 200 ribu langsung pesan, lebih dari 200 ribu tanya dulu");
+  },
+  receive(){
+    let g=`<rect x="10" y="10" width="500" height="170" rx="14" fill="var(--surface)"/>`;
+    g+=`<path d="M40 80 L120 64 L200 80 V156 L120 170 L40 156Z" fill="#D9B98A" stroke="#A88458" stroke-width="2"/><path d="M40 80 L120 96 L200 80 M120 96 V170" stroke="#A88458" stroke-width="2" fill="none"/>`;
+    g+=food(80,60,"veg",1)+food(150,58,"meat",.9);
+    g+=`<rect x="250" y="34" width="120" height="132" rx="8" fill="#FBFAF6" stroke="var(--board-edge)" stroke-width="1.5"/>`;
+    [0,1,2].forEach(i=>{const y=62+i*36, ok=i<2; g+=`<path d="M292 ${y} H354" stroke="#A9A49A" stroke-width="3" stroke-linecap="round"/>`+(ok?`<path d="M264 ${y} l5 5 9 -10" stroke="var(--ok)" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`:`<path d="M265 ${y-6} l11 11 M276 ${y-6} l-11 11" stroke="var(--no)" stroke-width="3.5" stroke-linecap="round"/>`);});
+    g+=`<g transform="translate(440,96)"><rect x="-34" y="-22" width="68" height="46" rx="8" fill="var(--ink)"/><rect x="-12" y="-30" width="24" height="10" rx="3" fill="var(--ink)"/><circle r="14" fill="var(--surface)"/><circle r="8" fill="var(--ink)"/></g>`;
+    g+=txt(440,150,"Foto & lapor",{size:12,w:700})+txt(440,168,"拍照申请退款",{size:11,w:400,zh:1});
+    return svg(520,190,g,"Cek barang, foto yang rusak, lapor");
+  },
+  cashFloat(){
+    let g=`<rect x="10" y="10" width="500" height="160" rx="14" fill="var(--surface)"/>`;
+    g+=note(84,74,1.3)+note(92,86,1.3)+note(100,98,1.3);
+    g+=txt(92,148,"Uang",{size:13,w:700})+txt(92,164,"现金",{size:11,w:400,zh:1});
+    g+=txt(170,96,"+",{size:30,w:800});
+    g+=receipt(232,84,1.3)+receipt(254,92,1.3);
+    g+=txt(243,148,"Nota",{size:13,w:700})+txt(243,164,"小票",{size:11,w:400,zh:1});
+    g+=txt(318,96,"=",{size:30,w:800});
+    g+=`<rect x="346" y="62" width="150" height="50" rx="10" fill="var(--accent)"/><text x="421" y="94" font-size="19" font-weight="800" text-anchor="middle" style="fill:#fff">Rp 1.000.000</text>`;
+    g+=txt(421,148,"Selalu sama",{size:13,w:700})+txt(421,164,"永远相等",{size:11,w:400,zh:1});
+    return svg(520,180,g,"Uang ditambah nota sama dengan satu juta rupiah");
+  },
+  weekCheck(){
+    let g=`<rect x="10" y="10" width="500" height="170" rx="14" fill="var(--surface)"/>`;
+    g+=`<g transform="translate(-60,6) scale(.9)">`+`<rect x="120" y="22" width="130" height="128" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/><path d="M120 36 Q120 22 134 22 H236 Q250 22 250 36 V56 H120Z" fill="var(--accent)"/>`+txt(185,108,"Minggu",{size:24,w:800})+txt(185,134,"周日",{size:14,w:400,zh:1})+`</g>`;
+    g+=note(250,80,1.2)+receipt(318,88,1.2)+receipt(340,94,1.2);
+    g+=`<path d="M380 92 h40" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/><path d="M414 85 l9 7 -9 7" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`+badge(455,92,true);
+    g+=txt(300,156,"Hitung bersama majikan",{size:12})+txt(300,172,"和主人一起对账",{size:11,w:400,zh:1});
+    return svg(520,190,g,"Setiap Minggu hitung uang kas bersama majikan");
+  },
+  waFormat(){
+    let g=`<rect x="10" y="10" width="500" height="180" rx="14" fill="#E9E2D6"/>`;
+    g+=bubble(30,24,300,34,"Segari · 12/11 · Rp 185.000");
+    g+=`<rect x="30" y="70" width="70" height="52" rx="6" fill="#FBFAF6" stroke="var(--board-edge)"/><rect x="108" y="70" width="70" height="52" rx="6" fill="#FBFAF6" stroke="var(--board-edge)"/>`+cart(65,96,.7)+note(143,96,.8);
+    g+=`<g transform="translate(190,132)"><rect x="0" y="0" width="300" height="34" rx="9" fill="#FFFFFF" stroke="var(--board-edge)"/><text x="150" y="22" font-size="13" font-weight="700" text-anchor="middle" style="fill:#14302A">Majikan: bukti transfer ✓</text></g>`;
+    g+=`<text x="26" y="150" font-size="11" text-anchor="start" class="lbl-zh" style="fill:#566C66">保姆：日期·金额 + 截图</text><text x="486" y="182" font-size="11" text-anchor="end" class="lbl-zh" style="fill:#566C66">主人：转账截图</text>`;
+    return svg(520,200,g,"Contoh pesan di grup WhatsApp");
+  },
   clothLegend(){
     const places=["table","stove","sink","toilet","floor","glass"];
     let g=""; CLOTHS.forEach((c,i)=>{const col=i%3,row=Math.floor(i/3);const x=20+col*170,y=14+row*104;
@@ -512,72 +632,72 @@ const ART = {
     return svg(520,222,`<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`+g,"Warna lap dan tempatnya");
   },
   clothWrong(){
-    return svg(520,170, `<rect x="10" y="10" width="240" height="150" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="150" rx="14" fill="var(--surface)"/>`
-      + scene("table",130,64)+cloth(60,92,"blue",.9)+txt(130,150,"Biru → meja",{size:13})+badge(34,34,true)
-      + scene("table",390,64)+cloth(320,92,"red",.9)+txt(390,150,"Merah → meja",{size:13})+badge(294,34,false)
+    return svg(520,182, `<rect x="10" y="10" width="240" height="162" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="162" rx="14" fill="var(--surface)"/>`
+      + scene("table",130,64)+cloth(60,92,"blue",.9)+txt(130,150,"Biru → meja",{size:13})+txt(130,166,"蓝色 → 桌子",{size:11,w:400,zh:1})+badge(34,34,true)
+      + scene("table",390,64)+cloth(320,92,"red",.9)+txt(390,150,"Merah → meja",{size:13})+txt(390,166,"红色 → 桌子",{size:11,w:400,zh:1})+badge(294,34,false)
       ,"Lap biru untuk meja benar, lap merah untuk meja salah");
   },
   cleanOrder(){
     let g=`<rect x="10" y="10" width="500" height="200" rx="14" fill="var(--surface)"/>`;
-    const lv=[["1","Rak & meja","blue",40],["2","Kaca","white",88],["3","Lantai","grey",136],["4","Kamar mandi","red",168]];
+    const lv=[["1","Rak & meja","blue",40,"架子和桌子"],["2","Kaca","white",88,"玻璃"],["3","Lantai","grey",136,"地面"],["4","Kamar mandi","red",168,"卫生间"]];
     g+=`<path d="M60 30 V196" stroke="var(--accent)" stroke-width="3" marker-end="url(#ar2)"/>`;
-    lv.forEach(([n,l,k,y])=>{g+=`<circle cx="60" cy="${y}" r="13" fill="var(--accent)"/><text x="60" y="${y+5}" font-size="13" font-weight="800" text-anchor="middle" style="fill:var(--accent-ink)">${n}</text>`+cloth(96,y-15,k,.65)+txt(146,y+5,l,{a:"start",size:14});});
+    lv.forEach(([n,l,k,y,lz])=>{g+=`<circle cx="60" cy="${y}" r="13" fill="var(--accent)"/><text x="60" y="${y+5}" font-size="13" font-weight="800" text-anchor="middle" style="fill:var(--accent-ink)">${n}</text>`+cloth(96,y-15,k,.65)+txt(146,y+5,l,{a:"start",size:14})+`<text x="${146+l.length*8.4+10}" y="${y+5}" font-size="12" font-weight="400" text-anchor="start" class="lbl-zh">${lz}</text>`;});
     g+=`<g opacity=".5">${scene("table",420,60)}${scene("glass",420,104)}${scene("floor",420,146)}${scene("toilet",470,176)}</g>`;
     return svg(520,220,`<defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>`+g,"Urutan membersihkan dari atas ke bawah");
   },
   clothWash(){
     let g=`<rect x="10" y="10" width="500" height="150" rx="14" fill="var(--surface)"/>`;
     g+=`<path d="M40 40 H480" stroke="var(--muted)" stroke-width="3" stroke-linecap="round"/>`;
-    CLOTHS.forEach((c,i)=>{const x=52+i*72; g+=`<path d="M${x+20} 40 v8" stroke="var(--muted)" stroke-width="2"/>`+cloth(x,48,c.key,.8)+txt(x+22,108,c.id.split(" ")[0],{size:11});});
-    g+=txt(260,140,"Gantung sesuai warna, sampai kering",{size:13,w:600});
+    CLOTHS.forEach((c,i)=>{const x=52+i*72; g+=`<path d="M${x+20} 40 v8" stroke="var(--muted)" stroke-width="2"/>`+cloth(x,48,c.key,.8)+txt(x+22,106,c.id.split(" ")[0],{size:11})+txt(x+22,120,c.zh.replace("色",""),{size:10,w:400,zh:1});});
+    g+=txt(260,142,"Gantung sesuai warna, sampai kering",{size:13,w:600})+txt(260,158,"按颜色挂好，晾到全干",{size:11,w:400,zh:1});
     return svg(520,170,g,"Lap dijemur sesuai warna");
   },
   boardLegend(){
     let g=""; BOARDS.forEach((b,i)=>{const col=i%2,row=Math.floor(i/2);const x=14+col*254,y=10+row*132;
       g+=`<rect x="${x}" y="${y}" width="240" height="122" rx="14" fill="var(--surface)"/>`+board(x+12,y+12,b.board,140,80)+food(x+82,y+52,b.food)+knife(x+156,y+30,b.knife,90)
-        +txt(x+82,y+112,b.short,{size:13});});
+        +txt(x+82,y+105,b.short,{size:13})+txt(x+82,y+118,b.zh.split(" · ")[0],{size:10,w:400,zh:1});});
     return svg(520,276,g,"Pasangan talenan dan pisau");
   },
   fruitPair(){
     return svg(520,190, `<rect x="10" y="10" width="240" height="170" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="170" rx="14" fill="var(--surface)"/>`
-      + board(40,48,"white",170,96)+food(115,96,"fruit",1.2)+knife(150,70,"fruit",20)+badge(34,34,true)+txt(130,170,"Pisau buah + talenan putih",{size:12})
-      + board(300,48,"red",170,96)+food(375,96,"fruit",1.2)+knife(410,64,"meat",20)+badge(294,34,false)+txt(390,170,"Pisau daging + talenan merah",{size:12})
+      + board(40,48,"white",170,96)+food(115,96,"fruit",1.2)+knife(150,70,"fruit",20)+badge(34,34,true)+txt(130,158,"Pisau buah + talenan putih",{size:12})+txt(130,174,"水果刀 + 白板",{size:11,w:400,zh:1})
+      + board(300,48,"red",170,96)+food(375,96,"fruit",1.2)+knife(410,64,"meat",20)+badge(294,34,false)+txt(390,158,"Pisau daging + talenan merah",{size:12})+txt(390,174,"肉刀 + 红板",{size:11,w:400,zh:1})
       ,"Buah dengan pisau buah benar, dengan pisau daging salah");
   },
   rawCooked(){
     return svg(520,190, `<rect x="10" y="10" width="240" height="170" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="170" rx="14" fill="var(--surface)"/>`
-      + board(30,52,"red",96,72)+food(78,88,"meat",.9)+board(138,52,"yellow",96,72)+food(186,90,"cooked",.9)+`<path d="M130 40 V140" stroke="var(--line)" stroke-width="3" stroke-dasharray="5 4"/>`+badge(34,34,true)+txt(130,165,"Mentah | Matang",{size:13})
-      + board(310,48,"red",160,96)+food(360,96,"meat",.9)+food(420,98,"cooked",.9)+badge(294,34,false)+txt(390,165,"Dicampur di satu talenan",{size:13})
+      + board(30,52,"red",96,72)+food(78,88,"meat",.9)+board(138,52,"yellow",96,72)+food(186,90,"cooked",.9)+`<path d="M130 40 V140" stroke="var(--line)" stroke-width="3" stroke-dasharray="5 4"/>`+badge(34,34,true)+txt(130,156,"Mentah | Matang",{size:13})+txt(130,172,"生 | 熟 分开",{size:11,w:400,zh:1})
+      + board(310,48,"red",160,96)+food(360,96,"meat",.9)+food(420,98,"cooked",.9)+badge(294,34,false)+txt(390,156,"Dicampur di satu talenan",{size:13})+txt(390,172,"混在一块砧板上",{size:11,w:400,zh:1})
       ,"Mentah dan matang dipisah benar, dicampur salah");
   },
   prepOrder(){
-    const seq=[["fruit","white","Buah"],["cooked","yellow","Matang"],["veg","green","Sayur"],["meat","red","Mentah"]];
+    const seq=[["fruit","white","Buah","水果"],["cooked","yellow","Matang","熟食"],["veg","green","Sayur","蔬菜"],["meat","red","Mentah","生肉"]];
     let g=`<rect x="10" y="10" width="500" height="150" rx="14" fill="var(--surface)"/>`;
-    seq.forEach(([f,b,l],i)=>{const x=24+i*124; g+=board(x,34,b,96,68)+food(x+48,68,f,.85)+txt(x+48,124,`${i+1}. ${l}`,{size:13});
+    seq.forEach(([f,b,l,lz],i)=>{const x=24+i*124; g+=board(x,34,b,96,68)+food(x+48,68,f,.85)+txt(x+48,118,`${i+1}. ${l}`,{size:13})+txt(x+48,132,lz,{size:11,w:400,zh:1});
       if(i<3) g+=`<path d="M${x+100} 68 h18" stroke="var(--muted)" stroke-width="2.5" marker-end="url(#ar3)"/>`;});
-    g+=txt(260,150,"bersih → kotor",{size:12,w:500});
+    g+=txt(260,146,"bersih → kotor",{size:12,w:500})+txt(260,160,"从干净到脏",{size:11,w:400,zh:1});
     return svg(520,170,`<defs><marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`+g,"Urutan memotong");
   },
   boneKnife(){
     return svg(520,180, `<rect x="10" y="10" width="240" height="160" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="160" rx="14" fill="var(--surface)"/>`
-      + board(36,50,"red",170,90)+food(100,98,"bone",1)+knife(150,60,"bone",25)+badge(34,34,true)+txt(130,160,"Golok untuk tulang",{size:13})
-      + board(296,50,"red",170,90)+food(360,98,"bone",1)+knife(410,66,"veg",25)+`<path d="M412 72 l6 4 -4 4 6 4" stroke="var(--no)" stroke-width="2" fill="none"/>`+badge(294,34,false)+txt(390,160,"Pisau sayur rusak",{size:13})
+      + board(36,50,"red",170,90)+food(100,98,"bone",1)+knife(150,60,"bone",25)+badge(34,34,true)+txt(130,150,"Golok untuk tulang",{size:13})+txt(130,165,"用砍骨刀剁骨头",{size:11,w:400,zh:1})
+      + board(296,50,"red",170,90)+food(360,98,"bone",1)+knife(410,66,"veg",25)+`<path d="M412 72 l6 4 -4 4 6 4" stroke="var(--no)" stroke-width="2" fill="none"/>`+badge(294,34,false)+txt(390,150,"Pisau sayur rusak",{size:13})+txt(390,165,"菜刀会崩口",{size:11,w:400,zh:1})
       ,"Tulang dengan golok benar, dengan pisau sayur salah");
   },
   boardWash(){
     let g=`<rect x="10" y="10" width="500" height="160" rx="14" fill="var(--surface)"/>`;
     g+=`<rect x="60" y="140" width="200" height="8" rx="3" fill="var(--muted)"/>`;
     ["red","green","yellow","white"].forEach((k,i)=>{g+=`<rect x="${78+i*44}" y="44" width="26" height="96" rx="6" fill="${COL(k)}" stroke="var(--board-edge)" stroke-width="1.5"/>`;});
-    g+=txt(160,32,"Berdiri, tidak ditumpuk",{size:12});
+    g+=txt(160,28,"Berdiri, tidak ditumpuk · ",{size:12,a:"end"})+txt(162,28,"竖放，不叠放",{size:11,w:400,zh:1,a:"start"});
     g+=`<rect x="320" y="70" width="140" height="70" rx="8" fill="#6B4A36"/>`;
     [0,1,2,3].forEach(i=>{g+=`<rect x="${338+i*30}" y="40" width="10" height="34" rx="2" fill="#2b2b2b"/>`;});
-    g+=txt(390,160,"Pisau di tempat pisau",{size:12});
+    g+=txt(390,148,"Pisau di tempat pisau",{size:12})+txt(390,163,"刀放回刀架",{size:11,w:400,zh:1});
     return svg(520,180,g,"Talenan dikeringkan berdiri, pisau di tempat pisau");
   },
   sortLaundry(){
-    const piles=[["#F4F4F0","Putih"],["#3E5C8A","Warna"],["#E7A0B4","Dalam"],["#9FD3C7","Handuk"],["#F2C14E","Anak"]];
+    const piles=[["#F4F4F0","Putih","白色"],["#3E5C8A","Warna","彩色"],["#E7A0B4","Dalam","内衣"],["#9FD3C7","Handuk","毛巾"],["#F2C14E","Anak","孩子"]];
     let g=`<rect x="10" y="10" width="500" height="160" rx="14" fill="var(--surface)"/>`;
-    piles.forEach(([c,l],i)=>{const x=40+i*92; g+=`<path d="M${x} 110 Q${x+4} 60 ${x+36} 58 Q${x+68} 60 ${x+72} 110Z" fill="${c}" stroke="var(--board-edge)" stroke-width="1.5"/><path d="M${x+6} 110 h60" stroke="var(--board-edge)"/>`+`<rect x="${x-4}" y="110" width="80" height="22" rx="6" fill="var(--sunk)"/>`+txt(x+36,150,l,{size:13});});
+    piles.forEach(([c,l,lz],i)=>{const x=40+i*92; g+=`<path d="M${x} 110 Q${x+4} 60 ${x+36} 58 Q${x+68} 60 ${x+72} 110Z" fill="${c}" stroke="var(--board-edge)" stroke-width="1.5"/><path d="M${x+6} 110 h60" stroke="var(--board-edge)"/>`+`<rect x="${x-4}" y="110" width="80" height="22" rx="6" fill="var(--sunk)"/>`+txt(x+36,148,l,{size:13})+txt(x+36,164,lz,{size:11,w:400,zh:1});});
     return svg(520,180,g,"Pisahkan cucian menjadi lima");
   },
   sunny(){
@@ -586,7 +706,7 @@ const ART = {
     g+=`<path d="M160 60 H480" stroke="var(--muted)" stroke-width="3"/><path d="M170 60 V160 M470 60 V160" stroke="var(--muted)" stroke-width="4"/>`;
     const items=[["#F4F4F0","towel"],["#F4F4F0","shirt"],["#3E5C8A","shirt"],["#9FD3C7","towel"]];
     items.forEach(([c,t],i)=>{const x=190+i*70; g+= t==="towel"?`<rect x="${x}" y="60" width="50" height="70" rx="4" fill="${c}" stroke="var(--board-edge)"/>`:`<path d="M${x} 66 l14 -6 h22 l14 6 -6 14 -6 -3 V128 H${x+12} V77 l-6 3Z" fill="${c}" stroke="var(--board-edge)"/>`;});
-    g+=txt(80,120,"Cerah",{size:14,w:700})+txt(80,140,"晴天",{size:12,w:400,zh:1})+txt(320,160,"Halaman belakang · angkat jam 15.30",{size:12});
+    g+=txt(80,120,"Cerah",{size:14,w:700})+txt(80,140,"晴天",{size:12,w:400,zh:1})+txt(320,154,"Halaman belakang · angkat jam 15.30",{size:12})+txt(320,170,"后院 · 下午3点半前收回",{size:11,w:400,zh:1});
     return svg(520,190,g,"Cuaca cerah, jemur di halaman belakang");
   },
   rainy(){
@@ -601,8 +721,8 @@ const ART = {
   },
   underwear(){
     return svg(520,170, `<rect x="10" y="10" width="240" height="150" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="150" rx="14" fill="var(--surface)"/>`
-      + `<path d="M60 50 H200" stroke="var(--muted)" stroke-width="3"/>`+[0,1,2].map(i=>`<path d="M${74+i*42} 54 h28 l-4 22 h-20Z" fill="#E7A0B4" stroke="var(--board-edge)"/>`).join("")+badge(34,34,true)+txt(130,130,"Jemuran kecil sendiri",{size:13})
-      + `<path d="M300 50 H480" stroke="var(--muted)" stroke-width="3"/><rect x="310" y="50" width="56" height="70" rx="4" fill="#9FD3C7" stroke="var(--board-edge)"/><path d="M376 54 h28 l-4 22 h-20Z" fill="#E7A0B4" stroke="var(--board-edge)"/><rect x="414" y="50" width="56" height="70" rx="4" fill="#F4F4F0" stroke="var(--board-edge)"/>`+badge(294,34,false)+txt(390,140,"Dicampur dengan handuk",{size:13})
+      + `<path d="M60 50 H200" stroke="var(--muted)" stroke-width="3"/>`+[0,1,2].map(i=>`<path d="M${74+i*42} 54 h28 l-4 22 h-20Z" fill="#E7A0B4" stroke="var(--board-edge)"/>`).join("")+badge(34,34,true)+txt(130,124,"Jemuran kecil sendiri",{size:13})+txt(130,141,"单独的小晾衣架",{size:11,w:400,zh:1})
+      + `<path d="M300 50 H480" stroke="var(--muted)" stroke-width="3"/><rect x="310" y="50" width="56" height="70" rx="4" fill="#9FD3C7" stroke="var(--board-edge)"/><path d="M376 54 h28 l-4 22 h-20Z" fill="#E7A0B4" stroke="var(--board-edge)"/><rect x="414" y="50" width="56" height="70" rx="4" fill="#F4F4F0" stroke="var(--board-edge)"/>`+badge(294,34,false)+txt(390,124,"Dicampur dengan handuk",{size:13})+txt(390,141,"和毛巾混在一起",{size:11,w:400,zh:1})
       ,"Pakaian dalam dijemur terpisah benar, dicampur salah");
   },
 };
@@ -654,10 +774,10 @@ function cardHTML(c){
     if(c.do) h+=`<div class="do"><h4>Boleh <span class="zh">正确</span></h4><ul>${c.do.map(x=>`<li>${bi(x[0],x[1])}</li>`).join("")}</ul></div>`;
     if(c.dont) h+=`<div class="dont"><h4>Jangan <span class="zh">错误</span></h4><ul>${c.dont.map(x=>`<li>${bi(x[0],x[1])}</li>`).join("")}</ul></div>`;
     h+=`</div>`;}
-  if(c.why) h+=`<p class="why"><b>Kenapa?</b> ${esc(c.why[0])}<span class="zh">${esc(c.why[1])}</span></p>`;
+  if(c.why) h+=`<p class="why"><b>Kenapa?<span class="zh"> 为什么？</span></b> ${esc(c.why[0])}<span class="zh">${esc(c.why[1])}</span></p>`;
   h+=`<div class="actions">
-    <button class="btn" data-speak="${c.id}">${ICON.speak}<span>Dengarkan</span></button>
-    <a class="btn" href="https://wa.me/?text=${encodeURIComponent(waText(c))}" target="_blank" rel="noopener">${ICON.wa}Kirim WA</a>
+    <button class="btn" data-speak="${c.id}">${ICON.speak}<span>Dengarkan<span class="zh">朗读</span></span></button>
+    <a class="btn" href="https://wa.me/?text=${encodeURIComponent(waText(c))}" target="_blank" rel="noopener">${ICON.wa}Kirim WA<span class="zh">发WhatsApp</span></a>
   </div></div></article>`;
   return h;
 }
@@ -688,20 +808,20 @@ function scheduleHTML(){
       const daysZh=t[3]?t[3].map(d=>DAYS_ZH[d]).join("、"):(t[2]==="m"?"每月第一个周六":"");
       h+=`<div class="task${taskToday(t)?" today":""}" data-freq="${t[2]}" data-today="${taskToday(t)}" data-search="${esc((t[0]+" "+t[1]+" "+a.id+" "+a.zh).toLowerCase())}">
         <div class="t">${esc(t[0])}<span class="zh">${esc(t[1])}</span></div>
-        <div class="meta"><span class="badge ${f[2]}">${f[0]}</span>${days?`<span class="days">${esc(days)}<span class="zh"> ${esc(daysZh)}</span></span>`:""}</div></div>`;});
+        <div class="meta"><span class="badge ${f[2]}">${f[0]}<span class="zh">${f[1]}</span></span>${days?`<span class="days">${esc(days)}<span class="zh"> ${esc(daysZh)}</span></span>`:""}</div></div>`;});
     h+=`</div>`;
   });
   const byDay=weekPlan();
   h+=`<div class="cat-head" style="margin-top:6px"><h2 style="font-size:1.15rem">Rencana mingguan<span class="zh">每周安排</span></h2></div>`;
   h+=`<div class="week" data-search="${esc(Object.values(byDay).flat(2).join(" ").toLowerCase()+" mingguan senin selasa rabu kamis jumat sabtu minggu")}">${DAYS.map(d=>`<div class="d${d===td?" now":""}"><b>${d}<span class="zh"> ${DAYS_ZH[d]}</span></b><ul>${byDay[d].map(x=>`<li>${esc(x[0])}<span class="zh">${esc(x[1])}</span></li>`).join("")}</ul></div>`).join("")}</div>`;
-  h+=`<div class="actions"><button class="btn" data-speak="__today">${ICON.speak}<span>Dengarkan tugas hari ini</span></button></div>`;
+  h+=`<div class="actions"><button class="btn" data-speak="__today">${ICON.speak}<span>Dengarkan tugas hari ini<span class="zh">听今天的任务</span></span></button></div>`;
   return h;
 }
 function routineHTML(){
   let h=`<div class="timeline">`;
-  ROUTINE.forEach((r,i)=>{ h+=`<div class="slot" data-i="${i}" data-search="${esc((r.join(" ")).toLowerCase())}"><time>${r[0]}</time><span class="dot"></span><div class="what"><b>${esc(r[1])}</b><span class="zh">${esc(r[2])}</span>${r[3]?`<small><a href="#${r[3]}">Lihat panduan →</a></small>`:""}</div></div>`; });
-  h+=`</div><div class="actions"><button class="btn" data-speak="__routine">${ICON.speak}<span>Dengarkan rutinitas</span></button>
-    <a class="btn" href="https://wa.me/?text=${encodeURIComponent("*Rutinitas Harian* 每日作息\n"+ROUTINE.map(r=>`${r[0]}  ${r[1]}`).join("\n"))}" target="_blank" rel="noopener">${ICON.wa}Kirim WA</a></div>`;
+  ROUTINE.forEach((r,i)=>{ h+=`<div class="slot" data-i="${i}" data-search="${esc((r.join(" ")).toLowerCase())}"><time>${r[0]}</time><span class="dot"></span><div class="what"><b>${esc(r[1])}</b><span class="zh">${esc(r[2])}</span>${r[3]?`<small><a href="#${r[3]}">Lihat panduan<span class="zh">看说明</span> →</a></small>`:""}</div></div>`; });
+  h+=`</div><div class="actions"><button class="btn" data-speak="__routine">${ICON.speak}<span>Dengarkan rutinitas<span class="zh">听每日作息</span></span></button>
+    <a class="btn" href="https://wa.me/?text=${encodeURIComponent("*Rutinitas Harian* 每日作息\n"+ROUTINE.map(r=>`${r[0]}  ${r[1]}`).join("\n"))}" target="_blank" rel="noopener">${ICON.wa}Kirim WA<span class="zh">发WhatsApp</span></a></div>`;
   return h;
 }
 
@@ -727,18 +847,21 @@ function updateProgress(){}
 let speakingBtn=null;
 function pickVoice(){ const vs=speechSynthesis.getVoices(); return vs.find(v=>/^id[-_]/i.test(v.lang)) || vs.find(v=>/indonesia/i.test(v.name)); }
 function speak(text,btn){
-  if(!("speechSynthesis" in window)){ toast("HP ini tidak mendukung suara. · 此设备不支持朗读"); return; }
+  if(!("speechSynthesis" in window)){ toast(L2("HP ini tidak mendukung suara.","此设备不支持朗读")); return; }
   if(speakingBtn===btn){ speechSynthesis.cancel(); stopSpeak(); return; }
   speechSynthesis.cancel(); stopSpeak();
   const u=new SpeechSynthesisUtterance(text); u.lang="id-ID"; u.rate=.92;
-  const v=pickVoice(); if(v) u.voice=v; else toast("Suara Bahasa Indonesia belum terpasang. Pasang di Pengaturan HP.");
+  const v=pickVoice(); if(v) u.voice=v; else toast(L2("Suara Bahasa Indonesia belum terpasang. Pasang di Pengaturan HP.","手机没装印尼语语音，请在手机设置里安装"));
   u.onend=u.onerror=stopSpeak;
-  speakingBtn=btn; btn.classList.add("speaking"); btn.querySelector("span").dataset.old=btn.querySelector("span").textContent; btn.querySelector("span").textContent="Berhenti";
+  speakingBtn=btn; btn.classList.add("speaking"); btn.querySelector("span").dataset.old=btn.querySelector("span").innerHTML; btn.querySelector("span").innerHTML=`Berhenti<span class="zh">停止</span>`;
   speechSynthesis.speak(u);
 }
-function stopSpeak(){ if(speakingBtn){ const s=speakingBtn.querySelector("span"); s.textContent=s.dataset.old||s.textContent; speakingBtn.classList.remove("speaking"); speakingBtn=null; } }
+function stopSpeak(){ if(speakingBtn){ const s=speakingBtn.querySelector("span"); s.innerHTML=s.dataset.old||s.innerHTML; speakingBtn.classList.remove("speaking"); speakingBtn=null; } }
 if("speechSynthesis" in window) speechSynthesis.onvoiceschanged=()=>{};
 
+const zhOn=()=>!document.body.classList.contains("no-zh");
+const L2=(id,zh)=>zhOn()?`${id} · ${zh}`:id;
+const NEXT_HTML=`Lanjut<span class="zh">下一页</span> ›`, ANSWER_HTML=`Jawab dulu<span class="zh">先回答</span>`;
 let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2600); }
 
 /* ---------- events ---------- */
@@ -778,9 +901,13 @@ function applyVisibility(){
 }
 $("#q").addEventListener("input",applyVisibility);
 
-const zhBtn=$("#zhToggle");
-function setZh(on){ document.body.classList.toggle("no-zh",!on); zhBtn.setAttribute("aria-pressed",on); store.set("pr-zh",on); }
-zhBtn.addEventListener("click",()=>setZh(zhBtn.getAttribute("aria-pressed")!=="true"));
+function setZh(on){
+  document.body.classList.toggle("no-zh",!on);
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", String((b.dataset.lang==="zh")===on)));
+  $("#q").placeholder = on ? "Cari: pisau, lap, hujan… / 搜索" : "Cari: pisau, lap, hujan…";
+  store.set("pr-zh",on);
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setZh(b.dataset.lang==="zh")));
 
 function goHash(id){
   const el=document.getElementById(id); if(!el) return;
@@ -800,6 +927,8 @@ const A = {
     return svg(320,170,`<circle cx="160" cy="78" r="64" fill="var(--surface)" stroke="var(--ink)" stroke-width="4"/>${[...Array(12)].map((_,i)=>`<path d="M160 20 v${i%3?6:12}" stroke="var(--muted)" stroke-width="${i%3?2:3.5}" transform="rotate(${i*30} 160 78)"/>`).join("")}<path d="M160 78 V42" stroke="var(--ink)" stroke-width="6" stroke-linecap="round" transform="rotate(${ha} 160 78)"/><path d="M160 78 V26" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" transform="rotate(${ma} 160 78)"/><circle cx="160" cy="78" r="5" fill="var(--ink)"/>`+txt(160,165,t,{size:18,w:800}),"Jam "+t);},
 };
 const O = {
+  cart:()=>svg(160,120,phone(80,60,cart(0,2,1),60,100),"Belanja"),
+  money:a=>svg(160,110,note(80,55,1.6)+txt(80,104,a,{size:13,w:800}),a),
   cloth:k=>svg(160,110,cloth(35,20,k,1.6),"Lap"),
   kit:(b,k,f)=>svg(160,120,board(10,18,b,108,84)+food(62,60,f,1)+`<g transform="translate(152,10) scale(.78)">${knife(0,0,k,90)}</g>`,"Talenan dan pisau"),
   out:()=>svg(160,120,`<g transform="translate(36,32)"><circle r="16" fill="#F5B82E"/>${[0,60,120,180,240,300].map(a=>`<path d="M0 -22 V-29" stroke="#F5B82E" stroke-width="3.5" stroke-linecap="round" transform="rotate(${a})"/>`).join("")}</g><path d="M60 50 H150" stroke="var(--muted)" stroke-width="3"/><rect x="72" y="50" width="28" height="44" rx="3" fill="#F4F4F0" stroke="var(--board-edge)"/><rect x="110" y="50" width="28" height="44" rx="3" fill="#3E5C8A" stroke="var(--board-edge)"/>`,"Di luar"),
@@ -870,6 +999,19 @@ function buildLessons(){
     Q(["Jam berapa angkat jemuran?","几点收衣服？"],[{l:["15.30","下午3点半"],ok:1},{l:["18.00","晚上6点"]}],["Jam 15.30 angkat jemuran, lalu lipat dan setrika.","3点半收衣服，然后叠好熨好。"]),
     Q(["Kapan mencuci semua lap?","什么时候洗抹布？"],[{l:["Besok pagi","第二天早上"]},{l:["Sore, setelah kerja","傍晚干完活后"],ok:1}],["Setiap sore jam 19.30, setelah semua pekerjaan selesai.","每天傍晚7点半，干完活后洗。"]),
   ]},
+  {id:"belanja", t:"Belanja & Uang", zh:"买菜与钱", icon:()=>O.cart(), slides:[
+    S(()=>ART.orderFlow(),"Belanja Segari ada 4 langkah: pesan, kirim foto ke grup, majikan transfer, kamu balas sudah terima.","Segari买菜4步：下单、发截图到群、主人转账、回复已收到。"),
+    S(()=>ART.limit200(),"Total sampai 200 ribu: langsung pesan. Lebih dari 200 ribu: kirim foto keranjang dan tunggu OK.","20万以内直接下单；超过20万先发购物车截图，等主人OK。"),
+    S(()=>ART.waFormat(),"Setelah bayar, kirim 2 foto ke grup: rincian pesanan dan bukti bayar. Tulis tanggal dan jumlah.","付款后发两张截图：订单明细和付款凭证，写上日期和金额。"),
+    S(()=>ART.receive(),"Barang datang: cek satu per satu. Ada yang kurang atau rusak? Foto, lapor di Segari hari itu juga, dan kabari majikan.","收货逐样检查。少了或坏了：拍照，当天在Segari申请退款，并告诉主人。"),
+    S(()=>ART.cashFloat(),"Uang kas satu juta untuk belanja tunai. Aturannya: uang di dompet ditambah nota selalu satu juta.","100万现金用于线下买。规则：钱包里的钱加小票永远等于100万。"),
+    S(()=>ART.weekCheck(),"Setiap hari Minggu, hitung uang kas dan nota bersama majikan. Majikan mengisi kembali.","每周日和主人一起点现金和小票，主人补足。"),
+    Q(["Total belanja Segari Rp 150.000. Apa yang dilakukan?","Segari总额15万，怎么做？"],[{l:["Langsung pesan","直接下单"],ok:1},{l:["Tunggu besok","等明天"]}],["Sampai Rp 200.000 boleh langsung pesan. Jangan lupa kirim foto setelah bayar.","20万以内可以直接下单，付款后记得发截图。"]),
+    Q(["Total belanja Segari Rp 320.000. Apa yang dilakukan?","总额32万，怎么做？"],[{art:()=>O.cart(),l:["Langsung bayar","直接付款"]},{art:()=>svg(160,110,bubble(30,30,100,36,"Boleh?"),"Tanya dulu"),l:["Kirim foto, tunggu OK","发截图，等OK"],ok:1}],["Lebih dari Rp 200.000: kirim foto keranjang ke grup dan tunggu OK.","超过20万：发购物车截图，等主人OK。"]),
+    Q(["Telur yang datang pecah. Apa yang dilakukan?","送来的鸡蛋破了，怎么办？"],[{l:["Foto, lapor ke Segari dan majikan","拍照，申请退款并告诉主人"],ok:1},{l:["Buang saja, tidak usah bilang","扔掉，不用说"]}],["Foto, minta refund di aplikasi hari itu juga, lalu kabari majikan di grup.","拍照，当天在App申请退款，再在群里告诉主人。"]),
+    Q(["Uang kas Rp 1.000.000. Kamu beli sayur Rp 120.000 dan ada notanya. Uang di dompet harus berapa?","备用金100万，买菜花了12万有小票，钱包里应该剩多少？"],[{art:()=>O.money("Rp 880.000"),l:["Rp 880.000","88万"],ok:1},{art:()=>O.money("Rp 1.000.000"),l:["Rp 1.000.000","100万"]}],["Rp 880.000 ditambah nota Rp 120.000 sama dengan Rp 1.000.000.","88万加12万小票，正好100万。"]),
+    Q(["Mau beli sabun untuk diri sendiri. Boleh digabung dengan pesanan rumah?","想买自己用的香皂，可以和家里的订单一起下吗？"],[{l:["Boleh","可以"]},{l:["Tidak, pesan terpisah","不行，分开下单"],ok:1}],["Belanja pribadi selalu dipesan dan dibayar terpisah.","个人用品一定分开下单、分开付钱。"]),
+  ]},
   ];
 }
 let LESSONS=[];
@@ -878,9 +1020,9 @@ let voiceOn=store.get("pr-voice",true);
 
 function renderLearnHome(){
   LESSONS=buildLessons();
-  $("#learnHome").innerHTML=`<div class="lh-head"><h2>Belajar langkah demi langkah</h2><p>Pilih topik. Geser untuk pindah halaman. Ada suara dan kuis di akhir.<span class="zh" style="display:block">选择主题，左右滑动翻页，每页自动朗读，最后有小测验。</span></p></div>
+  $("#learnHome").innerHTML=`<div class="lh-head"><h2>Belajar langkah demi langkah<span class="zh">一步一步学</span></h2><p>Pilih topik. Geser untuk pindah halaman. Ada suara dan kuis di akhir.<span class="zh" style="display:block">选择主题，左右滑动翻页，每页自动朗读，最后有小测验。</span></p></div>
   <div class="tiles">${LESSONS.map(l=>{const p=lprog[l.id];const n=l.slides.filter(s=>!s.quiz).length,q=l.slides.filter(s=>s.quiz).length;
-    return `<button class="tile" data-lesson="${l.id}"><span class="ti">${l.icon()}</span><span class="tt"><b>${esc(l.t)}</b><span class="zh">${esc(l.zh)}</span><small>${n} halaman · ${q} kuis</small></span><span class="st${p?" ok":""}">${p?`✓ ${p.best}/${p.total}`:"Mulai"}</span></button>`;}).join("")}</div>`;
+    return `<button class="tile" data-lesson="${l.id}"><span class="ti">${l.icon()}</span><span class="tt"><b>${esc(l.t)}</b><span class="zh">${esc(l.zh)}</span><small>${n} halaman · ${q} kuis<span class="zh">${n}页 · ${q}道题</span></small></span><span class="st${p?" ok":""}">${p?`✓ ${p.best}/${p.total}`:`Mulai<span class="zh">开始</span>`}</span></button>`;}).join("")}</div>`;
 }
 
 let L=null;
@@ -889,7 +1031,7 @@ function openLesson(id){
   const lesson=LESSONS.find(l=>l.id===id); if(!lesson) return false;
   L={lesson,i:0,first:{},solved:{}};
   lessonEl.hidden=false; document.body.classList.add("locked");
-  $("#lTitle").textContent=lesson.t;
+  $("#lTitle").innerHTML=`${esc(lesson.t)}<span class="zh">${esc(lesson.zh)}</span>`;
   $("#lVoice").setAttribute("aria-pressed",voiceOn);
   showSlide(0,0); $("#lNext").focus({preventScroll:true});
   return true;
@@ -910,10 +1052,10 @@ function showSlide(i,dir){
     const score=L.lesson.slides.map((x,k)=>x.quiz&&L.first[k]===true?1:0).reduce((a,b)=>a+b,0);
     const prev=lprog[L.lesson.id]; lprog[L.lesson.id]={best:Math.max(score,prev?prev.best:0),total:qs,at:Date.now()}; store.set("pr-lessons",lprog);
     const idx=LESSONS.indexOf(L.lesson), nxt=LESSONS[idx+1];
-    h=`<div class="slide end"><div class="big">✓</div><h2>Selesai!</h2><p class="score">Benar pada percobaan pertama: <b>${score}/${qs}</b><span class="zh" style="display:block;color:var(--muted)">第一次就答对：${score}/${qs}</span></p>
-      <div class="col">${nxt?`<button class="navbtn primary" data-lesson="${nxt.id}">Lanjut: ${esc(nxt.t)} ›</button>`:""}<button class="navbtn" data-restart="1">Ulangi topik ini</button><button class="navbtn" data-close="1">Kembali ke menu</button></div></div>`;
+    h=`<div class="slide end"><div class="big">✓</div><h2>Selesai!<span class="zh">完成！</span></h2><p class="score">Benar pada percobaan pertama: <b>${score}/${qs}</b><span class="zh" style="display:block;color:var(--muted)">第一次就答对：${score}/${qs}</span></p>
+      <div class="col">${nxt?`<button class="navbtn primary" data-lesson="${nxt.id}">Lanjut: ${esc(nxt.t)}<span class="zh">下一课：${esc(nxt.zh)}</span> ›</button>`:""}<button class="navbtn" data-restart="1">Ulangi topik ini<span class="zh">重学这一课</span></button><button class="navbtn" data-close="1">Kembali ke menu<span class="zh">返回目录</span></button></div></div>`;
   } else if(s.quiz){
-    h=`<div class="slide"><div><span class="qtag">Kuis</span><p class="s-id">${esc(s.q[0])}</p><p class="zh s-zh" style="margin-top:4px">${esc(s.q[1])}</p></div>
+    h=`<div class="slide"><div><span class="qtag">Kuis<span class="zh">测验</span></span><p class="s-id">${esc(s.q[0])}</p><p class="zh s-zh" style="margin-top:4px">${esc(s.q[1])}</p></div>
       <div class="opts">${s.opts.map((o,k)=>`<button class="opt${o.art?"":" txt"}" data-opt="${k}">${o.art?o.art():""}<span class="ol">${esc(o.l[0])}<span class="zh">${esc(o.l[1])}</span></span></button>`).join("")}</div>
       <p class="s-fb" id="fb" aria-live="polite"></p></div>`;
   } else {
@@ -926,24 +1068,24 @@ function showSlide(i,dir){
   $("#lDots").innerHTML=all.slice(0,-1).map((x,k)=>`<i class="${x.quiz?"q ":""}${k===i?"on":k<i?"past":""}"></i>`).join("");
   $("#lPrev").disabled=i===0;
   const nx=$("#lNext"); nx.hidden=!!s.end;
-  nx.disabled=!!(s.quiz&&!L.solved[i]); nx.textContent=s.quiz&&!L.solved[i]?"Jawab dulu":"Lanjut ›";
+  nx.disabled=!!(s.quiz&&!L.solved[i]); nx.innerHTML=s.quiz&&!L.solved[i]?ANSWER_HTML:NEXT_HTML;
   if(voiceOn) say(slideSpeech(s));
 }
 function markSolved(i){
   const s=slidesOf()[i]; const k=s.opts.findIndex(o=>o.ok);
   const b=document.querySelector(`[data-opt="${k}"]`); if(b) b.classList.add("ok");
-  const fb=$("#fb"); if(fb){ fb.className="s-fb ok"; fb.innerHTML=`Benar! ${esc(s.ex[0])}<span class="zh">${esc(s.ex[1])}</span>`; }
+  const fb=$("#fb"); if(fb){ fb.className="s-fb ok"; fb.innerHTML=`Benar! ${esc(s.ex[0])}<span class="zh">答对了！${esc(s.ex[1])}</span>`; }
 }
 function answer(k){
   const i=L.i, s=slidesOf()[i]; if(L.solved[i]) return;
   const o=s.opts[k], b=document.querySelector(`[data-opt="${k}"]`);
   if(L.first[i]===undefined) L.first[i]=!!o.ok;
-  if(o.ok){ L.solved[i]=true; markSolved(i); const nx=$("#lNext"); nx.disabled=false; nx.textContent="Lanjut ›"; if(voiceOn) say("Benar! "+s.ex[0]); }
+  if(o.ok){ L.solved[i]=true; markSolved(i); const nx=$("#lNext"); nx.disabled=false; nx.innerHTML=NEXT_HTML; if(voiceOn) say("Benar! "+s.ex[0]); }
   else { b.classList.remove("no"); void b.offsetWidth; b.classList.add("no"); const fb=$("#fb"); fb.className="s-fb no"; fb.innerHTML=`Belum benar. Coba lagi.<span class="zh">不对，再试一次。</span>`; if(voiceOn) say("Belum benar. Coba lagi."); }
 }
 function step(d){
   if(!L) return; const all=slidesOf(), s=all[L.i];
-  if(d>0){ if(s.end) return; if(s.quiz&&!L.solved[L.i]){ toast("Jawab kuis dulu · 先回答问题"); return; } }
+  if(d>0){ if(s.end) return; if(s.quiz&&!L.solved[L.i]){ toast(L2("Jawab kuis dulu","先回答问题")); return; } }
   const j=L.i+d; if(j<0||j>=all.length) return; showSlide(j,d);
 }
 function say(text){
@@ -952,8 +1094,8 @@ function say(text){
 }
 $("#lPrev").addEventListener("click",()=>step(-1));
 $("#lNext").addEventListener("click",()=>step(1));
-$("#lReplay").addEventListener("click",()=>{ if(L){ if(!("speechSynthesis" in window)){toast("HP ini tidak mendukung suara. · 此设备不支持朗读");return;} say(slideSpeech(slidesOf()[L.i])); }});
-$("#lVoice").addEventListener("click",e=>{ voiceOn=!voiceOn; store.set("pr-voice",voiceOn); e.currentTarget.setAttribute("aria-pressed",voiceOn); if(!voiceOn) try{speechSynthesis.cancel()}catch(_){} toast(voiceOn?"Suara otomatis: nyala · 自动朗读：开":"Suara otomatis: mati · 自动朗读：关"); });
+$("#lReplay").addEventListener("click",()=>{ if(L){ if(!("speechSynthesis" in window)){toast(L2("HP ini tidak mendukung suara.","此设备不支持朗读"));return;} say(slideSpeech(slidesOf()[L.i])); }});
+$("#lVoice").addEventListener("click",e=>{ voiceOn=!voiceOn; store.set("pr-voice",voiceOn); e.currentTarget.setAttribute("aria-pressed",voiceOn); if(!voiceOn) try{speechSynthesis.cancel()}catch(_){} toast(voiceOn?L2("Suara otomatis: nyala","自动朗读：开"):L2("Suara otomatis: mati","自动朗读：关")); });
 $("#lClose").addEventListener("click",()=>{ location.hash="#belajar"; });
 lessonEl.addEventListener("click",e=>{
   const o=e.target.closest("[data-opt]"); if(o){ answer(+o.dataset.opt); return; }

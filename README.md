@@ -17,6 +17,7 @@ A household manual for domestic helpers in Indonesia, written mainly in Bahasa I
 3. Washing and drying: where to dry clothes in sun or rain
 4. Cleaning schedule: daily, weekly and monthly tasks for each room
 5. Daily routine for the helper, from 06:00 to 19:30
+6. Shopping and money: grocery orders on Segari reimbursed by bank transfer, a fixed cash float checked every Sunday, and an approval limit per order
 
 ## Files
 
