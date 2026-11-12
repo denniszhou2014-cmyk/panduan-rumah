@@ -285,10 +285,6 @@ body.locked{overflow:hidden}
       <h1>Panduan Rumah<span class="zh">家务手册</span></h1>
       <div class="lang" role="group" aria-label="Bahasa · 语言"><button type="button" data-lang="zh" aria-pressed="true">中印双语</button><button type="button" data-lang="id" aria-pressed="false">Indonesia</button></div>
     </div>
-    <div class="seg" role="tablist" aria-label="Mode">
-      <button role="tab" data-view="learn" aria-selected="true">Belajar<span class="zh">学习</span></button>
-      <button role="tab" data-view="find" aria-selected="false">Cari<span class="zh">查找</span></button>
-    </div>
     <div class="findbar" id="findBar" hidden>
       <div class="searchrow">
         <label class="search" for="q">
@@ -1121,9 +1117,7 @@ function route(){
   if(h.startsWith("belajar-")){ setView("learn"); if(!L||L.lesson.id!==h.slice(8)) openLesson(h.slice(8)); return; }
   closeLesson();
   if(h==="belajar"){ setView("learn"); return; }
-  if(h==="cari"){ setView("find"); spy(); return; }
-  if(h && document.getElementById(h) && $("#content").contains(document.getElementById(h))){ setView("find"); setTimeout(()=>goHash(h),30); return; }
-  setView(store.get("pr-view","learn"));
+  setView("learn");
 }
 window.addEventListener("hashchange",route);
 

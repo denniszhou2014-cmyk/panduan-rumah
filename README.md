@@ -6,8 +6,8 @@ A household manual for domestic helpers in Indonesia, written mainly in Bahasa I
 
 ## What it does
 
-- **Belajar (learn mode):** page-by-page lessons the helper swipes through. Each page has one illustration and one short sentence, read aloud in Indonesian. Each topic ends with a picture quiz.
-- **Cari (search mode):** the full rule list for the employer. Search any rule in Indonesian or Chinese and send it to the helper on WhatsApp in one tap.
+- **Lessons:** page-by-page lessons the helper swipes through. Each page has one illustration and one short sentence, read aloud in Indonesian. Each topic ends with a picture quiz.
+- **Two languages:** switch between Indonesian with Chinese alongside, or Indonesian only.
 - **Works like an app:** add it to the phone home screen. It keeps working offline after the first visit.
 
 ## Topics
