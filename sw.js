@@ -1,5 +1,5 @@
 // Offline cache for Panduan Rumah. Version changes whenever index.html changes.
-const CACHE = "panduan-c7736dd639";
+const CACHE = "panduan-5e0ab5536f";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

@@ -52,8 +52,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16p
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
 .zh{font-family:var(--zh)}
 body.no-zh .zh,body.no-zh .lbl-zh{display:none!important}
-.lang{display:flex;background:var(--sunk);border-radius:12px;padding:3px;gap:3px;flex:none}
-.lang button{font:inherit;font-size:.82rem;font-weight:700;border:0;background:transparent;color:var(--muted);border-radius:9px;padding:7px 10px;cursor:pointer;white-space:nowrap}
+.lang{display:flex;background:var(--sunk);border-radius:9px;padding:2px;gap:2px;flex:none}
+.lang button{font:inherit;font-size:.6rem;font-weight:700;border:0;background:transparent;color:var(--muted);border-radius:7px;padding:5px 6px;cursor:pointer;white-space:nowrap}
 .lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
 .lang button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .btn .zh,.navbtn .zh,.qtag .zh,.tile .st .zh,.slot small .zh{font-family:var(--zh);font-weight:500;margin-left:5px;font-size:.88em;letter-spacing:0;text-transform:none}
@@ -67,8 +67,8 @@ body.no-zh .zh,body.no-zh .lbl-zh{display:none!important}
 /* header */
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
 header.top .wrap{padding-block:12px 10px;display:grid;gap:10px}
-.brand{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand h1{margin:0;font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.01em;line-height:1.15}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.brand h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(1.02rem,4.4vw,1.3rem);white-space:nowrap;letter-spacing:-.01em;line-height:1.15}
 .brand h1 .zh{display:block;font-weight:500;font-size:.8rem;color:var(--muted);letter-spacing:0}
 .progress{font-size:.78rem;color:var(--muted);white-space:nowrap;text-align:right}
 .progress b{color:var(--accent);font-variant-numeric:tabular-nums}
@@ -275,6 +275,43 @@ body[data-view="learn"] footer{display:none}
 .navbtn:disabled{opacity:.4;cursor:default}
 .l-nav .iconbtn{width:52px;height:auto}
 body.locked{overflow:hidden}
+.brand-l{min-width:0;padding:6px 12px 7px;border-radius:12px;background:color-mix(in srgb,var(--accent) 13%,var(--surface));border:1.5px solid color-mix(in srgb,var(--accent) 55%,transparent);box-shadow:inset 3px 0 0 var(--accent)}
+.hh-label{display:inline-flex;align-items:center;gap:5px;margin-top:3px;font-size:.8rem;font-weight:700;color:var(--accent);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand-r{display:flex;align-items:center;gap:6px;flex:none}
+.gear{width:36px;height:36px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.sheet{position:fixed;inset:0;z-index:40;background:var(--bg);overflow:auto;-webkit-overflow-scrolling:touch}
+.sheet .sbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--line)}
+.sheet .sbar h2{flex:1;margin:0;font-size:1.05rem}
+.sheet .in{max-width:560px;margin:0 auto;padding:12px 16px 120px}
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+.sec h3{margin:0 0 4px;font-size:1rem}
+.sec .hint{margin:0 0 10px;color:var(--muted);font-size:.85rem}
+.fld{display:grid;gap:4px;margin:10px 0}
+.fld span{font-size:.85rem;font-weight:600}
+.fld input,.fld select{font:inherit;font-size:1rem;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
+.rrow{display:grid;grid-template-columns:auto 118px 1fr;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line)}
+.rrow:first-of-type{border-top:0}
+.rrow input[type=time]{font:inherit;font-size:.95rem;width:100%;box-sizing:border-box;padding:6px 4px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.rrow.off .rt{opacity:.45;text-decoration:line-through}
+.rrow input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent)}
+.rt{font-size:.88rem;line-height:1.3}.rt small{display:block;color:var(--muted)}
+.trow{padding:9px 0;border-top:1px solid var(--line)}.trow:first-of-type{border-top:0}
+.trow .tt2{font-size:.9rem;margin-bottom:6px}.trow .tt2 small{color:var(--muted);margin-left:6px}
+.daychips{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.daychips button{font:inherit;font-size:.8rem;padding:7px 0;border-radius:999px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.daychips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.prog .who{font-weight:700;margin:10px 0 6px;display:flex;justify-content:space-between;align-items:center}
+.prog .who button{font:inherit;font-size:.78rem;border:0;background:none;color:var(--no);cursor:pointer}
+.prog .chips2{display:flex;flex-wrap:wrap;gap:6px}
+.prog .chips2 span{font-size:.8rem;padding:4px 9px;border-radius:999px;background:var(--sunk)}
+.prog .chips2 span.full{background:var(--ok-bg);color:var(--ok);font-weight:700}
+.linkbox{font-size:.8rem;word-break:break-all;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:8px 10px;margin:8px 0;color:var(--muted)}
+.row2{display:flex;gap:8px;flex-wrap:wrap}
+.sheet .savebar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center}
+.sheet .savebar .navbtn{width:100%;max-width:528px}
+.ask{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45);display:grid;place-items:center;padding:16px}
+.ask .box{background:var(--surface);border-radius:18px;padding:18px;width:100%;max-width:380px}
+.ask h3{margin:0 0 6px}.ask p{margin:0 0 10px;color:var(--muted);font-size:.9rem}
 @media (min-width:640px){ .dd{grid-template-columns:1fr 1fr} .tiles{grid-template-columns:1fr 1fr} }
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -282,8 +319,11 @@ body.locked{overflow:hidden}
 <header class="top">
   <div class="wrap">
     <div class="brand">
-      <h1>Panduan Rumah<span class="zh">家务手册</span></h1>
-      <div class="lang" role="group" aria-label="Bahasa · 语言"><button type="button" data-lang="zh" aria-pressed="true">中印双语</button><button type="button" data-lang="id" aria-pressed="false">Indonesia</button></div>
+      <div class="brand-l"><h1>Panduan Rumah<span class="zh">家务手册</span></h1><div class="hh-label" id="hhLabel" hidden></div></div>
+      <div class="brand-r">
+        <div class="lang" role="group" aria-label="Bahasa · 语言"><button type="button" data-lang="zh" aria-pressed="true">中印双语</button><button type="button" data-lang="id" aria-pressed="false">Indonesia</button></div>
+        <button class="gear" id="ownerBtn" hidden aria-label="设置 Pengaturan"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+      </div>
     </div>
     <div class="findbar" id="findBar" hidden>
       <div class="searchrow">
@@ -316,6 +356,11 @@ body.locked{overflow:hidden}
   <p>Ada yang belum jelas? Tanya majikan. Lebih baik bertanya daripada salah.<span class="zh" style="display:block">有不清楚的地方就问主人，问清楚比做错好。</span></p>
   <p class="zh">雇主备注：抹布颜色、晾衣位置、清洁日程和作息时间目前是初稿，请按家里实际情况调整。</p>
 </div></footer>
+<div class="sheet" id="ownerSheet" hidden role="dialog" aria-modal="true" aria-labelledby="ownerTitle">
+  <div class="sbar"><button class="iconbtn" id="ownerClose" aria-label="关闭">✕</button><h2 id="ownerTitle">家庭设置</h2></div>
+  <div class="in" id="ownerBody"></div>
+  <div class="savebar"><button class="navbtn primary" id="ownerSave">保存</button></div>
+</div>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -445,7 +490,7 @@ const CARDS = [
 ];
 
 /* frequency: d=daily, 2x, w=weekly, m=monthly; days in Indonesian */
-const AREAS = [
+let AREAS = [
   {id:"Ruang tamu", zh:"客厅", tasks:[
     ["Sapu dan pel lantai (pel abu-abu)","扫地、拖地（灰色拖把）","d"],
     ["Lap debu meja dan sofa (lap biru)","擦桌子和沙发上的灰（蓝色）","d"],
@@ -480,7 +525,7 @@ const FREQ = {d:["Setiap hari","每天","b-day"], "2x":["2× seminggu","每周2�
 const DAYS = ["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
 const DAYS_ZH = {Senin:"周一",Selasa:"周二",Rabu:"周三",Kamis:"周四",Jumat:"周五",Sabtu:"周六",Minggu:"周日"};
 
-const ROUTINE = [
+let ROUTINE = [
   ["06:00","Bangun, rebus air minum","起床，烧开水"],
   ["06:30","Siapkan sarapan","准备早餐"],
   ["07:30","Cuci piring, lap meja makan (biru) dan dapur (hijau)","洗碗，擦餐桌（蓝色）和厨房（绿色）"],
@@ -497,6 +542,35 @@ const ROUTINE = [
   ["18:00","Makan malam, cuci piring, bersihkan dapur, buang sampah","吃晚饭，洗碗，收拾厨房，倒垃圾"],
   ["19:30","Cuci semua lap, jemur. Pekerjaan selesai","洗所有抹布并晾好，下班","lap-cuci"],
 ];
+
+/* ===================== HOUSEHOLD SETTINGS ===================== */
+const BASE_ROUTINE = ROUTINE.map(r=>r.slice());
+const BASE_AREAS = AREAS.map(a=>({...a, tasks:a.tasks.map(t=>t.map(x=>Array.isArray(x)?x.slice():x))}));
+const DEFAULT_SHOP = {app:"Segari", limit:200000, cash:1000000, day:"Minggu"};
+let SET = {label:"", routine:{}, days:{}, shop:{...DEFAULT_SHOP}};
+const isTime = t => /^([01]\d|2[0-3]):[0-5]\d$/.test(t||"");
+function applySettings(raw){
+  const S = raw && typeof raw==="object" ? raw : {};
+  const shop = {...DEFAULT_SHOP, ...(S.shop||{})};
+  shop.limit = Math.max(10000, Math.min(100000000, +shop.limit||DEFAULT_SHOP.limit));
+  shop.cash = Math.max(10000, Math.min(100000000, +shop.cash||DEFAULT_SHOP.cash));
+  if(!DAYS.includes(shop.day)) shop.day = DEFAULT_SHOP.day;
+  shop.app = String(shop.app||DEFAULT_SHOP.app).slice(0,24) || DEFAULT_SHOP.app;
+  SET = {label:String(S.label||"").slice(0,40), routine:S.routine||{}, days:S.days||{}, shop};
+  ROUTINE = BASE_ROUTINE.map((r,i)=>{ const o=SET.routine[i]||{}; return {r:[isTime(o.t)?o.t:r[0], ...r.slice(1)], on:o.on!==false}; })
+    .filter(x=>x.on).map(x=>x.r).sort((a,b)=>a[0].localeCompare(b[0]));
+  AREAS = BASE_AREAS.map((a,ai)=>({...a, tasks:a.tasks.map((t,ti)=>{ const d=SET.days[ai+"-"+ti];
+    if((t[2]==="w"||t[2]==="2x") && Array.isArray(d) && d.length && d.every(x=>DAYS.includes(x))) return [t[0],t[1],t[2],DAYS.filter(x=>d.includes(x))];
+    return t; })}));
+}
+const rp = n => "Rp "+Math.round(n).toLocaleString("id-ID");
+const wan = n => { const w=n/10000; return (Number.isInteger(w)?w:w.toFixed(1))+"万"; };
+const roundTo = (n,step) => Math.max(step, Math.round(n/step)*step);
+const tId = t => t.replace(":",".");
+const minutes = t => { const [h,m]=t.split(":").map(Number); return h*60+m; };
+const hhmm = m => { m=((m%1440)+1440)%1440; return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0"); };
+function angkatTime(){ const r=ROUTINE.find(x=>/^Angkat jemuran/.test(x[1])); return r?r[0]:"15:30"; }
+function taskDays(prefix){ for(const a of AREAS) for(const t of a.tasks) if(t[0].startsWith(prefix)&&t[3]) return t[3]; return null; }
 
 /* ===================== ILLUSTRATIONS ===================== */
 const COL = k => `var(--c-${k})`;
@@ -576,10 +650,11 @@ const ART = {
     return svg(520,210,g,"Pesan, kirim foto, majikan transfer, balas sudah terima");
   },
   limit200(){
+    const lim=SET.shop.limit, lo=roundTo(lim*.75,5000), hi=roundTo(lim*1.75,5000);
     let g=`<rect x="10" y="10" width="240" height="170" rx="14" fill="var(--surface)"/><rect x="270" y="10" width="240" height="170" rx="14" fill="var(--surface)"/>`;
-    g+=phone(100,86,cart(0,-14,.9)+txt(0,24,"Rp 150.000",{size:12,w:800}),76)+badge(178,58,true);
+    g+=phone(100,86,cart(0,-14,.9)+txt(0,24,rp(lo),{size:12,w:800}),76)+badge(178,58,true);
     g+=txt(130,156,"Langsung pesan",{size:12})+txt(130,172,"直接下单",{size:11,w:400,zh:1});
-    g+=phone(340,86,cart(0,-14,.9,"var(--no)")+txt(0,24,"Rp 350.000",{size:12,w:800}),76)+bubble(392,46,100,32,"Boleh?");
+    g+=phone(340,86,cart(0,-14,.9,"var(--no)")+txt(0,24,rp(hi),{size:12,w:800}),76)+bubble(392,46,100,32,"Boleh?");
     g+=txt(390,156,"Tanya dulu",{size:12})+txt(390,172,"先问主人",{size:11,w:400,zh:1});
     return svg(520,190,g,"Sampai 200 ribu langsung pesan, lebih dari 200 ribu tanya dulu");
   },
@@ -601,13 +676,13 @@ const ART = {
     g+=receipt(232,84,1.3)+receipt(254,92,1.3);
     g+=txt(243,148,"Nota",{size:13,w:700})+txt(243,164,"小票",{size:11,w:400,zh:1});
     g+=txt(318,96,"=",{size:30,w:800});
-    g+=`<rect x="346" y="62" width="150" height="50" rx="10" fill="var(--accent)"/><text x="421" y="94" font-size="19" font-weight="800" text-anchor="middle" style="fill:#fff">Rp 1.000.000</text>`;
+    g+=`<rect x="346" y="62" width="150" height="50" rx="10" fill="var(--accent)"/><text x="421" y="94" font-size="19" font-weight="800" text-anchor="middle" style="fill:#fff">${rp(SET.shop.cash)}</text>`;
     g+=txt(421,148,"Selalu sama",{size:13,w:700})+txt(421,164,"永远相等",{size:11,w:400,zh:1});
     return svg(520,180,g,"Uang ditambah nota sama dengan satu juta rupiah");
   },
   weekCheck(){
     let g=`<rect x="10" y="10" width="500" height="170" rx="14" fill="var(--surface)"/>`;
-    g+=`<g transform="translate(-60,6) scale(.9)">`+`<rect x="120" y="22" width="130" height="128" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/><path d="M120 36 Q120 22 134 22 H236 Q250 22 250 36 V56 H120Z" fill="var(--accent)"/>`+txt(185,108,"Minggu",{size:24,w:800})+txt(185,134,"周日",{size:14,w:400,zh:1})+`</g>`;
+    g+=`<g transform="translate(-60,6) scale(.9)">`+`<rect x="120" y="22" width="130" height="128" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/><path d="M120 36 Q120 22 134 22 H236 Q250 22 250 36 V56 H120Z" fill="var(--accent)"/>`+txt(185,108,SET.shop.day,{size:SET.shop.day.length>6?20:24,w:800})+txt(185,134,DAYS_ZH[SET.shop.day],{size:14,w:400,zh:1})+`</g>`;
     g+=note(250,80,1.2)+receipt(318,88,1.2)+receipt(340,94,1.2);
     g+=`<path d="M380 92 h40" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/><path d="M414 85 l9 7 -9 7" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`+badge(455,92,true);
     g+=txt(300,156,"Hitung bersama majikan",{size:12})+txt(300,172,"和主人一起对账",{size:11,w:400,zh:1});
@@ -615,7 +690,7 @@ const ART = {
   },
   waFormat(){
     let g=`<rect x="10" y="10" width="500" height="180" rx="14" fill="#E9E2D6"/>`;
-    g+=bubble(30,24,300,34,"Segari · 12/11 · Rp 185.000");
+    g+=bubble(30,24,300,34,`${esc(SET.shop.app)} · 12/11 · ${rp(roundTo(SET.shop.limit*.9,5000))}`);
     g+=`<rect x="30" y="70" width="70" height="52" rx="6" fill="#FBFAF6" stroke="var(--board-edge)"/><rect x="108" y="70" width="70" height="52" rx="6" fill="#FBFAF6" stroke="var(--board-edge)"/>`+cart(65,96,.7)+note(143,96,.8);
     g+=`<g transform="translate(190,132)"><rect x="0" y="0" width="300" height="34" rx="9" fill="#FFFFFF" stroke="var(--board-edge)"/><text x="150" y="22" font-size="13" font-weight="700" text-anchor="middle" style="fill:#14302A">Majikan: bukti transfer ✓</text></g>`;
     g+=`<text x="26" y="150" font-size="11" text-anchor="start" class="lbl-zh" style="fill:#566C66">保姆：日期·金额 + 截图</text><text x="486" y="182" font-size="11" text-anchor="end" class="lbl-zh" style="fill:#566C66">主人：转账截图</text>`;
@@ -941,7 +1016,11 @@ function buildLessons(){
   const daily=[]; AREAS.forEach(a=>a.tasks.forEach(t=>{ if(t[2]==="d") daily.push(t); }));
   const uniq=(arr,i)=>[...new Set(arr.map(t=>t[i].replace(/ \(.*\)/,"").replace(/（.*）/,"")))];
   const monthly=[]; AREAS.forEach(a=>a.tasks.forEach(t=>{ if(t[2]==="m") monthly.push(t); }));
-  const R=(a,b)=>ROUTINE.slice(a,b+1);
+  const chunks=[]; for(let i=0;i<ROUTINE.length;i+=3) chunks.push(ROUTINE.slice(i,i+3));
+  const ang=angkatTime(), angWrong=hhmm(minutes(ang)+150), lastT=ROUTINE.length?ROUTINE[ROUTINE.length-1][0]:"19:30";
+  const {app,limit:lim,cash,day}=SET.shop, lo=roundTo(lim*.75,5000), hi=roundTo(lim*1.75,5000), spend=Math.min(roundTo(cash*.12,5000), cash-5000);
+  const dayQuiz=(prefix,q,ex)=>{ const d=taskDays(prefix); if(!d) return []; const right=d[0], wrong=DAYS.find(x=>!d.includes(x)&&x!=="Minggu")||DAYS.find(x=>!d.includes(x));
+    if(!wrong) return []; const opts=[{l:[right,DAYS_ZH[right]],ok:1},{l:[wrong,DAYS_ZH[wrong]]}]; if(DAYS.indexOf(wrong)<DAYS.indexOf(right)) opts.reverse(); return [Q(q,opts,ex(right))]; };
   const rl=rows=>[rows.map(r=>`${r[0]}|${r[1]}`).join("\n"), rows.map(r=>`${r[0]} ${r[2]}`).join("\n")];
   return [
   {id:"lap", t:"Lap & Pel", zh:"抹布", icon:()=>O.cloth("blue"), slides:[
@@ -973,39 +1052,35 @@ function buildLessons(){
     S(()=>ART.rainy(),"Hujan atau mendung: jemur di dalam rumah, dekat jendela, nyalakan kipas.","雨天或阴天：晾在室内靠窗，开风扇。"),
     S(()=>O.inside(),"Tiba-tiba hujan? Langsung angkat semua jemuran. Jangan tunggu hujan berhenti.","突然下雨：马上把衣服全部收进来，不要等雨停。"),
     S(()=>ART.underwear(),"Pakaian dalam dan kaus kaki dijemur di jemuran kecil sendiri, di dalam.","内衣袜子用单独的小架子，晾在室内。"),
-    S(()=>A.clock("15:30"),"Angkat semua jemuran paling lambat jam 15.30.","最晚下午3点半把衣服全部收回。"),
+    S(()=>A.clock(ang),`Angkat semua jemuran paling lambat jam ${tId(ang)}.`,`最晚${ang}把衣服全部收回。`),
     Q(["Pagi ini mendung. Jemur di mana?","今天早上阴天，晾在哪？"],[{art:()=>O.out(),l:["Di luar","室外"]},{art:()=>O.inside(),l:["Di dalam","室内"],ok:1}],["Mendung atau hujan: jemur di dalam rumah.","阴天或下雨：晾在室内。"]),
     Q(["Pakaian dalam dijemur bagaimana?","内衣怎么晾？"],[{art:()=>O.underSep(),l:["Jemuran sendiri","单独晾"],ok:1},{art:()=>O.underMix(),l:["Campur handuk","和毛巾混晾"]}],["Pakaian dalam selalu dijemur terpisah.","内衣一定要单独晾。"]),
-    Q(["Jemuran harus diangkat paling lambat jam berapa?","衣服最晚几点收？"],[{l:["15.30","下午3点半"],ok:1},{l:["18.00","晚上6点"]}],["Paling lambat jam 15.30.","最晚下午3点半。"]),
+    Q(["Jemuran harus diangkat paling lambat jam berapa?","衣服最晚几点收？"],[{l:[tId(ang),ang],ok:1},{l:[tId(angWrong),angWrong]}],[`Paling lambat jam ${tId(ang)}.`,`最晚${ang}。`]),
   ]},
   {id:"jadwal", t:"Jadwal Bersih", zh:"清洁频率", icon:()=>A.cal("Senin","周一"), slides:[
     S(()=>A.cal("Setiap hari","每天"),"Setiap hari: "+uniq(daily,0).join(", ").toLowerCase()+".","每天："+uniq(daily,1).join("、")+"。"),
     ...DAYS.filter(d=>week[d].length).map(d=>S(()=>A.cal(d,DAYS_ZH[d]),`${d}: `+week[d].map(x=>x[0]).join("; ")+".", `${DAYS_ZH[d]}：`+week[d].map(x=>x[1]).join("；"))),
     S(()=>A.cal("Sabtu ke-1","每月第一个周六"),"Sebulan sekali: "+monthly.map(t=>t[0].replace(/ \(.*\)/,"")).join(", ").toLowerCase()+".","每月一次："+monthly.map(t=>t[1]).join("、")),
-    Q(["Ganti sprei hari apa?","哪天换床单？"],[{l:["Senin","周一"],ok:1},{l:["Jumat","周五"]}],["Sprei diganti setiap Senin.","每周一换床单。"]),
+    ...dayQuiz("Ganti sprei",["Ganti sprei hari apa?","哪天换床单？"],d=>[`Sprei diganti setiap ${d}.`,`每${DAYS_ZH[d]}换床单。`]),
     Q(["Sapu dan pel lantai berapa kali?","扫地拖地多久一次？"],[{l:["Seminggu sekali","每周一次"]},{l:["Setiap hari","每天"],ok:1}],["Lantai disapu dan dipel setiap hari.","地面每天扫、每天拖。"]),
-    Q(["Lap kaca jendela hari apa?","哪天擦窗户？"],[{l:["Rabu","周三"],ok:1},{l:["Minggu","周日"]}],["Kaca jendela setiap Rabu, pakai lap putih.","每周三擦窗户，用白色布。"]),
+    ...dayQuiz("Lap kaca jendela",["Lap kaca jendela hari apa?","哪天擦窗户？"],d=>[`Kaca jendela setiap ${d}, pakai lap putih.`,`每${DAYS_ZH[d]}擦窗户，用白色布。`]),
   ]},
   {id:"rutin", t:"Rutinitas Harian", zh:"每日作息", icon:()=>A.clock("06:00"), slides:[
-    {art:()=>A.clock("06:00"),t:rl(R(0,3)),lines:true},
-    {art:()=>A.clock("08:30"),t:rl(R(4,6)),lines:true},
-    {art:()=>A.clock("11:00"),t:rl(R(7,10)),lines:true},
-    {art:()=>A.clock("15:30"),t:rl(R(11,12)),lines:true},
-    {art:()=>A.clock("18:00"),t:rl(R(13,14)),lines:true},
-    Q(["Jam berapa angkat jemuran?","几点收衣服？"],[{l:["15.30","下午3点半"],ok:1},{l:["18.00","晚上6点"]}],["Jam 15.30 angkat jemuran, lalu lipat dan setrika.","3点半收衣服，然后叠好熨好。"]),
-    Q(["Kapan mencuci semua lap?","什么时候洗抹布？"],[{l:["Besok pagi","第二天早上"]},{l:["Sore, setelah kerja","傍晚干完活后"],ok:1}],["Setiap sore jam 19.30, setelah semua pekerjaan selesai.","每天傍晚7点半，干完活后洗。"]),
+    ...chunks.map(c=>({art:()=>A.clock(c[0][0]),t:rl(c),lines:true})),
+    Q(["Jam berapa angkat jemuran?","几点收衣服？"],[{l:[tId(ang),ang],ok:1},{l:[tId(angWrong),angWrong]}],[`Jam ${tId(ang)} angkat jemuran, lalu lipat dan setrika.`,`${ang}收衣服，然后叠好熨好。`]),
+    Q(["Kapan mencuci semua lap?","什么时候洗抹布？"],[{l:["Besok pagi","第二天早上"]},{l:["Sore, setelah kerja","傍晚干完活后"],ok:1}],[`Setiap sore jam ${tId(lastT)}, setelah semua pekerjaan selesai.`,`每天${lastT}，干完活后洗。`]),
   ]},
   {id:"belanja", t:"Belanja & Uang", zh:"买菜与钱", icon:()=>O.cart(), slides:[
-    S(()=>ART.orderFlow(),"Belanja Segari ada 4 langkah: pesan, kirim foto ke grup, majikan transfer, kamu balas sudah terima.","Segari买菜4步：下单、发截图到群、主人转账、回复已收到。"),
-    S(()=>ART.limit200(),"Total sampai 200 ribu: langsung pesan. Lebih dari 200 ribu: kirim foto keranjang dan tunggu OK.","20万以内直接下单；超过20万先发购物车截图，等主人OK。"),
+    S(()=>ART.orderFlow(),`Belanja ${app} ada 4 langkah: pesan, kirim foto ke grup, majikan transfer, kamu balas sudah terima.`,`${app}买菜4步：下单、发截图到群、主人转账、回复已收到。`),
+    S(()=>ART.limit200(),`Total sampai ${rp(lim)}: langsung pesan. Lebih dari ${rp(lim)}: kirim foto keranjang dan tunggu OK.`,`${wan(lim)}以内直接下单；超过${wan(lim)}先发购物车截图，等主人OK。`),
     S(()=>ART.waFormat(),"Setelah bayar, kirim 2 foto ke grup: rincian pesanan dan bukti bayar. Tulis tanggal dan jumlah.","付款后发两张截图：订单明细和付款凭证，写上日期和金额。"),
-    S(()=>ART.receive(),"Barang datang: cek satu per satu. Ada yang kurang atau rusak? Foto, lapor di Segari hari itu juga, dan kabari majikan.","收货逐样检查。少了或坏了：拍照，当天在Segari申请退款，并告诉主人。"),
-    S(()=>ART.cashFloat(),"Uang kas satu juta untuk belanja tunai. Aturannya: uang di dompet ditambah nota selalu satu juta.","100万现金用于线下买。规则：钱包里的钱加小票永远等于100万。"),
-    S(()=>ART.weekCheck(),"Setiap hari Minggu, hitung uang kas dan nota bersama majikan. Majikan mengisi kembali.","每周日和主人一起点现金和小票，主人补足。"),
-    Q(["Total belanja Segari Rp 150.000. Apa yang dilakukan?","Segari总额15万，怎么做？"],[{l:["Langsung pesan","直接下单"],ok:1},{l:["Tunggu besok","等明天"]}],["Sampai Rp 200.000 boleh langsung pesan. Jangan lupa kirim foto setelah bayar.","20万以内可以直接下单，付款后记得发截图。"]),
-    Q(["Total belanja Segari Rp 320.000. Apa yang dilakukan?","总额32万，怎么做？"],[{art:()=>O.cart(),l:["Langsung bayar","直接付款"]},{art:()=>svg(160,110,bubble(30,30,100,36,"Boleh?"),"Tanya dulu"),l:["Kirim foto, tunggu OK","发截图，等OK"],ok:1}],["Lebih dari Rp 200.000: kirim foto keranjang ke grup dan tunggu OK.","超过20万：发购物车截图，等主人OK。"]),
-    Q(["Telur yang datang pecah. Apa yang dilakukan?","送来的鸡蛋破了，怎么办？"],[{l:["Foto, lapor ke Segari dan majikan","拍照，申请退款并告诉主人"],ok:1},{l:["Buang saja, tidak usah bilang","扔掉，不用说"]}],["Foto, minta refund di aplikasi hari itu juga, lalu kabari majikan di grup.","拍照，当天在App申请退款，再在群里告诉主人。"]),
-    Q(["Uang kas Rp 1.000.000. Kamu beli sayur Rp 120.000 dan ada notanya. Uang di dompet harus berapa?","备用金100万，买菜花了12万有小票，钱包里应该剩多少？"],[{art:()=>O.money("Rp 880.000"),l:["Rp 880.000","88万"],ok:1},{art:()=>O.money("Rp 1.000.000"),l:["Rp 1.000.000","100万"]}],["Rp 880.000 ditambah nota Rp 120.000 sama dengan Rp 1.000.000.","88万加12万小票，正好100万。"]),
+    S(()=>ART.receive(),`Barang datang: cek satu per satu. Ada yang kurang atau rusak? Foto, lapor di ${app} hari itu juga, dan kabari majikan.`,`收货逐样检查。少了或坏了：拍照，当天在${app}申请退款，并告诉主人。`),
+    S(()=>ART.cashFloat(),`Uang kas ${rp(cash)} untuk belanja tunai. Aturannya: uang di dompet ditambah nota selalu ${rp(cash)}.`,`${wan(cash)}现金用于线下买。规则：钱包里的钱加小票永远等于${wan(cash)}。`),
+    S(()=>ART.weekCheck(),`Setiap hari ${day}, hitung uang kas dan nota bersama majikan. Majikan mengisi kembali.`,`每${DAYS_ZH[day]}和主人一起点现金和小票，主人补足。`),
+    Q([`Total belanja ${app} ${rp(lo)}. Apa yang dilakukan?`,`${app}总额${wan(lo)}，怎么做？`],[{l:["Langsung pesan","直接下单"],ok:1},{l:["Tunggu besok","等明天"]}],[`Sampai ${rp(lim)} boleh langsung pesan. Jangan lupa kirim foto setelah bayar.`,`${wan(lim)}以内可以直接下单，付款后记得发截图。`]),
+    Q([`Total belanja ${app} ${rp(hi)}. Apa yang dilakukan?`,`总额${wan(hi)}，怎么做？`],[{art:()=>O.cart(),l:["Langsung bayar","直接付款"]},{art:()=>svg(160,110,bubble(30,30,100,36,"Boleh?"),"Tanya dulu"),l:["Kirim foto, tunggu OK","发截图，等OK"],ok:1}],[`Lebih dari ${rp(lim)}: kirim foto keranjang ke grup dan tunggu OK.`,`超过${wan(lim)}：发购物车截图，等主人OK。`]),
+    Q(["Telur yang datang pecah. Apa yang dilakukan?","送来的鸡蛋破了，怎么办？"],[{l:[`Foto, lapor ke ${app} dan majikan`,"拍照，申请退款并告诉主人"],ok:1},{l:["Buang saja, tidak usah bilang","扔掉，不用说"]}],["Foto, minta refund di aplikasi hari itu juga, lalu kabari majikan di grup.","拍照，当天在App申请退款，再在群里告诉主人。"]),
+    Q([`Uang kas ${rp(cash)}. Kamu beli sayur ${rp(spend)} dan ada notanya. Uang di dompet harus berapa?`,`备用金${wan(cash)}，买菜花了${wan(spend)}有小票，钱包里应该剩多少？`],[{art:()=>O.money(rp(cash-spend)),l:[rp(cash-spend),wan(cash-spend)],ok:1},{art:()=>O.money(rp(cash)),l:[rp(cash),wan(cash)]}],[`${rp(cash-spend)} ditambah nota ${rp(spend)} sama dengan ${rp(cash)}.`,`${wan(cash-spend)}加${wan(spend)}小票，正好${wan(cash)}。`]),
     Q(["Mau beli sabun untuk diri sendiri. Boleh digabung dengan pesanan rumah?","想买自己用的香皂，可以和家里的订单一起下吗？"],[{l:["Boleh","可以"]},{l:["Tidak, pesan terpisah","不行，分开下单"],ok:1}],["Belanja pribadi selalu dipesan dan dibayar terpisah.","个人用品一定分开下单、分开付钱。"]),
   ]},
   ];
@@ -1046,7 +1121,7 @@ function showSlide(i,dir){
   if(s.end){
     const qs=L.lesson.slides.filter(x=>x.quiz).length;
     const score=L.lesson.slides.map((x,k)=>x.quiz&&L.first[k]===true?1:0).reduce((a,b)=>a+b,0);
-    const prev=lprog[L.lesson.id]; lprog[L.lesson.id]={best:Math.max(score,prev?prev.best:0),total:qs,at:Date.now()}; store.set("pr-lessons",lprog);
+    const prev=lprog[L.lesson.id]; lprog[L.lesson.id]={best:Math.max(score,prev?prev.best:0),total:qs,at:Date.now()}; store.set("pr-lessons",lprog); pushProgress(L.lesson.id, lprog[L.lesson.id].best, qs);
     const idx=LESSONS.indexOf(L.lesson), nxt=LESSONS[idx+1];
     h=`<div class="slide end"><div class="big">✓</div><h2>Selesai!<span class="zh">完成！</span></h2><p class="score">Benar pada percobaan pertama: <b>${score}/${qs}</b><span class="zh" style="display:block;color:var(--muted)">第一次就答对：${score}/${qs}</span></p>
       <div class="col">${nxt?`<button class="navbtn primary" data-lesson="${nxt.id}">Lanjut: ${esc(nxt.t)}<span class="zh">下一课：${esc(nxt.zh)}</span> ›</button>`:""}<button class="navbtn" data-restart="1">Ulangi topik ini<span class="zh">重学这一课</span></button><button class="navbtn" data-close="1">Kembali ke menu<span class="zh">返回目录</span></button></div></div>`;
@@ -1130,7 +1205,147 @@ function spy(){
 }
 window.addEventListener("scroll",spy,{passive:true});
 
+/* ===================== HOUSEHOLD (cloud) ===================== */
+/* Supabase project: the publishable (anon) key is meant to be public. All access goes through
+   the hh_* functions in supabase/schema.sql, which check the secret token from the invite link. */
+const CLOUD = {url:"", key:""};
+const hasCloud = () => !!(CLOUD.url && CLOUD.key);
+let HH = {key:store.get("pr-key",""), role:store.get("pr-role",""), helperToken:""};
+async function rpc(fn,args){
+  const r = await fetch(`${CLOUD.url}/rest/v1/rpc/${fn}`,{method:"POST",headers:{apikey:CLOUD.key,Authorization:"Bearer "+CLOUD.key,"Content-Type":"application/json"},body:JSON.stringify(args)});
+  const txt = await r.text(); let data=null; try{ data = txt?JSON.parse(txt):null; }catch(e){ data=txt; }
+  if(!r.ok){ const err=new Error((data&&data.message)||("HTTP "+r.status)); err.status=r.status; throw err; }
+  return data;
+}
+function takeLinkToken(){
+  const m = location.hash.match(/[#&]k=([A-Za-z0-9]{20,64})/);
+  if(!m) return;
+  if(m[1]!==HH.key){ HH={key:m[1],role:"",helperToken:""}; store.set("pr-key",m[1]); store.set("pr-role",""); store.set("pr-set",null); store.set("pr-lessons",{}); lprog={}; }
+  history.replaceState(null,"",location.pathname+location.search+"#belajar");
+}
+function showHousehold(){
+  const lab=$("#hhLabel"); lab.hidden=!SET.label; lab.textContent=SET.label?"🏠 "+SET.label:"";
+  $("#ownerBtn").hidden = HH.role!=="owner";
+}
+function rerenderAll(){ renderLearnHome(); showHousehold(); }
+async function loadHousehold(){
+  if(!HH.key || !hasCloud()) return;
+  const cached=store.get("pr-set",null); if(cached){ applySettings(cached.settings); SET.label=cached.label||""; rerenderAll(); }
+  try{
+    const d = await rpc("hh_get",{p_token:HH.key});
+    HH.role=d.role; HH.helperToken=d.helper_token||""; store.set("pr-role",d.role);
+    store.set("pr-set",{label:d.label,settings:d.settings});
+    applySettings(d.settings); SET.label=d.label||""; rerenderAll();
+    if(d.role==="helper" && !store.get("pr-name","")) askName();
+    flushProgress();
+  }catch(e){
+    if(/invalid_link/.test(e.message)){ store.set("pr-key",""); store.set("pr-role",""); store.set("pr-set",null); HH={key:"",role:"",helperToken:""};
+      applySettings({}); rerenderAll(); toast(L2("Link ini sudah tidak berlaku. Minta link baru ke majikan.","这个链接已失效，请向主人要新链接")); }
+  }
+}
+function askName(){
+  const w=document.createElement("div"); w.className="ask"; w.innerHTML=`<div class="box"><h3>Siapa nama kamu?<span class="zh" style="display:block;font-size:.9rem;color:var(--muted)">你叫什么名字？</span></h3>
+    <p>Supaya majikan bisa melihat hasil belajarmu.<span class="zh" style="display:block">这样主人能看到你的学习成绩。</span></p>
+    <div class="fld"><input id="nameIn" maxlength="30" autocomplete="given-name" placeholder="Nama"></div>
+    <button class="navbtn primary" style="width:100%" id="nameOk">Simpan<span class="zh">保存</span></button></div>`;
+  document.body.appendChild(w); const inp=w.querySelector("#nameIn"); setTimeout(()=>inp.focus(),50);
+  const ok=()=>{ const v=inp.value.trim(); if(!v){ inp.focus(); return; } store.set("pr-name",v); w.remove(); flushProgress(); };
+  w.querySelector("#nameOk").addEventListener("click",ok); inp.addEventListener("keydown",e=>{ if(e.key==="Enter") ok(); });
+}
+function pushProgress(lesson,best,total){
+  if(!HH.key || !hasCloud()) return;
+  const q=store.get("pr-pending",{}); q[lesson]={best,total}; store.set("pr-pending",q); flushProgress();
+}
+async function flushProgress(){
+  if(!HH.key || !hasCloud()) return;
+  if(HH.role!=="helper") return;
+  const name = store.get("pr-name","");
+  if(!name) return;
+  const q=store.get("pr-pending",{});
+  for(const [lesson,v] of Object.entries(q)){
+    try{ await rpc("hh_progress_put",{p_token:HH.key,p_name:name,p_lesson:lesson,p_best:v.best,p_total:v.total}); const q2=store.get("pr-pending",{}); delete q2[lesson]; store.set("pr-pending",q2); }
+    catch(e){ if(/invalid_link|bad_input|too_many/.test(e.message)){ const q2=store.get("pr-pending",{}); delete q2[lesson]; store.set("pr-pending",q2); } else break; }
+  }
+}
+
+/* ---------- owner settings sheet ---------- */
+let draft=null;
+function openOwner(){
+  draft={label:SET.label, routine:JSON.parse(JSON.stringify(SET.routine||{})), days:JSON.parse(JSON.stringify(SET.days||{})), shop:{...SET.shop}};
+  renderOwner(); $("#ownerSheet").hidden=false; document.body.classList.add("locked"); loadProgress();
+}
+function closeOwner(){ $("#ownerSheet").hidden=true; document.body.classList.remove("locked"); }
+function renderOwner(){
+  const base=location.origin+location.pathname;
+  const helperLink = HH.helperToken ? base+"#k="+HH.helperToken : "";
+  let h=`<div class="sec"><h3>家庭名称</h3><p class="hint">显示在页面左上角，可以写门牌号或称呼，例如「No. 12A」或「Rumah Keluarga Wang」。</p>
+    <div class="fld"><input id="oLabel" maxlength="40" value="${esc(draft.label)}" placeholder="例如：No. 12A"></div></div>`;
+  h+=`<div class="sec"><h3>每日作息</h3><p class="hint">改时间，或取消勾选不需要的项目。保存后，佣人的「每日作息」课程和测验会自动更新。</p>`;
+  BASE_ROUTINE.forEach((r,i)=>{ const o=draft.routine[i]||{}; const on=o.on!==false, t=isTime(o.t)?o.t:r[0];
+    h+=`<div class="rrow${on?"":" off"}" data-r="${i}"><input type="checkbox" ${on?"checked":""} aria-label="启用"><input type="time" value="${t}" step="300"><div class="rt">${esc(r[2])}<small>${esc(r[1])}</small></div></div>`; });
+  h+=`</div>`;
+  h+=`<div class="sec"><h3>每周打扫安排</h3><p class="hint">点选每项工作在星期几做。</p>`;
+  BASE_AREAS.forEach((a,ai)=>a.tasks.forEach((t,ti)=>{ if(t[2]!=="w"&&t[2]!=="2x") return; const k=ai+"-"+ti; const cur=draft.days[k]||t[3];
+    h+=`<div class="trow" data-k="${k}"><div class="tt2">${esc(a.zh)} · ${esc(t[1])}</div><div class="daychips">${DAYS.map(d=>`<button type="button" data-d="${d}" aria-pressed="${cur.includes(d)}">${DAYS_ZH[d]}</button>`).join("")}</div></div>`; }));
+  h+=`</div>`;
+  const sh=draft.shop;
+  h+=`<div class="sec"><h3>买菜与备用金</h3>
+    <label class="fld"><span>买菜平台</span><input id="oApp" maxlength="24" value="${esc(sh.app)}"></label>
+    <label class="fld"><span>单笔超过多少要先问主人（印尼盾）</span><input id="oLimit" type="number" inputmode="numeric" min="10000" step="10000" value="${sh.limit}"></label>
+    <label class="fld"><span>现金备用金（印尼盾）</span><input id="oCash" type="number" inputmode="numeric" min="10000" step="50000" value="${sh.cash}"></label>
+    <label class="fld"><span>每周对账日</span><select id="oDay">${DAYS.map(d=>`<option value="${d}" ${d===sh.day?"selected":""}>${DAYS_ZH[d]}</option>`).join("")}</select></label></div>`;
+  h+=`<div class="sec prog"><h3>佣人学习进度</h3><p class="hint">每个主题显示「第一次就答对的题数 / 总题数」，取最好的一次。</p><div id="progBox"><p class="hint">读取中…</p></div></div>`;
+  h+=`<div class="sec"><h3>佣人链接</h3><p class="hint">把这个链接发给佣人，几位佣人用同一个链接，第一次打开时各自填名字。佣人离职后，点「换一个新链接」，旧链接马上失效。</p>
+    <div class="linkbox">${esc(helperLink||"（未连接）")}</div>
+    <div class="row2"><a class="btn" id="oShare" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent("Panduan Rumah — buka link ini di Chrome, lalu pilih ⋮ › Tambahkan ke layar utama:\n"+helperLink)}">${ICON.wa}发到 WhatsApp</a>
+    <button class="btn" id="oCopy" type="button">复制链接</button><button class="btn" id="oRotate" type="button">换一个新链接</button></div></div>`;
+  h+=`<div class="sec"><h3>你的主人链接</h3><p class="hint">这是可以修改设置的链接，<b>只给家里的主人</b>，不要发给佣人或外人。另一位主人可以用同一个链接。</p>
+    <div class="linkbox">${esc(base+"#k="+HH.key)}</div><div class="row2"><button class="btn" id="oCopyOwner" type="button">复制主人链接</button></div></div>`;
+  $("#ownerBody").innerHTML=h;
+}
+async function loadProgress(){
+  const box=$("#progBox"); if(!box) return;
+  try{
+    const rows=await rpc("hh_progress_list",{p_token:HH.key});
+    if(!rows||!rows.length){ box.innerHTML=`<p class="hint">还没有成绩。佣人做完一个主题的测验后，这里会显示。</p>`; return; }
+    const by={}; rows.forEach(r=>{(by[r.name]=by[r.name]||{})[r.lesson]=r;});
+    box.innerHTML=Object.entries(by).map(([n,ls])=>`<div class="who"><span>${esc(n)}</span><button type="button" data-delname="${esc(n)}">删除</button></div><div class="chips2">${LESSONS.map(l=>{const r=ls[l.id]; return r?`<span class="${r.best===r.total?"full":""}">${esc(l.zh)} ${r.best}/${r.total}</span>`:`<span style="opacity:.55">${esc(l.zh)} 未学</span>`;}).join("")}</div>`).join("");
+  }catch(e){ box.innerHTML=`<p class="hint">读取失败，请检查网络。</p>`; }
+}
+function collectDraft(){
+  draft.label=$("#oLabel").value.trim();
+  document.querySelectorAll("#ownerBody .rrow").forEach(row=>{ const i=row.dataset.r, on=row.querySelector("input[type=checkbox]").checked, t=row.querySelector("input[type=time]").value;
+    const base=BASE_ROUTINE[i][0]; const o={}; if(!on) o.on=false; if(isTime(t)&&t!==base) o.t=t; if(Object.keys(o).length) draft.routine[i]=o; else delete draft.routine[i]; });
+  document.querySelectorAll("#ownerBody .trow").forEach(row=>{ const k=row.dataset.k; const d=[...row.querySelectorAll("button[aria-pressed=true]")].map(b=>b.dataset.d); if(d.length) draft.days[k]=d; });
+  draft.shop={app:$("#oApp").value.trim()||DEFAULT_SHOP.app, limit:+$("#oLimit").value||DEFAULT_SHOP.limit, cash:+$("#oCash").value||DEFAULT_SHOP.cash, day:$("#oDay").value};
+}
+$("#ownerBtn").addEventListener("click",openOwner);
+$("#ownerClose").addEventListener("click",closeOwner);
+$("#ownerBody").addEventListener("change",e=>{ const row=e.target.closest(".rrow"); if(row&&e.target.type==="checkbox") row.classList.toggle("off",!e.target.checked); });
+$("#ownerBody").addEventListener("click",async e=>{
+  const dc=e.target.closest(".daychips button"); if(dc){ const row=dc.closest(".trow"); const on=dc.getAttribute("aria-pressed")!=="true";
+    if(!on && row.querySelectorAll("button[aria-pressed=true]").length===1){ toast("至少选一天"); return; } dc.setAttribute("aria-pressed",on); return; }
+  const copy=async(t)=>{ try{ await navigator.clipboard.writeText(t); toast("已复制"); }catch(_){ prompt("复制这个链接：",t); } };
+  if(e.target.closest("#oCopy")){ copy(location.origin+location.pathname+"#k="+HH.helperToken); return; }
+  if(e.target.closest("#oCopyOwner")){ copy(location.origin+location.pathname+"#k="+HH.key); return; }
+  if(e.target.closest("#oRotate")){ if(!confirm("换新链接后，佣人手机上的旧链接会马上失效，需要把新链接重新发给还在的佣人。确定吗？")) return;
+    try{ collectDraft(); HH.helperToken=await rpc("hh_new_helper_link",{p_token:HH.key}); renderOwner(); loadProgress(); toast("已生成新链接，请发给佣人"); }catch(err){ toast("失败，请检查网络"); } return; }
+  const del=e.target.closest("[data-delname]"); if(del){ const n=del.dataset.delname; if(!confirm(`删除「${n}」的全部学习记录？删除后不能恢复。`)) return;
+    try{ await rpc("hh_progress_delete",{p_token:HH.key,p_name:n}); loadProgress(); }catch(err){ toast("失败，请检查网络"); } return; }
+});
+$("#ownerSave").addEventListener("click",async()=>{
+  collectDraft(); const btn=$("#ownerSave"); btn.disabled=true; btn.textContent="保存中…";
+  const settings={routine:draft.routine, days:draft.days, shop:draft.shop};
+  try{ await rpc("hh_save",{p_token:HH.key,p_label:draft.label,p_settings:settings});
+    applySettings(settings); SET.label=draft.label; store.set("pr-set",{label:draft.label,settings}); rerenderAll(); closeOwner(); toast("已保存。佣人下次打开时会自动更新。"); }
+  catch(e){ toast("保存失败："+(/not_owner/.test(e.message)?"这个链接没有修改权限":"请检查网络")); }
+  finally{ btn.disabled=false; btn.textContent="保存"; }
+});
+document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible" && $("#ownerSheet").hidden) loadHousehold(); });
+
+takeLinkToken();
 render();
+loadHousehold();
 setZh(store.get("pr-zh",true));
 route();
 spy();
